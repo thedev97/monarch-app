@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_tool/app/core/commons.dart';
 import 'package:project_management_tool/app/core/values/images.dart';
-import 'package:project_management_tool/app/modules/login/login.dart';
+import 'package:project_management_tool/app/core/values/values.dart';
+import 'package:project_management_tool/app/modules/auth/email_address.dart';
 
 class WalkthroughView extends StatelessWidget {
   const WalkthroughView({Key? key}) : super(key: key);
@@ -14,64 +15,62 @@ class WalkthroughView extends StatelessWidget {
     var sizeWidth = MediaQuery.of(context).size.width;
     var sizeHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        shrinkWrap: true,
-        physics: AlwaysScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        children: [
-          verticalSpaceMedium,
-          Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 20, left: 15),
-            child: SvgPicture.asset(
-              workToolImg,
-              alignment: Alignment.topLeft,
+      backgroundColor: Color(0xfff8eee4),
+      body: SafeArea(
+        child: ListView(
+          shrinkWrap: true,
+          physics: AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          children: [
+            verticalSpaceLarge,
+            verticalSpaceSmall,
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                'Manage your \nteam & everything\nwith your ways.',
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.w700,
+                    fontSize: sizeHeight <= 700 ? 30.0 : 38.0,
+                    shadows: [
+                      Shadow(
+                          color: Colors.black,
+                          offset: Offset(0.0, 1.0),
+                          blurRadius: 1.0),
+                    ],
+                    color: Colors.black),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Text(
-              'Manage your \nteam & everything\nwith your ways.',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: sizeHeight <= 700 ? 30.0 : 38.0,
-                  color: Colors.black),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15, top: 25),
-            child: SvgPicture.asset(
+            verticalSpaceMedium,
+            SvgPicture.asset(
               teamWorkImg,
-              alignment: Alignment.center,
-              width: sizeWidth * 0.45,
-              height: sizeHeight <= 700 ? sizeHeight * 0.35 : sizeHeight * 0.4,
+              height: sizeHeight <= 700 ? sizeHeight * 0.42 : sizeHeight * 0.5,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15, top: 10),
-            child: Text(
-              '1. Easily manage any team and project.'
-              '\n2. Customize your workflow.'
-              '\n3. Plan, organize and track in one tool.',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
-                  height: 1.5,
-                  color: Colors.grey[600]),
+            verticalSpaceTiny,
+            Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Text(
+                '1. Easily manage any team and project.'
+                '\n2. Customize your workflow.'
+                '\n3. Plan, organize and track in one tool.',
+                style: GoogleFonts.lato(
+                    fontSize: 14,
+                    height: 1.5,
+                    color: HexColor.fromHex("3C3E49")),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: sizeWidth * 0.2, vertical: 20),
+            EdgeInsets.symmetric(horizontal: sizeWidth * 0.1, vertical: 20),
         child: SizedBox(
           height: 55,
           child: ElevatedButton(
             onPressed: () {
               try {
-                Future.delayed(const Duration(microseconds: 50), () {
-                  Get.to(LoginView());
+                Future.delayed(const Duration(microseconds: 20), () {
+                  Get.to(EmailAddressScreen());
                 });
               } catch (exception) {
                 print(exception);
@@ -79,15 +78,18 @@ class WalkthroughView extends StatelessWidget {
             },
             child: Text(
               'Get Started',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+              style: GoogleFonts.lato(
+                  shadows: [
+                    Shadow(
+                        color: Colors.black,
+                        offset: Offset(0.0, 1.0),
+                        blurRadius: 1.0),
+                  ],
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
                   color: Colors.white),
             ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.red,
-              shape: StadiumBorder(),
-            ),
+            style: ButtonStyles.blueRounded,
           ),
         ),
       ),

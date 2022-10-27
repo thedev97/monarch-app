@@ -40,7 +40,7 @@ class Commons {
         padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: Row(
           children: [
-            Container(
+            /*Container(
               height: 45,
               width: 45,
               child: ClipRRect(
@@ -49,7 +49,7 @@ class Commons {
                   profileImg,
                 ),
               ),
-            ),
+            ),*/
             SizedBox(
               width: 15,
             ),
@@ -110,3 +110,7 @@ const Widget verticalSpaceRegular = SizedBox(height: baseMargin * 2);
 const Widget verticalSpaceMedium = SizedBox(height: baseMargin * 3);
 const Widget verticalSpaceLarge = SizedBox(height: baseMargin * 4);
 const Widget bundleVerticalSpacing = SizedBox(height: baseMargin * 1.5);
+
+
+
+
