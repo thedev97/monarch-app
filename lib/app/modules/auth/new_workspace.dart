@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
 import '../../core/values/values.dart';
+import '../../widgets/background/white-background.dart';
 import '../../widgets/buttons/primary_progress_button.dart';
 import '../../widgets/container_label.dart';
 import '../../widgets/navigation/back.dart';
-import '../../widgets/white-background/white-background.dart';
 import 'choose_plan.dart';
 
 class NewWorkSpace extends StatelessWidget {

@@ -30,7 +30,7 @@ class DefaultNav extends StatelessWidget {
           return ProfileDummyImg(
               color: HexColor.fromHex("93F0F0"),
               dummyType: ProfileDummyTypeImg.Image,
-              image: "assets/man-head.png",
+              image: "assets/team-prof.png",
               scale: 1.2);
         } else if (type == ProfileDummyTypeImg.Image) {
           return ProfileDummyImg(

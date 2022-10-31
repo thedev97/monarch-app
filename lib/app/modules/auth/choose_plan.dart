@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/values/values.dart';
+import '../../widgets/background/white-background.dart';
 import '../../widgets/buttons/primary_progress_button.dart';
 import '../../widgets/navigation/back.dart';
 import '../../widgets/onboarding/plan_card.dart';
 import '../../widgets/onboarding/toggle_option.dart';
-import '../../widgets/white-background/white-background.dart';
+import '../dashboard/timeline.dart';
 
 class ChoosePlan extends StatelessWidget {
   ChoosePlan({Key? key}) : super(key: key);
@@ -154,7 +155,7 @@ class ChoosePlan extends StatelessWidget {
                       width: 120,
                       label: "Done",
                       callback: () {
-                        //Get.to(() => Timeline());
+                        Get.to(() => Timeline());
                       })
                 ]),
           ))

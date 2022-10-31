@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_tool/app/core/values/values.dart';
 import 'package:project_management_tool/app/modules/auth/new_workspace.dart';
+import '../../widgets/background/white-background.dart';
 import '../../widgets/forms/text_input_with _label.dart';
 import '../../widgets/navigation/back.dart';
-import '../../widgets/white-background/white-background.dart';
 
 class Login extends StatefulWidget {
   final String email;

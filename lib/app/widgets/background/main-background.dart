@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../core/values/values.dart';
 
 // ignore: must_be_immutable
-class WhiteBackground extends StatelessWidget {
+class MainBackground extends StatelessWidget {
   final String position;
   final Color color;
   var list = List.generate(
     3,
-        (index) => HexColor.fromHex("#f8eee4"),
+        (index) => HexColor.fromHex("#ffffff"),
   );
-  WhiteBackground({required this.color, required this.position});
+  MainBackground({required this.color, required this.position});
   @override
   Widget build(BuildContext context) {
     return Center(

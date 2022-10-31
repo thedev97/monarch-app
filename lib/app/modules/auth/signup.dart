@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/values/values.dart';
+import '../../widgets/background/white-background.dart';
 import '../../widgets/forms/text_input_with _label.dart';
 import '../../widgets/navigation/back.dart';
-import '../../widgets/white-background/white-background.dart';
 import 'login.dart';
 
 class SignUp extends StatefulWidget {

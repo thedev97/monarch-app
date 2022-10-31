@@ -13,7 +13,6 @@ class GradientColorBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = Get.width;
     return InkWell(
       onTap: () {
         valueChanger.value = selectIndex;

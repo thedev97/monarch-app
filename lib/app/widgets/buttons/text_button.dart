@@ -6,6 +6,7 @@ class AppTextButton extends StatelessWidget {
   final String buttonText;
   final double buttonSize;
   final VoidCallback? callback;
+
   const AppTextButton(
       {Key? key,
       required this.buttonSize,
@@ -18,10 +19,10 @@ class AppTextButton extends StatelessWidget {
     return InkWell(
       onTap: callback,
       child: Text(buttonText,
-          style: GoogleFonts.lato(
-              color: HexColor.fromHex("616575"),
-              fontSize: buttonSize,
-              fontWeight: FontWeight.bold)),
+          style: GoogleFonts.lato(shadows: [
+            Shadow(
+                color: Colors.black, offset: Offset(0.0, 1.0), blurRadius: 1.0),
+          ], fontWeight: FontWeight.w500, fontSize: 16, color: Colors.black)),
     );
   }
 }

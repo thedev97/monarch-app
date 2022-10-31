@@ -7,8 +7,13 @@ class PrimaryTabButton extends StatelessWidget {
   final int itemIndex;
   final ValueNotifier<int> notifier;
   final VoidCallback? callback;
+
   const PrimaryTabButton(
-      {Key? key, this.callback, required this.notifier, required this.buttonText, required this.itemIndex})
+      {Key? key,
+      this.callback,
+      required this.notifier,
+      required this.buttonText,
+      required this.itemIndex})
       : super(key: key);
 
   @override
@@ -27,14 +32,29 @@ class PrimaryTabButton extends StatelessWidget {
                 },
                 style: ButtonStyle(
                     backgroundColor: notifier.value == itemIndex
-                        ? MaterialStateProperty.all<Color>(HexColor.fromHex("246CFE"))
-                        : MaterialStateProperty.all<Color>(HexColor.fromHex("181A1F")),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                        side: notifier.value == itemIndex
-                            ? BorderSide(color: HexColor.fromHex("246CFE"))
-                            : BorderSide(color: HexColor.fromHex("181A1F"))))),
-                child: Text(buttonText, style: GoogleFonts.lato(fontSize: 16, color: Colors.white)));
+                        ? MaterialStateProperty.all<Color>(
+                            HexColor.fromHex("#122037"))
+                        : MaterialStateProperty.all<Color>(Colors.grey),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                            side: notifier.value == itemIndex
+                                ? BorderSide(color: Colors.black)
+                                : BorderSide(color: Colors.grey)))),
+                child: Text(buttonText,
+                    style: GoogleFonts.lato(
+                        fontSize: 16,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                              color: notifier.value == itemIndex ? Colors.black : Colors.transparent,
+                              offset: notifier.value == itemIndex
+                                  ? Offset(0.0, 1.0)
+                                  : Offset(0.0, 0.0),
+                              blurRadius:
+                                  notifier.value == itemIndex ? 1.0 : 0.0),
+                        ],
+                        fontWeight: FontWeight.w500)));
           }),
     );
   }

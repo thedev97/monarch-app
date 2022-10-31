@@ -35,6 +35,7 @@ class ToggleLabelOption extends StatelessWidget {
                             Icon(icon, color: Colors.black, size: 25),
                             Text(label,
                                 style: GoogleFonts.lato(
+                                  fontWeight: FontWeight.w500,
                                     fontSize: 16, color: Colors.black)),
                           ],
                         ),

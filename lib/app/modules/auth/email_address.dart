@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_tool/app/modules/Auth/signup.dart';
 import '../../core/values/values.dart';
+import '../../widgets/background/white-background.dart';
 import '../../widgets/forms/text_input_with _label.dart';
 import '../../widgets/navigation/back.dart';
-import '../../widgets/white-background/white-background.dart';
 
 class EmailAddressScreen extends StatefulWidget {
   @override
