@@ -19,24 +19,24 @@ class DashboardAddBottomSheet extends StatelessWidget {
         icon: Icons.add_to_queue,
         callback: _createTask,
       ),
-     /* LabelledOption(
+      LabelledOption(
           label: 'Create Project',
           icon: Icons.device_hub,
           callback: () {
-            Get.to(() => CreateProjectScreen());
+            //Get.to(() => CreateProjectScreen());
           }),
       LabelledOption(
           label: 'Create team',
           icon: Icons.people,
           callback: () {
-            Get.to(() => SelectMembersScreen());
+            //Get.to(() => SelectMembersScreen());
           }),
       LabelledOption(
           label: 'Create Event',
           icon: Icons.fiber_smart_record,
           callback: () {
-            Get.to(() => TaskDueDate());
-          }),*/
+            //Get.to(() => TaskDueDate());
+          }),
     ]);
   }
 

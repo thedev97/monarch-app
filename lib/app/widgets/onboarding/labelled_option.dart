@@ -26,18 +26,19 @@ class LabelledOption extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
+          padding: EdgeInsets.symmetric(vertical: 8.5),
           child: MergeSemantics(
               child: InkWell(
             onTap: callback,
             child: ListTile(
                 title: Row(
                   children: [
-                    Icon(icon, color: Colors.white, size: 24),
+                    Icon(icon, color: Colors.black, size: 24),
                     Text("       $label",
                         style: GoogleFonts.lato(
-                          fontSize: 18,
-                          color: (color != null) ? color! : Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: (color != null) ? color! : Colors.black,
                         )),
                   ],
                 ),
@@ -59,7 +60,6 @@ class LabelledOption extends StatelessWidget {
         ),
 
         Divider(height: 1, color: HexColor.fromHex("353742"))
-        // Divider(height: 1, color: HexColor.fromHex("616575"))
       ],
     );
   }

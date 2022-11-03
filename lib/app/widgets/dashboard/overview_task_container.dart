@@ -46,7 +46,7 @@ class OverviewTaskContainer extends StatelessWidget {
                         BoxShadow(
                           color: items[index].endColor,
                           blurRadius: 2,
-                          offset: Offset(0, 2),
+                          offset: Offset(0, 8),
                         ),
                       ],
                     ),
@@ -67,8 +67,8 @@ class OverviewTaskContainer extends StatelessWidget {
                         Expanded(
                           child: Image.asset(
                             'assets/compl-task.png',
-                            height: 45,
-                            width: 45,
+                            height: 42,
+                            width: 42,
                           ),
                           flex: 2,
                         ),
@@ -83,7 +83,7 @@ class OverviewTaskContainer extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Avenir',
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700),
                               ),
                               AppSpaces.verticalSpace10,

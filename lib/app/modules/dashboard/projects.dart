@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import '../../core/values/values.dart';
+import '../../data/data_model.dart';
 import '../../widgets/buttons/primary_tab_buttons.dart';
 
 class ProjectScreen extends StatelessWidget {

@@ -3,16 +3,21 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:project_management_tool/app/widgets/forms/task_input_form.dart';
+import '../../modules/task/set_assignees.dart';
+import 'add_sub_icon.dart';
+import 'calendar.dart';
+import 'dashboard_add_project_sheet.dart';
 import '../../core/values/values.dart';
 import '../bottomsheets/bottom_sheet_holder.dart';
-import '../forms/text_input_unlabelled.dart';
-import 'calendar.dart';
+import '../bottomsheets/bottom_sheets.dart';
 
 // ignore: must_be_immutable
 class CreateTaskBottomSheet extends StatelessWidget {
   CreateTaskBottomSheet({Key? key}) : super(key: key);
 
   TextEditingController _taskNameController = new TextEditingController();
+  String projectName = "HobNob - Mobile app  ";
 
   @override
   Widget build(BuildContext context) {
@@ -24,57 +29,61 @@ class CreateTaskBottomSheet extends StatelessWidget {
         AppSpaces.verticalSpace10,
         Padding(
           padding: EdgeInsets.all(20),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              Icon(Icons.contacts, color: Colors.white),
+              Icon(Icons.contacts, color: HexColor.fromHex("353645")),
               AppSpaces.horizontalSpace10,
-              Text("Unity Dashboard  ", style: GoogleFonts.lato(color: Colors.white, fontWeight: FontWeight.w700)),
-              Icon(Icons.expand_more, color: Colors.white),
+              Text(projectName.toUpperCase(),
+                  style: GoogleFonts.lato(
+                      color: HexColor.fromHex("353645"),
+                      shadows: [
+                        Shadow(
+                            color: Colors.black,
+                            offset: Offset(0.0, 0.5),
+                            blurRadius: 0.5),
+                      ],
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500)),
+              Icon(
+                Icons.expand_more,
+                color: HexColor.fromHex("353645"),
+              ),
             ]),
             AppSpaces.verticalSpace20,
-            Row(
-              children: [
-                Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        gradient: LinearGradient(colors: [HexColor.fromHex("FD916E"), HexColor.fromHex("FFE09B")]))),
-                AppSpaces.horizontalSpace20,
-                Expanded(
-                  child: TextFormInputUnlabelled(
-                    placeholder: "Task Name ....",
-                    autofocus: true,
-                    keyboardType: "text",
-                    controller: _taskNameController,
-                    obscureText: false,
-                  ),
-                ),
-              ],
+            TaskFormInput(
+              placeholder: "Task Name ....",
+              autofocus: true,
+              keyboardType: "text",
+              controller: _taskNameController,
+              obscureText: false,
+              label: "Task",
             ),
             AppSpaces.verticalSpace20,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               InkWell(
                 onTap: () {
-                  //Get.to(() => SetAssigneesScreen());
+                  Get.to(() => SetAssigneesScreen());
                 },
-                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  ProfileDummyImg(
-                      color: HexColor.fromHex("94F0F1"),
-                      dummyType: ProfileDummyTypeImg.Image,
-                      scale: 1.5,
-                      image: "assets/team-prof.png"),
-                  AppSpaces.horizontalSpace10,
-                  CircularCardLabel(
-                    label: 'Assigned to',
-                    value: 'Dereck Boyle',
-                    color: Colors.white,
-                  )
-                ]),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProfileDummyImg(
+                          color: HexColor.fromHex("94F0F1"),
+                          dummyType: ProfileDummyTypeImg.Image,
+                          scale: 1.5,
+                          image: "assets/team-prof.png"),
+                      AppSpaces.horizontalSpace10,
+                      CircularCardLabel(
+                        label: 'Assigned to',
+                        value: 'Soumya Ranjan',
+                        color: HexColor.fromHex("3C3E49"),
+                      )
+                    ]),
               ),
               SheetGoToCalendarWidget(
-                cardBackgroundColor: HexColor.fromHex("7DBA67"),
-                textAccentColor: HexColor.fromHex("A9F49C"),
+                cardBackgroundColor: HexColor.fromHex("FDA7FF"),
+                textAccentColor: Colors.purpleAccent,
                 value: 'Today 3:00PM',
                 label: 'Due Date',
               )
@@ -85,18 +94,22 @@ class CreateTaskBottomSheet extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Container(
                 width: screenWidth * 0.6,
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  BottomSheetIcon(icon: Icons.local_offer_outlined),
-                  Transform.rotate(angle: 195.2, child: BottomSheetIcon(icon: Icons.attach_file)),
-                  BottomSheetIcon(icon: FeatherIcons.flag),
-                  BottomSheetIcon(icon: FeatherIcons.image)
-                ]),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BottomSheetIcon(icon: Icons.local_offer_outlined),
+                      Transform.rotate(
+                          angle: 195.2,
+                          child: BottomSheetIcon(icon: Icons.attach_file)),
+                      BottomSheetIcon(icon: FeatherIcons.flag),
+                      BottomSheetIcon(icon: FeatherIcons.image)
+                    ]),
               ),
-              /*AddSubIcon(
+              AddSubIcon(
                 scale: 0.8,
-                color: AppColors.primaryAccentColor,
+                color: AppColors.primaryBackgroundColor,
                 callback: _addProject,
-              ),*/
+              ),
             ])
           ]),
         ),
@@ -104,17 +117,18 @@ class CreateTaskBottomSheet extends StatelessWidget {
     );
   }
 
-  /*void _addProject() {
+void _addProject() {
     showAppBottomSheet(
       DashboardAddProjectSheet(),
       isScrollControlled: true,
       popAndShow: true,
     );
-  }*/
+  }
 }
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
     Key? key,
@@ -125,9 +139,9 @@ class BottomSheetIcon extends StatelessWidget {
     return IconButton(
       icon: Icon(
         icon,
-        color: Colors.white,
+        color: Colors.black,
       ),
-      iconSize: 32,
+      iconSize: 25,
       onPressed: null,
     );
   }

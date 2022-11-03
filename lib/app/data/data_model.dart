@@ -38,101 +38,98 @@ class AppData {
 
   static final List<Map<String, dynamic>> notificationMentions = [
     {
-      "mentionedBy": "Benjamin Poole",
-      "mentionedIn": "Unity Gaming",
+      "mentionedBy": "Danny-Wills",
+      "mentionedIn": "HobNob",
       "read": false,
       "date": "Nov 2nd",
-      "profileImage": "assets/memoji/1.png",
+      "profileImage": "assets/emoji/avatar-1.png",
       "hashTagPresent": true,
       "userOnline": false,
       "color": "BBF1C3",
-      "hashElement": "@tranmautritam",
+      "hashElement": "@soumya",
       "message":
-          " when you have time please take a look at the new designs I just made in Figma. 👋"
+          "When you have time please take a look at the new designs I just made in Figma."
     },
     {
-      "mentionedBy": "Katharine Walls",
-      "mentionedIn": "Unity Gaming",
+      "mentionedBy": "Franklin-Walls",
+      "mentionedIn": "HobNob",
       "read": true,
       "date": "Nov 2nd",
-      "profileImage": "assets/memoji/2.png",
+      "profileImage": "assets/emoji/avatar-2.png",
       "hashTagPresent": false,
       "color": "DBCFFE",
       "userOnline": true,
       "hashElement": "",
-      "message":
-          "Please make the presentation as soon as possible Tam. We're still waiting for it. 🏀"
+      "message": "Please fixed this bug asap."
     },
     {
-      "mentionedBy": "Bertha Ramos",
-      "mentionedIn": "UI8 Products",
+      "mentionedBy": "Jackson Ramos",
+      "mentionedIn": "UI5 Products",
       "read": true,
       "date": "Nov 2nd",
-      "profileImage": "assets/memoji/4.png",
+      "profileImage": "assets/emoji/avatar-3.png",
       "hashTagPresent": false,
       "userOnline": true,
       "color": "FFC5D5",
       "hashElement": "",
       "message":
-          "Are you actually working? I don't see any new stuffs from you. Please Be creative!!!"
+          "Please try to complete this functionality as soon as possible."
+    },
+    {
+      "mentionedBy": "Sophie Brownie",
+      "mentionedIn": "Productivity",
+      "date": "Nov 2nd",
+      "read": true,
+      "profileImage": "assets/emoji/avatar-4.png",
+      "hashTagPresent": false,
+      "color": "FAA3FF",
+      "userOnline": false,
+      "hashElement": "",
+      "message": "Please update your task on regular basis."
+    },
+    {
+      "mentionedBy": "Katharine Walls",
+      "mentionedIn": "UI5 Products",
+      "read": true,
+      "date": "Nov 2nd",
+      "profileImage": "assets/emoji/avatar-5.png",
+      "hashTagPresent": false,
+      "color": "DBCFFE",
+      "userOnline": true,
+      "hashElement": "",
+      "message": "Hey Please be online."
+    },
+    {
+      "mentionedBy": "Bertha Ramos",
+      "mentionedIn": "DataBase-Handler",
+      "read": true,
+      "date": "Nov 2nd",
+      "profileImage": "assets/emoji/avatar-1.png",
+      "hashTagPresent": false,
+      "userOnline": true,
+      "color": "FFC5D5",
+      "hashElement": "",
+      "message": "Hey, Please stored the login data in locally. It's Important."
     },
     {
       "mentionedBy": "Marie Bowen",
       "mentionedIn": "Productivity",
       "date": "Nov 2nd",
       "read": true,
-      "profileImage": "assets/memoji/7.png",
+      "profileImage": "assets/emoji/avatar-4.png",
       "hashTagPresent": false,
       "color": "FAA3FF",
       "userOnline": false,
       "hashElement": "",
-      "message": "Are you actually working? We're still waiting for it. 🏀"
-    },
-    {
-      "mentionedBy": "Katharine Walls",
-      "mentionedIn": "Unity Gaming",
-      "read": true,
-      "date": "Nov 2nd",
-      "profileImage": "assets/memoji/2.png",
-      "hashTagPresent": false,
-      "color": "DBCFFE",
-      "userOnline": true,
-      "hashElement": "",
-      "message":
-          "Please make the presentation as soon as possible Tam. We're still waiting for it. 🏀"
-    },
-    {
-      "mentionedBy": "Bertha Ramos",
-      "mentionedIn": "UI8 Products",
-      "read": true,
-      "date": "Nov 2nd",
-      "profileImage": "assets/memoji/4.png",
-      "hashTagPresent": false,
-      "userOnline": true,
-      "color": "FFC5D5",
-      "hashElement": "",
-      "message":
-          "Are you actually working? I don't see any new stuffs from you. Please Be creative!!!"
-    },
-    {
-      "mentionedBy": "Marie Bowen",
-      "mentionedIn": "Productivity",
-      "date": "Nov 2nd",
-      "read": true,
-      "profileImage": "assets/memoji/7.png",
-      "hashTagPresent": false,
-      "color": "FAA3FF",
-      "userOnline": false,
-      "hashElement": "",
-      "message": "Are you actually working? We're still waiting for it. 🏀"
+      "message": "We are meeting at 4 pm. so please available."
     },
   ];
 
   static final List<String> profileImages = [
-    "assets/memoji/1.png",
-    "assets/memoji/2.png",
-    "assets/memoji/4.png",
-    "assets/memoji/7.png"
+    "assets/emoji/avatar-1.png",
+    "assets/emoji/avatar-2.png",
+    "assets/emoji/avatar-4.png",
+    "assets/emoji/avatar-5.png",
   ];
 
   static final List<Color> groupBackgroundColors = [
@@ -145,125 +142,139 @@ class AppData {
   static final List<Map<String, dynamic>> onlineUsers = [
     {
       "name": "Gareth Reid 🔥",
-      "profileImage": "assets/memoji/1.png",
+      "profileImage": "assets/emoji/avatar-1.png",
       "color": "BAF0C5",
     },
     {
       "name": "Vincent Lyons 🇺🇸",
-      "profileImage": "assets/memoji/2.png",
+      "profileImage": "assets/emoji/avatar-2.png",
       "color": "DACFFE",
     },
     {
       "name": "Adeline Nunez 🎉",
-      "profileImage": "assets/memoji/4.png",
+      "profileImage": "assets/emoji/avatar-3.png",
       "color": "FFC7D5",
     },
     {
       "name": "Samuel Doyle 🔥",
-      "profileImage": "assets/memoji/7.png",
+      "profileImage": "assets/emoji/avatar-4.png",
       "color": "C0E7FD",
     },
     {
       "name": "Ruth Benson 🔥",
-      "profileImage": "assets/memoji/9.png",
+      "profileImage": "assets/emoji/avatar-5.png",
       "color": "D7D2D4",
     },
     {
       "name": "Adeline Nunez 🎉",
-      "profileImage": "assets/memoji/4.png",
+      "profileImage": "assets/emoji/avatar-1.png",
       "color": "FFC7D5",
     },
     {
       "name": "Samuel Doyle 🔥",
-      "profileImage": "assets/memoji/7.png",
+      "profileImage": "assets/emoji/avatar-4.png",
       "color": "C0E7FD",
     },
     {
       "name": "Ruth Benson 🔥",
-      "profileImage": "assets/memoji/9.png",
+      "profileImage": "assets/emoji/avatar-2.png",
       "color": "D7D2D4",
     },
     {
       "name": "Adeline Nunez 🎉",
-      "profileImage": "assets/memoji/4.png",
+      "profileImage": "assets/emoji/avatar-5.png",
       "color": "FFC7D5",
     },
     {
       "name": "Samuel Doyle 🔥",
-      "profileImage": "assets/memoji/7.png",
+      "profileImage": "assets/emoji/avatar-3.png",
       "color": "C0E7FD",
     },
     {
       "name": "Ruth Benson 🔥",
-      "profileImage": "assets/memoji/9.png",
+      "profileImage": "assets/emoji/avatar-2.png",
       "color": "D7D2D4",
     },
     {
       "name": "Gareth Reid 🔥",
-      "profileImage": "assets/memoji/1.png",
+      "profileImage": "assets/emoji/avatar-4.png",
       "color": "BAF0C5",
     },
     {
       "name": "Vincent Lyons 🇺🇸",
-      "profileImage": "assets/memoji/2.png",
+      "profileImage": "assets/emoji/avatar-5.png",
       "color": "DACFFE",
     },
     {
       "name": "Adeline Nunez 🎉",
-      "profileImage": "assets/memoji/4.png",
+      "profileImage": "assets/emoji/avatar-1.png",
       "color": "FFC7D5",
     },
   ];
 
   static final List<Map<String, dynamic>> employeeData = [
     {
-      "employeeName": "Aaliyah Langosh",
-      "employeeImage": "assets/girl_smile.png",
+      "employeeName": "Laura Dallas",
+      "employeeImage": "assets/emoji/avatar-1.png",
       "color": HexColor.fromHex("FCA3FF"),
-      "activated": true,
-      "employeePosition": "Senior Interactions Agent"
+      "activated": false,
+      "employeePosition": "Senior Developer"
     },
     {
-      "employeeName": "Greta Streich",
-      "employeeImage": "assets/man-head.png",
+      "employeeName": "Franklin Walls",
+      "employeeImage": "assets/team-prof.png",
+      "color": HexColor.fromHex("FCA3FF"),
+      "activated": false,
+      "employeePosition": "Project Manager"
+    },
+    {
+      "employeeName": "Chris Owens",
+      "employeeImage": "assets/emoji/avatar-2.png",
       "color": HexColor.fromHex("94F1F1"),
       "activated": false,
-      "employeePosition": "Dynamic Security Technician"
+      "employeePosition": "DataBase Engineer"
     },
     {
-      "employeeName": "Judd Koch",
-      "employeeImage": "assets/memoji/7.png",
+      "employeeName": "Ramos Sergio",
+      "employeeImage": "assets/emoji/avatar-3.png",
       "color": HexColor.fromHex("8D96FF"),
-      "activated": true,
-      "employeePosition": "Senior Interactions Agent"
+      "activated": false,
+      "employeePosition": "Senior Developer"
     },
     {
       "employeeName": "Katherine Wells",
-      "employeeImage": "assets/memoji/2.png",
+      "employeeImage": "assets/emoji/avatar-4.png",
       "color": HexColor.fromHex("DBD0FD"),
       "activated": false,
-      "employeePosition": "Dynamic Security Technician"
+      "employeePosition": "UI Designer"
     },
     {
-      "employeeName": "Betha Ramos",
-      "employeeImage": "assets/memoji/9.png",
+      "employeeName": "Isabella Ramos",
+      "employeeImage": "assets/emoji/avatar-5.png",
       "color": HexColor.fromHex("FFC5D5"),
       "activated": false,
-      "employeePosition": "Dynamic Security Technician"
+      "employeePosition": "Backend Developer"
     },
     {
-      "employeeName": "Greta Streich",
-      "employeeImage": "assets/girl_smile.png",
+      "employeeName": "Bryce Sermon",
+      "employeeImage": "assets/emoji/avatar-4.png",
       "color": HexColor.fromHex("94F1F1"),
       "activated": false,
-      "employeePosition": "Dynamic Security Technician"
+      "employeePosition": "Product Manager"
     },
     {
-      "employeeName": "Aaliyah Langosh",
-      "employeeImage": "assets/girl_smile.png",
+      "employeeName": "Ramos Sergio",
+      "employeeImage": "assets/emoji/avatar-3.png",
       "color": HexColor.fromHex("FCA3FF"),
-      "activated": true,
-      "employeePosition": "Senior Interactions Agent"
+      "activated": false,
+      "employeePosition": "Senior Developer"
+    },
+    {
+      "employeeName": "Chris Owens",
+      "employeeImage": "assets/emoji/avatar-2.png",
+      "color": HexColor.fromHex("FCA3FF"),
+      "activated": false,
+      "employeePosition": "DataBase Engineer"
     },
   ];
 

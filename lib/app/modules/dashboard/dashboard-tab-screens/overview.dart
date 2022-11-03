@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tcard/tcard.dart';
 import '../../../core/values/values.dart';
 import '../../../data/data_model.dart';
 import '../../../widgets/dashboard/overview_task_container.dart';
@@ -11,27 +11,10 @@ class DashboardOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dynamic data = AppData.progressIndicatorList;
-    var sizeWidth = MediaQuery.of(context).size.width;
-    List<Widget> cards = List.generate(
-        5,
-        (index) => TaskProgressCard(
-              cardTitle: data[index]['cardTitle'],
-              rating: data[index]['rating'],
-              progressFigure: data[index]['progress'],
-              percentageGap: int.parse(data[index]['progressBar']),
-            ));
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 150,
-          width: sizeWidth,
-          child: TCard(
-            cards: cards,
-          ),
-        ),
+        tasksList(),
         AppSpaces.verticalSpace20,
         Text("Recent Activity",
             style: GoogleFonts.lato(
@@ -49,5 +32,34 @@ class DashboardOverview extends StatelessWidget {
         OverviewTaskContainer(),
       ],
     );
+  }
+
+  //?? tasks list
+  Widget tasksList() {
+    var sizeHeight = Get.height;
+    return Container(
+      height: sizeHeight * 0.15,
+      child: taskListCard(),
+    );
+  }
+
+  // ??  task List card
+  Widget taskListCard() {
+    final dynamic data = AppData.progressIndicatorList;
+    var sizeWidth = Get.width;
+    return GridView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: AppData.progressIndicatorList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1, mainAxisSpacing: 15.0, mainAxisExtent: sizeWidth*0.65),
+        itemBuilder: (BuildContext context, int index) {
+          return TaskProgressCard(
+            cardTitle: data[index]['cardTitle'],
+            rating: data[index]['rating'],
+            progressFigure: data[index]['progress'],
+            percentageGap: int.parse(data[index]['progressBar']),
+          );
+        });
   }
 }

@@ -3,25 +3,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/values/values.dart';
 
-class TextFormInput extends StatelessWidget {
+class TaskFormInput extends StatelessWidget {
   final String label;
   final String placeholder;
-  final String? value;
   final String keyboardType;
+  final bool? autofocus;
   final bool obscureText;
-  final String? Function(String?)? validatorFunction;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
-  const TextFormInput(
-      {Key? key,
-      required this.placeholder,
-      required this.keyboardType,
-      required this.controller,
-      required this.obscureText,
-      required this.label,
-      required this.validatorFunction,
-      this.value})
-      : super(key: key);
+  const TaskFormInput({
+    Key? key,
+    this.autofocus,
+    required this.placeholder,
+    required this.keyboardType,
+    this.controller,
+    required this.label,
+    required this.obscureText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +34,14 @@ class TextFormInput extends StatelessWidget {
                 fontSize: 12, color: HexColor.fromHex("3C3E49"))),
         TextFormField(
           controller: controller,
+          autofocus: autofocus ?? false,
           style: GoogleFonts.lato(
               fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
           onTap: () {},
-          validator: validatorFunction,
           keyboardType: keyboardType == "text"
               ? TextInputType.text
               : TextInputType.number,
+          //initialValue: initialValue,
           obscureText:
               placeholder == 'Password' || placeholder == 'Choose a password'
                   ? true
@@ -50,36 +49,31 @@ class TextFormInput extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 0,
-                vertical: 20,
+                vertical: 18,
               ),
-              suffixIcon:
-                  placeholder == "Password" || placeholder == "Confirm Password"
-                      ? InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            obscureText
-                                ? FontAwesomeIcons.eye
-                                : FontAwesomeIcons.eyeSlash,
-                            //size: 15.0,
-                            color: HexColor.fromHex("3C3E49"),
-                          ))
-                      : InkWell(
-                          onTap: () {
-                            controller.text = "";
-                          },
-                          child: Icon(FontAwesomeIcons.solidTimesCircle,
-                              size: 20, color: HexColor.fromHex("3C3E49")),
-                        ),
+              suffixIcon: placeholder == "Password"
+                  ? InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        obscureText
+                            ? FontAwesomeIcons.eye
+                            : FontAwesomeIcons.eyeSlash,
+                        size: 15.0,
+                        color: HexColor.fromHex("3C3E49"),
+                      ))
+                  : InkWell(
+                      onTap: () {
+                        controller!.text = "";
+                      },
+                      child: Icon(FontAwesomeIcons.solidTimesCircle,
+                          color:  HexColor.fromHex("3C3E49"), size: 20),
+                    ),
               hintText: placeholder,
               hintStyle: GoogleFonts.lato(
                   fontWeight: FontWeight.w800,
                   fontSize: 18,
                   color: Colors.grey.withOpacity(0.6)),
               filled: false,
-              errorStyle: GoogleFonts.lato(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: Colors.red),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: HexColor.fromHex("3C3E49")),
               ),

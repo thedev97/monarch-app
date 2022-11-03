@@ -27,8 +27,8 @@ class TaskProgressCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black12,
-              blurRadius: 4,
-              offset: Offset(4, 8), // Shadow position
+              blurRadius: 2,
+              offset: Offset(0, 4), // Shadow position
             ),
           ],
           borderRadius: BorderRadius.circular(20),
@@ -41,11 +41,10 @@ class TaskProgressCard extends StatelessWidget {
           ),
         ),
         child: Stack(children: [
-          Positioned(top: 10, right: 10, child: ProgressCardCloseButton()),
           Positioned(
-              top: 35,
+              top: 22,
               bottom: 15,
-              right: 10,
+              right: 20,
               left: 20,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +52,7 @@ class TaskProgressCard extends StatelessWidget {
                   Text(cardTitle,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.lato(
-                        fontWeight: FontWeight.w500, fontSize: 18,
+                        fontWeight: FontWeight.w500, fontSize: 16,
                         color: Colors.black, shadows: [
                         Shadow(
                             color: Colors.black,
@@ -63,14 +62,14 @@ class TaskProgressCard extends StatelessWidget {
                   AppSpaces.verticalSpace10,
                   Text('$rating is completed',
                       style: GoogleFonts.lato(
-                          fontWeight: FontWeight.w500, fontSize: 16)),
+                          fontWeight: FontWeight.w500, fontSize: 14)),
                   SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Row(
                     children: [
                       Container(
-                          width: 220,
+                          width: 150,
                           height: 10,
                           decoration: BoxDecoration(
                               borderRadius:

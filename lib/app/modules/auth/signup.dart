@@ -180,8 +180,14 @@ class _SignUpState extends State<SignUp> {
                             child: Text(
                               "Login",
                               style: GoogleFonts.lato(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  shadows: [
+                                    Shadow(
+                                        color: Colors.black,
+                                        offset: Offset(0.0, 1.0),
+                                        blurRadius: 1.0),
+                                  ],
                                   color: Colors.black),
                             ),
                           ),

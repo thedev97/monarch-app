@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
 import '../../core/values/values.dart';
+import '../../data/data_model.dart';
 import '../../widgets/navigation/default_back.dart';
+import '../../widgets/notification/notification_card.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
-   /* final dynamic notificationData = AppData.notificationMentions;
+    final dynamic notificationData = AppData.notificationMentions;
 
     List<Widget> notificationCards = List.generate(
         notificationData.length,
@@ -27,11 +28,13 @@ class NotificationScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(left: 20.0, right: 20.0),
         child: SafeArea(
-          child: Column(children: [
-            DefaultNav(title: "Notification", type: ProfileDummyTypeImg.Image),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            AppSpaces.verticalSpace30,
+            Text("Notification", style: AppTextStyles.header2),
             AppSpaces.verticalSpace20,
             Expanded(child: ListView(children: [...notificationCards]))
           ]),
-        ));*/
+        ));
   }
 }

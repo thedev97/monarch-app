@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../core/constants.dart';
 import '../../widgets/background/main-background.dart';
+import '../../widgets/bottomsheets/bottom_sheets.dart';
+import '../../widgets/dashboard/dashboard_add_sheet.dart';
 import 'dashboard.dart';
 import '../../core/values/values.dart';
 
@@ -23,9 +26,25 @@ class _TimelineState extends State<Timeline> {
 
   @override
   Widget build(BuildContext context) {
+    var screenHeight = Get.height;
     return Scaffold(
         backgroundColor: HexColor.fromHex("#ffffff"),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton(
+          isExtended: true,
+          child: Icon(Icons.add, color: Colors.white,size: 25,),
+          backgroundColor: HexColor.fromHex("#122037"),
+          shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(5)
+          ),
+          onPressed: () {
+            setState(() {
+              showAppBottomSheet(Container(
+                  height: screenHeight * 0.4,
+                  child: DashboardAddBottomSheet()));
+            });
+          },
+        ),
         body: Stack(children: [
           MainBackground(
             color: HexColor.fromHex("#ffffff"),
