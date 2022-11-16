@@ -12,8 +12,8 @@ class RoundedBorderWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width ?? 30,
-        height: height ?? 30,
+        width: width ?? 40,
+        height: height ?? 40,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),

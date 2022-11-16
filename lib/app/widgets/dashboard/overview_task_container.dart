@@ -31,7 +31,7 @@ class OverviewTaskContainer extends StatelessWidget {
         itemBuilder: (context, index) {
           return Center(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(bottom: 25),
               child: Stack(
                 children: <Widget>[
                   Container(
@@ -46,7 +46,7 @@ class OverviewTaskContainer extends StatelessWidget {
                         BoxShadow(
                           color: items[index].endColor,
                           blurRadius: 2,
-                          offset: Offset(0, 8),
+                          offset: Offset(0, 5),
                         ),
                       ],
                     ),

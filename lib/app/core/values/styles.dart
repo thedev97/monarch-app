@@ -16,7 +16,7 @@ class AppTextStyles {
       GoogleFonts.lato(fontSize: 35, fontWeight: FontWeight.bold);
 
   static final TextStyle header2 = GoogleFonts.lato(
-      fontWeight: FontWeight.w700, fontSize: 20, color: Colors.black, shadows: [
+      fontWeight: FontWeight.w700, fontSize: 20, color: Colors.white, shadows: [
     Shadow(
         color: Colors.black,
         offset: Offset(0.0, 1.0),

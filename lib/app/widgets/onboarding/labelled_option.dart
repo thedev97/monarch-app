@@ -54,7 +54,8 @@ class LabelledOption extends StatelessWidget {
                         ? Text(link!,
                             style: TextStyle(
                                 color: AppColors.primaryAccentColor,
-                                fontWeight: FontWeight.bold))
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400))
                         : SizedBox()),
           )),
         ),

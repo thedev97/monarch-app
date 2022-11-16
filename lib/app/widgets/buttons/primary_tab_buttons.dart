@@ -33,7 +33,7 @@ class PrimaryTabButton extends StatelessWidget {
                 style: ButtonStyle(
                     backgroundColor: notifier.value == itemIndex
                         ? MaterialStateProperty.all<Color>(
-                            HexColor.fromHex("#122037"))
+                            Colors.white)
                         : MaterialStateProperty.all<Color>(Colors.grey),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
@@ -44,7 +44,7 @@ class PrimaryTabButton extends StatelessWidget {
                 child: Text(buttonText,
                     style: GoogleFonts.lato(
                         fontSize: 16,
-                        color: Colors.white,
+                        color: Colors.black,
                         shadows: [
                           Shadow(
                               color: notifier.value == itemIndex ? Colors.black : Colors.transparent,

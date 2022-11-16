@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants.dart';
 import '../../core/values/values.dart';
-import '../buttons/progress_card_close_button.dart';
 
 class TaskProgressCard extends StatelessWidget {
   final String cardTitle;
@@ -32,11 +31,12 @@ class TaskProgressCard extends StatelessWidget {
             ),
           ],
           borderRadius: BorderRadius.circular(20),
+          //color: Color(0xffE79381)
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              ...progressCardGradient,
+              ...progressCardGradientList,
             ],
           ),
         ),
@@ -52,17 +52,18 @@ class TaskProgressCard extends StatelessWidget {
                   Text(cardTitle,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.lato(
-                        fontWeight: FontWeight.w500, fontSize: 16,
+                        fontWeight: FontWeight.w600, fontSize: 16,
                         color: Colors.black, shadows: [
                         Shadow(
                             color: Colors.black,
-                            offset: Offset(0.0, 1.0),
-                            blurRadius: 1.0),
+                            offset: Offset(0.0, 0.5),
+                            blurRadius: 0.2),
                       ],)),
                   AppSpaces.verticalSpace10,
                   Text('$rating is completed',
                       style: GoogleFonts.lato(
-                          fontWeight: FontWeight.w500, fontSize: 14)),
+                        color: HexColor.fromHex("5E6272"),
+                          fontWeight: FontWeight.w700, fontSize: 14)),
                   SizedBox(
                     height: 15,
                   ),
@@ -74,13 +75,13 @@ class TaskProgressCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
-                              color: Colors.grey.withOpacity(0.5)),
+                              color: Colors.white),
                           child: Row(children: [
                             Expanded(
                                 flex: percentageGap,
                                 child: Container(
                                     decoration: BoxDecoration(
-                                  color: HexColor.fromHex("#78bac0"),
+                                  color: HexColor.fromHex("#262A34"),
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20.0),
                                     bottomLeft: Radius.circular(20.0),
@@ -90,7 +91,7 @@ class TaskProgressCard extends StatelessWidget {
                           ])),
                       Spacer(),
                       Text("$progressFigure%",
-                          style: GoogleFonts.lato(fontWeight: FontWeight.bold))
+                          style: GoogleFonts.lato(fontWeight: FontWeight.bold, color: Colors.black))
                     ],
                   )
                 ],

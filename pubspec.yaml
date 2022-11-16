@@ -52,6 +52,7 @@ dependencies:
   table_calendar: ^3.0.1
   glassmorphism: ^2.0.1
   google_nav_bar: ^5.0.6
+  draggable_fab: ^0.1.4
 
 dev_dependencies:
   flutter_test:

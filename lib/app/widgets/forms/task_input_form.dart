@@ -40,8 +40,11 @@ class TaskFormInput extends StatelessWidget {
           onTap: () {},
           keyboardType: keyboardType == "text"
               ? TextInputType.text
-              : TextInputType.number,
-          //initialValue: initialValue,
+              : keyboardType == "multiline"
+                  ? TextInputType.multiline
+                  : TextInputType.number,
+          minLines: 1,
+          maxLines:  keyboardType == "multiline" ? 3 : 1,
           obscureText:
               placeholder == 'Password' || placeholder == 'Choose a password'
                   ? true
@@ -66,7 +69,7 @@ class TaskFormInput extends StatelessWidget {
                         controller!.text = "";
                       },
                       child: Icon(FontAwesomeIcons.solidTimesCircle,
-                          color:  HexColor.fromHex("3C3E49"), size: 20),
+                          color: HexColor.fromHex("3C3E49"), size: 20),
                     ),
               hintText: placeholder,
               hintStyle: GoogleFonts.lato(

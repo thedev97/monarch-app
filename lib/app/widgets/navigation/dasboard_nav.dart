@@ -32,7 +32,7 @@ class DashboardNav extends StatelessWidget {
             if (page != null) Get.to(() => page!);
           },
           child: Stack(children: <Widget>[
-            Icon(icon, color: Colors.black, size: 30),
+            Icon(icon, color: Colors.white, size: 30),
             Positioned(
               // draw a red marble
               top: 0.0,

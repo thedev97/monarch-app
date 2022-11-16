@@ -9,6 +9,7 @@ class SearchBoxInput extends StatelessWidget {
   final String placeholder;
 
   final TextEditingController? controller;
+
   const SearchBoxInput({
     Key? key,
     required this.placeholder,
@@ -19,11 +20,20 @@ class SearchBoxInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
+      style: GoogleFonts.lato(
+          fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
       onTap: () {},
       decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: HexColor.fromHex("1E2027")),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: HexColor.fromHex("1E2027")),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: HexColor.fromHex("1E2027")),
           borderRadius: BorderRadius.circular(12.0),
         ),
         contentPadding: EdgeInsets.symmetric(
@@ -31,22 +41,23 @@ class SearchBoxInput extends StatelessWidget {
           vertical: 15,
         ),
         prefixIcon: Padding(
-          padding: EdgeInsets.only(right: 8.0),
-          child: Icon(FeatherIcons.search, color: Colors.white),
+          padding: EdgeInsets.only(right: 8.0, left: 8.0),
+          child: Icon(FeatherIcons.search, color: HexColor.fromHex("FDA7FF")),
         ),
         suffixIcon: InkWell(
           onTap: () {
             controller!.text = "";
           },
           child: Icon(FontAwesomeIcons.solidTimesCircle,
-              color: Colors.white70, size: 20),
+              color: Colors.black, size: 20),
         ),
         hintText: placeholder,
         hintStyle: GoogleFonts.lato(
+            fontWeight: FontWeight.w800,
             fontSize: 18,
-            color: HexColor.fromHex("3C3E49")),
+            color: Colors.grey.withOpacity(0.6)),
         filled: true,
-        fillColor: AppColors.primaryBackgroundColor,
+        fillColor: Colors.white,
       ),
     );
   }

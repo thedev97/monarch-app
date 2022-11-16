@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../core/values/values.dart';
+import '../../modules/task/task_due_date.dart';
+import 'create_project.dart';
 import 'create_task.dart';
 import '../bottomsheets/bottom_sheet_holder.dart';
 import '../bottomsheets/bottom_sheets.dart';
@@ -22,9 +25,8 @@ class DashboardAddBottomSheet extends StatelessWidget {
       LabelledOption(
           label: 'Create Project',
           icon: Icons.device_hub,
-          callback: () {
-            //Get.to(() => CreateProjectScreen());
-          }),
+          callback: _createProject,
+          ),
       LabelledOption(
           label: 'Create team',
           icon: Icons.people,
@@ -35,7 +37,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
           label: 'Create Event',
           icon: Icons.fiber_smart_record,
           callback: () {
-            //Get.to(() => TaskDueDate());
+            Get.to(() => TaskDueDate());
           }),
     ]);
   }
@@ -43,6 +45,14 @@ class DashboardAddBottomSheet extends StatelessWidget {
   void _createTask() {
     showAppBottomSheet(
       CreateTaskBottomSheet(),
+      isScrollControlled: true,
+      popAndShow: true,
+    );
+  }
+
+  void _createProject() {
+    showAppBottomSheet(
+      CreateProjectBottomSheet(),
       isScrollControlled: true,
       popAndShow: true,
     );

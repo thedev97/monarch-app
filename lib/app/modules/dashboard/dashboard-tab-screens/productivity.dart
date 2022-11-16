@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/values/values.dart';
 import '../../../widgets/dashboard/daily_goal_card.dart';
+import '../../../widgets/dashboard/productivity_chart.dart';
 
 class DashboardProductivity extends StatelessWidget {
   const DashboardProductivity({Key? key}) : super(key: key);
@@ -11,7 +12,8 @@ class DashboardProductivity extends StatelessWidget {
       children: [
         DailyGoalCard(),
         AppSpaces.verticalSpace20,
-        //ProductivityChart()
+        ProductivityChart(),
+        AppSpaces.verticalSpace10,
       ],
     );
   }

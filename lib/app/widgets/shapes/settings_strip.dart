@@ -11,10 +11,10 @@ class SettingsStrip extends StatelessWidget {
           height: 10,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.black, width: 1))),
+              border: Border.all(color: Colors.white, width: 2))),
       SizedBox(width: 2),
       Container(
-          width: 12, height: 2, decoration: BoxDecoration(color: Colors.black))
+          width: 12, height: 2, decoration: BoxDecoration(color: Colors.white))
     ]);
   }
 }

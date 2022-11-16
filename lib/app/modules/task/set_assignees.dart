@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../core/values/values.dart';
 import '../../data/data_model.dart';
 import '../../widgets/employee-card/employee_card.dart';
+import '../../widgets/forms/search_box_form.dart';
 import '../../widgets/navigation/back.dart';
 
 class SetAssigneesScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class SetAssigneesScreen extends StatelessWidget {
               employeePosition: data[index]["employeePosition"],
             ));
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff202427),
         body: SafeArea(
           child: Stack(children: [
             Padding(
@@ -36,7 +37,11 @@ class SetAssigneesScreen extends StatelessWidget {
               child: Text("Set New Assignees", style: AppTextStyles.header2),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: sizeHeight*0.17),
+              padding: EdgeInsets.only(left: 20, right: 20, top: sizeHeight*0.18),
+              child: SearchBoxInput(placeholder: 'Search', controller: _searchController),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20, top: sizeHeight*0.27),
               child: SingleChildScrollView(
                 physics: ScrollPhysics(),
                 scrollDirection: Axis.vertical,

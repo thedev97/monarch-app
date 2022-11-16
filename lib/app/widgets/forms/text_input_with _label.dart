@@ -60,7 +60,6 @@ class TextFormInput extends StatelessWidget {
                             obscureText
                                 ? FontAwesomeIcons.eye
                                 : FontAwesomeIcons.eyeSlash,
-                            //size: 15.0,
                             color: HexColor.fromHex("3C3E49"),
                           ))
                       : InkWell(

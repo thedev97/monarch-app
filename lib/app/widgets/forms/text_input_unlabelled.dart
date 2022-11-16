@@ -9,6 +9,7 @@ class TextFormInputUnlabelled extends StatelessWidget {
   final bool? autofocus;
   final bool obscureText;
   final TextEditingController? controller;
+
   const TextFormInputUnlabelled({
     Key? key,
     this.autofocus,
@@ -24,16 +25,19 @@ class TextFormInputUnlabelled extends StatelessWidget {
       controller: controller,
       autofocus: autofocus ?? false,
       style: GoogleFonts.lato(
-          fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+          fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
       onTap: () {},
-      keyboardType:
-          keyboardType == "text" ? TextInputType.text : TextInputType.number,
-      //initialValue: initialValue,
+      keyboardType: keyboardType == "text"
+          ? TextInputType.text
+          : keyboardType == "multiline"
+              ? TextInputType.multiline
+              : TextInputType.number,
+      maxLength: keyboardType == "multiline" ? 5 : 1,
+      minLines: 1,
       obscureText:
           placeholder == 'Password' || placeholder == 'Choose a password'
               ? true
               : false,
-
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
             horizontal: 0,
@@ -54,7 +58,7 @@ class TextFormInputUnlabelled extends StatelessWidget {
                     controller!.text = "";
                   },
                   child: Icon(FontAwesomeIcons.solidTimesCircle,
-                      color: Colors.white70, size: 20),
+                      color: Colors.black, size: 20),
                 ),
           hintText: placeholder,
           hintStyle: GoogleFonts.lato(

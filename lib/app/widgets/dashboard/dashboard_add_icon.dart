@@ -13,10 +13,10 @@ class DashboardAddButton extends StatelessWidget {
     return InkWell(
       onTap: iconTapped,
       child: Container(
-          width: 50,
-          height: 50,
+          width: 45,
+          height: 45,
           decoration: BoxDecoration(
-              color: AppColors.primaryAccentColor, shape: BoxShape.circle),
+              color: AppColors.primaryAccentColor, borderRadius: BorderRadius.circular(10.0)),
           child: Icon(Icons.add, color: Colors.white)),
     );
   }

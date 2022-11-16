@@ -44,7 +44,7 @@ class ActiveEmployeeCard extends StatelessWidget {
           child: DecoratedBox(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: HexColor.fromHex("87C76F").withOpacity(0.5)),
+                color: Colors.white),
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Center(
@@ -66,13 +66,21 @@ class ActiveEmployeeCard extends StatelessWidget {
                           children: [
                             Text(employeeName.toUpperCase(),
                                 style: GoogleFonts.lato(
-                                    color: Colors.white,
+                                    color: Colors.black,
+                                    shadows: [
+                                      Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(0.0, 0.5),
+                                          blurRadius: 0.5),
+                                    ],
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 14.2)),
+                                    fontSize: 13)),
                             SizedBox(height: 4),
                             Text(employeePosition.toUpperCase(),
                                 style: GoogleFonts.lato(
-                                    color: Colors.white,))
+                                    color: HexColor.fromHex("5A5E6D"),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12))
                           ])
                     ]),
                     Align(

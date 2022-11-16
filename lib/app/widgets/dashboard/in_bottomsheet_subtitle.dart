@@ -20,8 +20,10 @@ class InBottomSheetSubtitle extends StatelessWidget {
     return Align(
       alignment: alignment ?? Alignment.centerLeft,
       child: Text(title,
+          textAlign: TextAlign.justify,
           style: textStyle ??
               GoogleFonts.lato(
+                fontWeight: FontWeight.w500,
                   fontSize: 12, color: HexColor.fromHex("626777"))),
     );
   }

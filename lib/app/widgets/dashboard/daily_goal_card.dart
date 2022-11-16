@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/values/values.dart';
 import '../circleTabIndicator/circleProgress.dart';
+import '../../core/constants.dart';
 
 class DailyGoalCard extends StatefulWidget {
   const DailyGoalCard({Key? key}) : super(key: key);
@@ -42,33 +43,27 @@ class _DailyGoalCardState extends State<DailyGoalCard>
         padding: EdgeInsets.all(20.0),
         height: 220,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xffFEF5F1),
-                Color(0xffF5F5F5),
-                HexColor.fromHex("E7B2EF")
-              ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
+          gradient: LinearGradient(
+            colors: [
+              ...progressCardGradient,
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+          ),
+          border: Border.all(color: AppColors.primaryBackgroundColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 2,
+              offset: Offset(0, 4), // Shadow position
             ),
-            borderRadius: BorderRadius.circular(20.0),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade500,
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 0.5,
-                  spreadRadius: 0.5),
-              BoxShadow(
-                  color: Colors.white,
-                  offset: Offset(-1.0, -1.0),
-                  blurRadius: 0.4,
-                  spreadRadius: 0.4),
-            ]),
+          ],
+          borderRadius: BorderRadius.circular(20.0),
+        ),
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //left side
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,8 +73,8 @@ class _DailyGoalCardState extends State<DailyGoalCard>
                           shadows: [
                             Shadow(
                                 color: Colors.black,
-                                offset: Offset(0.0, 0.5),
-                                blurRadius: 0.5),
+                                offset: Offset(0.0, 1.0),
+                                blurRadius: 1.0),
                           ],
                           fontSize: 17,
                           fontWeight: FontWeight.w500)),
@@ -145,16 +140,14 @@ class _DailyGoalCardState extends State<DailyGoalCard>
                 ],
               ),
               Stack(
-                children: [
-                  circularProgress()
-                ],
+                children: [circularProgress()],
               )
             ]));
   }
 
   Widget circularProgress() {
     return CustomPaint(
-      foregroundPainter: CircleProgress(animation!.value/1.2),
+      foregroundPainter: CircleProgress(animation!.value / 1.2),
       // this will add custom painter after child
       child: Container(
         width: 90,

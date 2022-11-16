@@ -18,7 +18,7 @@ class DashboardOverview extends StatelessWidget {
         AppSpaces.verticalSpace20,
         Text("Recent Activity",
             style: GoogleFonts.lato(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 20,
               shadows: [
                 Shadow(
