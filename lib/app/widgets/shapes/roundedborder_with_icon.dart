@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/values/colors.dart';
 import '../../core/values/values.dart';
 
 class RoundedBorderWithIcon extends StatelessWidget {
@@ -12,12 +13,16 @@ class RoundedBorderWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width ?? 40,
-        height: height ?? 40,
+        width: width ?? 36,
+        height: height ?? 36,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            border: Border.all(width: 3, color: HexColor.fromHex("31333D"))),
-        child: Center(child: Icon(icon, size: 20, color: Colors.white)));
+            gradient: LinearGradient(
+                colors: [primaryColor, splashLinearColorOne],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
+            borderRadius: BorderRadius.circular(18.0),
+            border: Border.all(width: 1, color: primaryColor)),
+        child: Center(child: Icon(icon, size: 18, color: Colors.white)));
   }
 }

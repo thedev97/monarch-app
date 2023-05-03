@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import '../shapes/roundedborder_with_icon.dart';
 
 class AppBackButton extends StatelessWidget {
-  const AppBackButton({Key? key}) : super(key: key);
+  final bool horizontalIcon;
+
+  const AppBackButton({Key? key, required this.horizontalIcon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,8 @@ class AppBackButton extends StatelessWidget {
       onTap: () {
         Get.back();
       },
-      child: RoundedBorderWithIcon(icon: Icons.arrow_back),
+      child: RoundedBorderWithIcon(
+          icon: horizontalIcon == true ? Icons.arrow_upward : Icons.arrow_back),
     );
   }
 }

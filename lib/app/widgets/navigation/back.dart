@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'back_button.dart';
 
 class NavigationBack extends StatelessWidget {
@@ -9,6 +8,6 @@ class NavigationBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBackButton();
+    return AppBackButton(horizontalIcon: false,);
   }
 }

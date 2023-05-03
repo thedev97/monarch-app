@@ -33,11 +33,26 @@ class TextFormInput extends StatelessWidget {
         Text(label.toUpperCase(),
             textAlign: TextAlign.left,
             style: GoogleFonts.lato(
-                fontSize: 12, color: HexColor.fromHex("3C3E49"))),
+                shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(0.0, 1.0),
+                      blurRadius: 1.0),
+                ],
+                fontSize: 8, color: Colors.black)),
         TextFormField(
           controller: controller,
           style: GoogleFonts.lato(
-              fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+            fontWeight: FontWeight.w700,
+            fontSize: 12,
+            color: Colors.black,
+            shadows: [
+              Shadow(
+                  color: Colors.black,
+                  offset: Offset(0.0, 1.0),
+                  blurRadius: 1.0),
+            ],
+          ),
           onTap: () {},
           validator: validatorFunction,
           keyboardType: keyboardType == "text"
@@ -60,6 +75,7 @@ class TextFormInput extends StatelessWidget {
                             obscureText
                                 ? FontAwesomeIcons.eye
                                 : FontAwesomeIcons.eyeSlash,
+                            size: 18,
                             color: HexColor.fromHex("3C3E49"),
                           ))
                       : InkWell(
@@ -67,18 +83,16 @@ class TextFormInput extends StatelessWidget {
                             controller.text = "";
                           },
                           child: Icon(FontAwesomeIcons.solidTimesCircle,
-                              size: 20, color: HexColor.fromHex("3C3E49")),
+                              size: 18, color: Colors.black),
                         ),
               hintText: placeholder,
               hintStyle: GoogleFonts.lato(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 18,
-                  color: Colors.grey.withOpacity(0.6)),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  color: Colors.grey),
               filled: false,
               errorStyle: GoogleFonts.lato(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: Colors.red),
+                  fontWeight: FontWeight.w400, fontSize: 10, color: Colors.red),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: HexColor.fromHex("3C3E49")),
               ),

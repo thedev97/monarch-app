@@ -107,8 +107,10 @@ const Widget bundleHorizontalSpacing = SizedBox(width: baseMargin * 1.5);
 const Widget verticalSpaceTiny = SizedBox(height: baseMargin / 2);
 const Widget verticalSpaceSmall = SizedBox(height: baseMargin);
 const Widget verticalSpaceRegular = SizedBox(height: baseMargin * 2);
-const Widget verticalSpaceMedium = SizedBox(height: baseMargin * 3);
-const Widget verticalSpaceLarge = SizedBox(height: baseMargin * 4);
+const Widget verticalSpaceMedium = SizedBox(height: baseMargin * 4);
+const Widget verticalSpaceLarge = SizedBox(height: baseMargin * 8);
+const Widget verticalSpaceExtraLarge = SizedBox(height: baseMargin * 10);
+const Widget verticalLargeSpace = SizedBox(height: baseMargin * 15);
 const Widget bundleVerticalSpacing = SizedBox(height: baseMargin * 1.5);
 
 

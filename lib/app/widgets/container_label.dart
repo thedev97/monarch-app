@@ -15,8 +15,14 @@ class ContainerLabel extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(label,
             style: GoogleFonts.lato(
+                fontWeight: FontWeight.w500,
                 fontSize: 12,
-                color: HexColor.fromHex("666A7A"),
-                fontWeight: FontWeight.bold)));
+                shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(0.0, 0.5),
+                      blurRadius: 0.2),
+                ],
+                color: Colors.black.withOpacity(0.6))));
   }
 }

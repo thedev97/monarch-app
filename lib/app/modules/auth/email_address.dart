@@ -1,11 +1,18 @@
+import 'login.dart';
+import 'signup.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/modules/Auth/signup.dart';
-import '../../core/values/values.dart';
-import '../../widgets/background/white-background.dart';
+import '../../core/commons.dart';
+import '../../core/utils/custom-painter.dart';
+import '../../core/values/sizes.dart';
+import '../../core/values/strings.dart';
+import '../../widgets/buttons/primary_buttons.dart';
 import '../../widgets/forms/text_input_with _label.dart';
-import '../../widgets/navigation/back.dart';
+import '../../widgets/navigation/back_button.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:project_management_tool/app/core/values/colors.dart';
+import 'package:project_management_tool/app/core/values/images.dart';
 
 class EmailAddressScreen extends StatefulWidget {
   @override
@@ -14,98 +21,166 @@ class EmailAddressScreen extends StatefulWidget {
 
 class _EmailAddressScreenState extends State<EmailAddressScreen> {
   TextEditingController _emailController = new TextEditingController();
-  bool obscureText = false;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool obscureText = false;
 
   @override
   Widget build(BuildContext context) {
-    var sizeHeight = MediaQuery.of(context).size.height;
-    var sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Stack(children: [
-      WhiteBackground(
-        color: HexColor.fromHex("#f8eee4"),
-        position: "topLeft",
-      ),
-      Padding(
-        padding: EdgeInsets.all(20.0),
-        child: SafeArea(
-            child: Form(
-          key: _formKey,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            NavigationBack(),
-            SizedBox(height: 40),
-            Text("What's your\nemail\naddress?",
-                style: GoogleFonts.lato(
-                  shadows: [
-                    Shadow(
-                        color: Colors.black,
-                        offset: Offset(0.0, 1.0),
-                        blurRadius: 1.0),
-                  ],
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                  fontSize: sizeHeight <= 700 ? 30.0 : 38.0,
-                )),
-            AppSpaces.verticalSpace20,
-            TextFormInput(
-                placeholder: "Email",
-                keyboardType: "text",
-                controller: _emailController,
-                obscureText: obscureText,
-                validatorFunction: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter your email";
-                  }
-                  if (RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                          .hasMatch(value) ==
-                      false) {
-                    return "Please enter a valid email";
-                  } else {
-                    return null;
-                  }
-                },
-                label: "Your Email"),
-            SizedBox(height: 40),
+        extendBody: false,
+        body: SafeArea(
+          child: Stack(children: [
             Container(
-              height: 55,
-              width: sizeWidth * 0.45,
-              child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Get.to(() => SignUp(email: _emailController.text));
-                    }
-                  },
-                  style: ButtonStyles.blueRounded,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.email,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text('Continue with Email',
-                          style: GoogleFonts.lato(
-                              shadows: [
-                                Shadow(
-                                    color: Colors.black,
-                                    offset: Offset(0.0, 1.0),
-                                    blurRadius: 1.0),
-                              ],
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Colors.white)),
-                    ],
-                  )),
-            )
+              color: Colors.white,
+            ),
+            backgroundPainter(),
+            loginContainer(),
+            accountTxt(),
+            Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 25.0),
+                  child: Image.asset(
+                    butterfly_img,
+                    height: 50,
+                    width: 85,
+                  ),
+                )),
           ]),
-        )),
-      )
-    ]));
+        ));
+  }
+
+  Widget backgroundPainter() {
+    return CustomPaint(
+      painter: Painter(),
+      child: Container(),
+    );
+  }
+
+  Widget titleTxt() {
+    return Text(login_title,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w700,
+            fontSize: 25,
+            shadows: [
+              Shadow(
+                  color: Colors.black,
+                  offset: Offset(0.0, 1.0),
+                  blurRadius: 1.0),
+            ],
+            color: Colors.black));
+  }
+
+  Widget accountTxt() {
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: new Align(
+        alignment: Alignment.bottomLeft,
+        child: new RichText(
+          text: TextSpan(
+            text: exist_acc_txt,
+            style: GoogleFonts.lato(
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+                shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(0.0, 1.0),
+                      blurRadius: 1.0),
+                ],
+                color: Colors.black),
+            children: <TextSpan>[
+              new TextSpan(
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => Get.to(() => SignUp()),
+                text: signup_text,
+                style: GoogleFonts.lato(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 12,
+                    shadows: [
+                      Shadow(
+                          color: Colors.black,
+                          offset: Offset(0.0, 1.0),
+                          blurRadius: 1.0),
+                    ],
+                    color: orange),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget subTitleTxt() {
+    return Text(login_sub_title,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+            color: Colors.black.withOpacity(0.8)));
+  }
+
+  Widget loginContainer() {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: 25.0, right: 25.0, top: sizeHeight * 0.18, bottom: 20.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20)),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          physics: ScrollPhysics(),
+          child: CustomPaint(
+            painter: PainterTwo(),
+            child: Container(
+              width: sizeWidth,
+              padding: EdgeInsets.only(left: 15.0, top: 40.0, right: 15.0, bottom: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSpaceMedium,
+                  titleTxt(),
+                  verticalSpaceSmall,
+                  subTitleTxt(),
+                  verticalSpaceRegular,
+                  TextFormInput(
+                    placeholder: "Email",
+                    keyboardType: "text",
+                    controller: _emailController,
+                    obscureText: obscureText,
+                    label: "Your Email",
+                    validatorFunction: (String? val) {
+                      if (val!.isEmpty == true) emailEmptyErrorMsg;
+                    },
+                  ),
+                  verticalSpaceMedium,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: AppPrimaryButton(
+                      buttonHeight: 40,
+                      buttonWidth: sizeWidth * 0.35,
+                      buttonText: login_button,
+                      callback: () => Get.to(() => Login(
+                            email: _emailController.text,
+                          )),
+                    ),
+                  ),
+                  verticalLargeSpace,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: AppBackButton(
+                      horizontalIcon: true,
+                    ),
+                  ),
+                  verticalSpaceMedium,
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

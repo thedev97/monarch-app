@@ -14,7 +14,7 @@ class DefaultNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      AppBackButton(),
+      AppBackButton(horizontalIcon: false),
       Text(this.title,
           style: GoogleFonts.lato(shadows: [
             Shadow(

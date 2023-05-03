@@ -1,164 +1,526 @@
-import 'package:flutter/material.dart';
+import 'new_workspace.dart';
 import 'package:get/get.dart';
+import '../../core/commons.dart';
+import 'package:flutter/material.dart';
+import '../../core/values/images.dart';
+import '../../core/values/sizes.dart';
+import '../../core/values/strings.dart';
+import '../../core/utils/custom-painter.dart';
+import '../../widgets/buttons/primary_buttons.dart';
+import '../../widgets/listviews/plan-info.dart';
+import '../../widgets/navigation/back_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../core/values/values.dart';
-import '../../widgets/background/white-background.dart';
-import '../../widgets/buttons/primary_progress_button.dart';
-import '../../widgets/navigation/back.dart';
-import '../../widgets/onboarding/plan_card.dart';
-import '../../widgets/onboarding/toggle_option.dart';
-import '../dashboard/timeline.dart';
+import 'package:project_management_tool/app/core/values/colors.dart';
+import 'package:project_management_tool/app/widgets/listviews/custom-list.dart';
+import 'package:project_management_tool/app/widgets/listviews/select-views.dart';
 
-class ChoosePlan extends StatelessWidget {
-  ChoosePlan({Key? key}) : super(key: key);
 
-  ValueNotifier<bool> _multiUserTrigger = ValueNotifier(false);
-  ValueNotifier<bool> _customLabelTrigger = ValueNotifier(false);
-  ValueNotifier<int> _planContainerTrigger = ValueNotifier(0);
+class ChoosePlan extends StatefulWidget {
+  const ChoosePlan({Key? key}) : super(key: key);
+
+  @override
+  State<ChoosePlan> createState() => _ChoosePlanState();
+}
+
+class _ChoosePlanState extends State<ChoosePlan> {
+  bool isSelectFreePlan = false;
+  bool isSelectTenDollarPlan = false;
+  bool isSelectSixteenDollarPlan = false;
+  bool isSelectHundredNinetyDollarPlan = false;
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = Get.width;
-    var screenHeight = Get.height;
     return Scaffold(
-        body: Stack(children: [
-      WhiteBackground(
-        color: HexColor.fromHex("#f8eee4"),
-        position: "topLeft",
+        extendBody: false,
+        body: SafeArea(
+          child: Stack(children: [
+            Container(
+              color: Colors.white,
+            ),
+            backgroundPainter(),
+            planContainer(),
+          ]),
+        ));
+  }
+
+  Widget backgroundPainter() {
+    return CustomPaint(
+      painter: Painter(),
+      child: Container(),
+    );
+  }
+
+  Widget planContainer() {
+    return Padding(
+      padding:
+          EdgeInsets.only(left: 25.0, right: 25.0, top: 60.0, bottom: 60.0),
+      child: Container(
+        height: sizeHeight,
+        width: sizeWidth,
+        decoration: BoxDecoration(
+            color: whiteColor, borderRadius: BorderRadius.circular(20.0)),
+        padding:
+            EdgeInsets.only(left: 15.0, top: 25.0, right: 15.0, bottom: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            verticalSpaceSmall,
+            Align(
+              alignment: Alignment.topLeft,
+              child: AppBackButton(
+                horizontalIcon: false,
+              ),
+            ),
+            verticalSpaceRegular,
+            titleTxt(),
+            verticalSpaceSmall,
+            subTitleTxt(),
+            verticalSpaceMedium,
+            plansView(),
+            verticalSpaceMedium,
+            applePay(),
+            verticalSpaceMedium,
+            termsText(),
+            verticalSpaceMedium,
+            Align(
+              alignment: Alignment.center,
+              child: AppPrimaryButton(
+                  buttonHeight: 40,
+                  buttonWidth: sizeWidth * 0.7,
+                  buttonText: cont_button,
+                  callback: () => Get.to(() => NewWorkSpace())),
+            ),
+          ],
+        ),
       ),
-      Padding(
-        padding: EdgeInsets.only(top: 20.0),
-        child: SafeArea(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: EdgeInsets.only(left: 20.0),
-              child: NavigationBack(),
-            ),
-            SizedBox(height: 40),
-            Padding(
-              padding: EdgeInsets.only(left: 20.0),
-              child: Text('New WorkSpace',
-                  style: GoogleFonts.lato(
-                    shadows: [
-                      Shadow(
-                          color: Colors.black,
-                          offset: Offset(0.0, 1.0),
-                          blurRadius: 1.0),
-                    ],
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: screenHeight <= 700 ? 30.0 : 38.0,
-                  )),
-            ),
-            AppSpaces.verticalSpace20,
-            Expanded(
-                flex: 1,
-                child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecorationStyles.fadingGlory,
+    );
+  }
+
+  Widget plansView() {
+    return Padding(
+      padding: EdgeInsets.only(left: 25, right: 25),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              isSelectFreePlan == false
+                  ? SelectPlanView(
+                      subscription_days: basic_plan_days,
+                      plan: basic_plan_amt,
+                      onPressed: () {
+                        setState(() {
+                          isSelectFreePlan = true;
+                        });
+                        Future.delayed(Duration(milliseconds: 200), () async {
+                          planDetails(
+                              basic_plan,
+                              basic_plan_days,
+                              basic_plan_amt,
+                              sel_check_img,
+                              unsel_check_img,
+                              details_one,
+                              details_Two,
+                              details_Three,
+                              details_Three,
+                              details_Three);
+                        });
+                      },
+                    )
+                  : Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SelectPlanView(
+                          subscription_days: basic_plan_days,
+                          plan: basic_plan_amt,
+                          onPressed: () {
+                            setState(() {
+                              isSelectFreePlan = false;
+                            });
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.check_circle,
+                            size: 20,
+                            color: Colors.blue,
+                          ),
+                        )
+                      ],
+                    ),
+              isSelectTenDollarPlan == false
+                  ? SelectPlanView(
+                      subscription_days: standard_plan_days,
+                      plan: standard_plan_amt,
+                      onPressed: () {
+                        setState(() {
+                          isSelectTenDollarPlan = true;
+                        });
+                        Future.delayed(Duration(milliseconds: 200), () async {
+                          planDetails(
+                              standard_plan,
+                              standard_plan_days,
+                              standard_plan_amt,
+                              sel_check_img,
+                              unsel_check_img,
+                              details_one,
+                              details_Two,
+                              details_Three,
+                              details_Three,
+                              details_Three);
+                        });
+                      },
+                    )
+                  : Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SelectPlanView(
+                          subscription_days: standard_plan_days,
+                          plan: standard_plan_amt,
+                          onPressed: () {
+                            setState(() {
+                              isSelectTenDollarPlan = false;
+                            });
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.check_circle,
+                            size: 20,
+                            color: Colors.blue,
+                          ),
+                        )
+                      ],
+                    ),
+            ],
+          ),
+          SizedBox(
+            height: sizeHeight * 0.04,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              isSelectSixteenDollarPlan == false
+                  ? SelectPlanView(
+                      subscription_days: diamond_plan_days,
+                      plan: diamond_plan_amt,
+                      onPressed: () {
+                        setState(() {
+                          isSelectSixteenDollarPlan = true;
+                        });
+                        Future.delayed(Duration(milliseconds: 200), () async {
+                          planDetails(
+                              diamond_plan,
+                              diamond_plan_days,
+                              diamond_plan_amt,
+                              sel_check_img,
+                              unsel_check_img,
+                              details_one,
+                              details_Two,
+                              details_Three,
+                              details_Three,
+                              details_Three);
+                        });
+                      },
+                    )
+                  : Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SelectPlanView(
+                          subscription_days: diamond_plan_days,
+                          plan: diamond_plan_amt,
+                          onPressed: () {
+                            setState(() {
+                              isSelectSixteenDollarPlan = false;
+                            });
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.check_circle,
+                            size: 20,
+                            color: Colors.blue,
+                          ),
+                        )
+                      ],
+                    ),
+              isSelectHundredNinetyDollarPlan == false
+                  ? SelectPlanView(
+                      subscription_days: platinum_plan_days,
+                      plan: platinum_plan_amt,
+                      onPressed: () {
+                        setState(() {
+                          isSelectHundredNinetyDollarPlan = true;
+                        });
+                        Future.delayed(Duration(milliseconds: 200), () async {
+                          planDetails(
+                              platinum_plan,
+                              platinum_plan_days,
+                              platinum_plan_amt,
+                              sel_check_img,
+                              unsel_check_img,
+                              details_one,
+                              details_Two,
+                              details_Three,
+                              details_Three,
+                              details_Three);
+                        });
+                      },
+                    )
+                  : Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SelectPlanView(
+                          subscription_days: platinum_plan_days,
+                          plan: platinum_plan_amt,
+                          onPressed: () {
+                            setState(() {
+                              isSelectHundredNinetyDollarPlan = false;
+                            });
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.check_circle,
+                            size: 20,
+                            color: Colors.blue,
+                          ),
+                        )
+                      ],
+                    ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget titleTxt() {
+    return Column(
+      children: [
+        Text(plan_text,
+            style: GoogleFonts.lato(
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
+                shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(0.0, 1.0),
+                      blurRadius: 1.0),
+                ],
+                color: Colors.black)),
+        SizedBox(
+          height: 5,
+        ),
+        Text(plan_text_two,
+            style: GoogleFonts.lato(
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
+                shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(0.0, 1.0),
+                      blurRadius: 1.0),
+                ],
+                color: Colors.black)),
+      ],
+    );
+  }
+
+  Widget subTitleTxt() {
+    return Text(sub_plan_txt,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+            color: Colors.black.withOpacity(0.8)));
+  }
+
+  Widget termsText() {
+    return Text(terms_txt,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w400,
+            fontSize: 10,
+            color: Colors.black.withOpacity(0.8)));
+  }
+
+  Widget applePay() {
+    return Container(
+      height: 40,
+      width: sizeWidth * 0.6,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black26, width: 1)),
+      child: CustomListView(
+        title: apple_pay_txt,
+        image: apple_pay_img,
+      ),
+    );
+  }
+
+  // Show Dialog For Plan Details
+  Future planDetails(
+      String plan,
+      String days,
+      String amount,
+      String checkImg,
+      String uncheckImg,
+      String details_one,
+      String details_two,
+      String details_three,
+      String details_four,
+      String details_five) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: IntrinsicHeight(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: whiteColor,
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: DecoratedBox(
-                          decoration: BoxDecorationStyles.fadingInnerDecor,
-                          child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AppSpaces.verticalSpace10,
-                                  Text('Choose Plan',
-                                      style: AppTextStyles.header2),
-                                  AppSpaces.verticalSpace10,
-                                  Text('Unlock all features with Premium Plan',
-                                      style: GoogleFonts.lato(
-                                          fontSize: 14,
-                                          color: HexColor.fromHex("666A7A"))),
-                                  AppSpaces.verticalSpace20,
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                      padding: EdgeInsets.only(left: 20),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.fromLTRB(0.0, 30.0, 30.0, 10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(plan_img,
+                                        height: 60, width: 60),
+                                    Column(
                                       children: [
-                                        PlanCard(
-                                          notifierValue: _planContainerTrigger,
-                                          selectedIndex: 0,
-                                          header: "It's Free",
-                                          subHeader: "For team from 1 - 10",
+                                        DefaultTextStyle(
+                                          style: GoogleFonts.lato(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 16,
+                                              shadows: [
+                                                Shadow(
+                                                    color: Colors.black,
+                                                    offset: Offset(0.0, 1.0),
+                                                    blurRadius: 1.0),
+                                              ],
+                                              color: Colors.black),
+                                          child: Text(plan),
                                         ),
-                                      ]),
-                                  AppSpaces.verticalSpace20,
-                                  Text('Enable Features',
-                                      style: AppTextStyles.header2),
-                                  AppSpaces.verticalSpace10,
-                                  Container(
-                                    width: screenWidth * 0.8,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                              text:
-                                                  'You can customize the features in your workspace now. Or you can do it later in ',
-                                              style: GoogleFonts.lato(
-                                                  fontSize: 14,
-                                                  color: HexColor.fromHex(
-                                                      "666A7A")),
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                    text: 'Menu - Workspace',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color: Colors.black))
-                                              ]),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 30.0,
+                                              top: 5.0,
+                                              right: 30.0,
+                                              bottom: 30.0),
+                                          child: DefaultTextStyle(
+                                            textAlign: TextAlign.justify,
+                                            style: GoogleFonts.lato(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                            child: Text(days),
+                                          ),
                                         ),
                                       ],
                                     ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.fromLTRB(0.0, 15.0, 20.0, 10.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    try {
+                                      Navigator.pop(context);
+                                    } catch (exception) {
+                                      print(exception);
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                        color: primaryColor,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: Colors.white, width: 1)),
+                                    child: Icon(
+                                      Icons.close_sharp,
+                                      size: 18.0,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                  AppSpaces.verticalSpace20,
-                                  ToggleLabelOption(
-                                      label: '    Multiple Assignees',
-                                      notifierValue: _multiUserTrigger,
-                                      icon: Icons.groups),
-                                  ToggleLabelOption(
-                                      label: '    Custom Labels',
-                                      notifierValue: _customLabelTrigger,
-                                      icon: Icons.category)
-                                ],
-                              ))),
-                    )))
-          ]),
-        ),
-      ),
-      Positioned(
-          bottom: 20,
-          child: Container(
-            padding: EdgeInsets.only(left: 40, right: 20),
-            width: screenWidth,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Back',
-                      style: GoogleFonts.lato(
-                          shadows: [
-                            Shadow(
-                                color: Colors.black,
-                                offset: Offset(0.0, 1.0),
-                                blurRadius: 1.0),
-                          ],
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.black)),
-                  PrimaryProgressButton(
-                      width: 120,
-                      label: "Done",
-                      callback: () {
-                        Get.to(() => Timeline());
-                      })
-                ]),
-          ))
-    ]));
+                                ),
+                              ),
+                            ],
+                          ),
+                          PlanInfoViews(
+                            title: details_one,
+                            image: checkImg,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          PlanInfoViews(
+                            title: details_two,
+                            image: checkImg,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          PlanInfoViews(
+                            title: details_three,
+                            image: plan == 'Basic Plan'
+                                ? uncheckImg
+                                : checkImg,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          PlanInfoViews(
+                            title: details_four,
+                            image: plan == 'Basic Plan' || plan == 'Standard'
+                                ? uncheckImg : checkImg,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          PlanInfoViews(
+                            title: details_five,
+                            image: plan != 'Platinum'
+                                ? uncheckImg : checkImg,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          AppPrimaryButton(
+                              buttonHeight: 40,
+                              buttonWidth: sizeWidth * 0.7,
+                              buttonText: choose_plan_button,
+                              callback: () => Get.to(() => NewWorkSpace())),
+                          SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ));
   }
 }

@@ -184,7 +184,7 @@ class CreateProjectScreen extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppBackButton(),
+                            AppBackButton(horizontalIcon: false),
                             Expanded(
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
