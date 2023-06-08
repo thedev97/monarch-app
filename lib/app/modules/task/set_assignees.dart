@@ -34,7 +34,7 @@ class SetAssigneesScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 20, top: sizeHeight*0.12),
-              child: Text("Set New Assignees", style: AppTextStyles.header2),
+              child: Text("Set New Assignees", style: AppTextStyles.header),
             ),
             Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: sizeHeight*0.18),

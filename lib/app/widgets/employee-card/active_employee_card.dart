@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import '../../core/constants.dart';
 import '../../core/values/values.dart';
 import '../dummy/green_done_icon.dart';

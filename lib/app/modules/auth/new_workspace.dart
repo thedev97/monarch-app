@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../../core/commons.dart';
+import '../dashboard/timeline.dart';
 import 'package:flutter/material.dart';
 import '../../core/values/images.dart';
 import '../../core/values/sizes.dart';
@@ -10,8 +11,7 @@ import '../../widgets/container_label.dart';
 import '../../widgets/dummy/profile_dummy_img.dart';
 import '../../widgets/navigation/back_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/core/values/colors.dart';
-import 'package:project_management_tool/app/modules/dashboard/dashboard.dart';
+import 'package:Monarch/app/core/values/colors.dart';
 
 class NewWorkSpace extends StatelessWidget {
   @override
@@ -39,14 +39,14 @@ class NewWorkSpace extends StatelessWidget {
   Widget workspaceContainer() {
     return Padding(
       padding:
-          EdgeInsets.only(left: 25.0, right: 25.0, top: 60.0, bottom: 60.0),
+          EdgeInsets.only(left: 25.0, right: 25.0, top: sizeHeight*0.1, bottom:  sizeHeight*0.1),
       child: Container(
         height: sizeHeight,
         width: sizeWidth,
         decoration: BoxDecoration(
             color: whiteColor, borderRadius: BorderRadius.circular(20.0)),
         padding:
-            EdgeInsets.only(left: 15.0, top: 25.0, right: 15.0, bottom: 20.0),
+            EdgeInsets.only(left: 15.0, top: 25.0, right: 15.0, bottom: 25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -82,7 +82,7 @@ class NewWorkSpace extends StatelessWidget {
                     buttonHeight: 40,
                     buttonWidth: sizeWidth * 0.35,
                     buttonText: next_button,
-                    callback: () => Get.to(() => Dashboard())),
+                    callback: () => Get.to(() => Timeline())),
               ],
             ),
           ],
@@ -103,7 +103,7 @@ class NewWorkSpace extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 20),
       child: GestureDetector(
-        onTap: () => Get.to(() => Dashboard()),
+        onTap: () => Get.to(() => Timeline()),
         child: Text(skip_button,
             style: GoogleFonts.lato(
                 fontWeight: FontWeight.w500,

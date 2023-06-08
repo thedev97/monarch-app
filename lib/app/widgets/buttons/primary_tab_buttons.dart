@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../core/values/values.dart';
+import 'package:Monarch/app/core/values/colors.dart';
+import 'package:Monarch/app/core/values/sizes.dart';
+
+import '../../core/values/strings.dart';
 
 class PrimaryTabButton extends StatelessWidget {
   final String buttonText;
@@ -23,38 +26,45 @@ class PrimaryTabButton extends StatelessWidget {
       child: ValueListenableBuilder(
           valueListenable: notifier,
           builder: (BuildContext context, _, __) {
-            return ElevatedButton(
-                onPressed: () {
-                  notifier.value = itemIndex;
-                  if (callback != null) {
-                    callback!();
-                  }
-                },
-                style: ButtonStyle(
-                    backgroundColor: notifier.value == itemIndex
-                        ? MaterialStateProperty.all<Color>(
-                            Colors.white)
-                        : MaterialStateProperty.all<Color>(Colors.grey),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                            side: notifier.value == itemIndex
-                                ? BorderSide(color: Colors.black)
-                                : BorderSide(color: Colors.grey)))),
-                child: Text(buttonText,
-                    style: GoogleFonts.lato(
-                        fontSize: 16,
-                        color: Colors.black,
-                        shadows: [
-                          Shadow(
-                              color: notifier.value == itemIndex ? Colors.black : Colors.transparent,
-                              offset: notifier.value == itemIndex
-                                  ? Offset(0.0, 1.0)
-                                  : Offset(0.0, 0.0),
-                              blurRadius:
-                                  notifier.value == itemIndex ? 1.0 : 0.0),
-                        ],
-                        fontWeight: FontWeight.w500)));
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      notifier.value = itemIndex;
+                      if (callback != null) {
+                        callback!();
+                      }
+                    },
+                    child: Text(buttonText,
+                        style: GoogleFonts.lato(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            shadows: [
+                              Shadow(
+                                  color: notifier.value == itemIndex
+                                      ? primaryColor
+                                      : Colors.transparent,
+                                  offset: notifier.value == itemIndex
+                                      ? Offset(0.0, 0.5)
+                                      : Offset(0.0, 0.0),
+                                  blurRadius:
+                                      notifier.value == itemIndex ? 0.5 : 0.0),
+                            ],
+                            color: Colors.black))),
+                Container(
+                  height: 1,
+                  width: buttonText == productivityViewTxt
+                      ? sizeWidth * 0.25
+                      : sizeWidth * 0.2,
+                  decoration: BoxDecoration(
+                      color: notifier.value == itemIndex
+                          ? primaryColor
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(5)),
+                )
+              ],
+            );
           }),
     );
   }

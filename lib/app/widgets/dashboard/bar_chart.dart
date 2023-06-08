@@ -1,332 +1,300 @@
-import 'dart:async';
 import 'dart:math';
-import 'package:flutter/gestures.dart';
+import 'package:Monarch/app/core/values/colors.dart';
+import 'package:Monarch/app/core/values/sizes.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../core/values/strings.dart';
 import '../../core/values/values.dart';
 
-class BarChartSample extends StatefulWidget {
-  final List<Color> availableColors = [
-    Colors.purpleAccent,
-    Colors.yellow,
-    Colors.lightBlue,
-    Colors.orange,
-    Colors.pink,
-    Colors.redAccent,
-  ];
-
-  @override
-  State<StatefulWidget> createState() => BarChartSampleState();
-}
-
-class BarChartSampleState extends State<BarChartSample> {
-  final Color barBackgroundColor = Colors.grey.shade400;
-  static const Color mainColor = Colors.lightBlue;
-  final Duration animDuration = const Duration(milliseconds: 250);
-
-  int touchedIndex = -1;
-
-  bool isPlaying = false;
+class BarChartSample extends StatelessWidget {
+  const BarChartSample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Stack(
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Completed in the last 15 Days",
-                      style: GoogleFonts.lato(
-                          color: HexColor.fromHex("616575"), fontSize: 15)),
-                  IconButton(
-                    icon: Icon(
-                      isPlaying ? Icons.pause : Icons.play_arrow,
-                      color: const Color(0xff0f4a3c),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isPlaying = !isPlaying;
-                        if (isPlaying) {
-                          refreshState();
-                        }
-                      });
-                    },
-                  ),
-                ],
-              ),
-              AppSpaces.verticalSpace10,
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                  child: BarChart(
-                    isPlaying ? randomData() : mainBarData(),
-                    swapAnimationDuration: animDuration,
-                  ),
-                ),
-              ),
-              AppSpaces.verticalSpace10,
-              Row(children: [
-                Text('5 Tasks',
-                    style: GoogleFonts.lato(
-                      fontWeight: FontWeight.w700,
-                      color: HexColor.fromHex("616575"),
-                    )),
-                AppSpaces.horizontalSpace20,
-                Text('1 Projects',
-                    style: GoogleFonts.lato(
-                      fontWeight: FontWeight.w700,
-                      color: HexColor.fromHex("616575"),
-                    )),
-              ])
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Padding(
+          padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          child: _WeeklyCalendar(),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          child: _ChartHeader(),
+        ),
+        Expanded(child: _Chart()),
+      ],
+    );
+  }
+}
+
+class _WeeklyCalendar extends StatelessWidget {
+  const _WeeklyCalendar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    DateTime today = DateTime.now();
+    findFirstDateOfTheWeek(today);
+    findLastDateOfTheWeek(today);
+    return Container(
+      height: 30,
+      width: sizeWidth * 0.5,
+      decoration: BoxDecoration(
+          color: calendarColor.withOpacity(0.7),
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          border: Border.all(color: whiteColor, width: 1)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: 5,
+          ),
+          Icon(
+            Icons.calendar_month,
+            size: 15,
+            color: Colors.black,
+          ),
+          Text(
+            startWeekDate.toString(),
+            style: AppTextStyles.subHeader,
+          ),
+          Text(
+            "-",
+            style: AppTextStyles.subHeader,
+          ),
+          Text(
+            endWeekDate.toString(),
+            style: AppTextStyles.subHeader,
+          ),
+          GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                size: 14,
+                color: Colors.grey,
+              )),
+          GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: Colors.black,
+              )),
+          SizedBox(
+            width: 5,
           ),
         ],
       ),
     );
   }
+}
 
-  BarChartGroupData makeGroupData(
-    int x,
-    double y, {
-    bool isTouched = false,
-    Color barColor = mainColor,
-    double width = 6,
-    List<int> showTooltips = const [],
-  }) {
-    return BarChartGroupData(
-      x: x,
-      barRods: [
-        BarChartRodData(
-          y: isTouched ? y + 1 : y,
-          colors: isTouched ? [Colors.yellow] : [barColor],
-          width: width,
-          backDrawRodData: BackgroundBarChartRodData(
-            show: true,
-            y: 20,
-            colors: [barBackgroundColor],
+class _ChartHeader extends StatelessWidget {
+  const _ChartHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                productivityChartTxt,
+                style: AppTextStyles.header2,
+              ),
+              SizedBox(height: 8),
+              Text(
+                productivityAnalysis,
+                style: AppTextStyles.subHeader,
+              ),
+            ],
+          ),
+        ),
+        Material(
+          clipBehavior: Clip.antiAlias,
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
+          child: PopupMenuButton(
+            itemBuilder: (context) {
+              return popupOptions
+                  .map((option) => PopupMenuItem(
+                          child: Text(
+                        option,
+                        style: AppTextStyles.subHeader2,
+                      )))
+                  .toList();
+            },
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+              child: Row(
+                children: [
+                  Text(
+                    popupOptions[0],
+                    style: AppTextStyles.subHeader2,
+                  ),
+                  const Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.black,
+                    size: 25,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ],
-      showingTooltipIndicators: showTooltips,
     );
-  }
-
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
-          case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
-          case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
-          case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
-          case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
-          default:
-            return throw Error();
-        }
-      });
-
-  BarChartData mainBarData() {
-    return BarChartData(
-      barTouchData: BarTouchData(
-        touchTooltipData: BarTouchTooltipData(
-            tooltipBgColor: Colors.blueGrey,
-            getTooltipItem: (group, groupIndex, rod, rodIndex) {
-              String weekDay;
-              switch (group.x.toInt()) {
-                case 0:
-                  weekDay = 'Monday';
-                  break;
-                case 1:
-                  weekDay = 'Tuesday';
-                  break;
-                case 2:
-                  weekDay = 'Wednesday';
-                  break;
-                case 3:
-                  weekDay = 'Thursday';
-                  break;
-                case 4:
-                  weekDay = 'Friday';
-                  break;
-                case 5:
-                  weekDay = 'Saturday';
-                  break;
-                case 6:
-                  weekDay = 'Sunday';
-                  break;
-                default:
-                  throw Error();
-              }
-              return BarTooltipItem(
-                weekDay + '\n',
-                TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: (rod.y - 1).toString(),
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              );
-            }),
-        touchCallback: (barTouchResponse) {
-          setState(() {
-            if (barTouchResponse.spot != null &&
-                barTouchResponse.touchInput is! PointerUpEvent &&
-                barTouchResponse.touchInput is! PointerExitEvent) {
-              touchedIndex = barTouchResponse.spot!.touchedBarGroupIndex;
-            } else {
-              touchedIndex = -1;
-            }
-          });
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: SideTitles(
-          showTitles: true,
-          getTextStyles: (BuildContext context, double v) {
-            return TextStyle(color: HexColor.fromHex("616575"), fontWeight: FontWeight.w500, fontSize: 14.0);
-          },
-          margin: 16,
-          getTitles: (double value) {
-            switch (value.toInt()) {
-              case 0:
-                return 'M';
-              case 1:
-                return 'T';
-              case 2:
-                return 'W';
-              case 3:
-                return 'T';
-              case 4:
-                return 'F';
-              case 5:
-                return 'S';
-              case 6:
-                return 'S';
-              default:
-                return '';
-            }
-          },
-        ),
-        leftTitles: SideTitles(
-          showTitles: false,
-        ),
-      ),
-      borderData: FlBorderData(
-        show: false,
-      ),
-      barGroups: showingGroups(),
-    );
-  }
-
-  BarChartData randomData() {
-    return BarChartData(
-      barTouchData: BarTouchData(
-        enabled: false,
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: SideTitles(
-          showTitles: true,
-          getTextStyles: (BuildContext context, double v) {
-            return TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12.0);
-          },
-          margin: 16,
-          getTitles: (double value) {
-            switch (value.toInt()) {
-              case 0:
-                return 'M';
-              case 1:
-                return 'T';
-              case 2:
-                return 'W';
-              case 3:
-                return 'T';
-              case 4:
-                return 'F';
-              case 5:
-                return 'S';
-              case 6:
-                return 'S';
-              default:
-                return '';
-            }
-          },
-        ),
-        leftTitles: SideTitles(
-          showTitles: false,
-        ),
-      ),
-      borderData: FlBorderData(
-        show: false,
-      ),
-      barGroups: List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 1:
-            return makeGroupData(1, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 2:
-            return makeGroupData(2, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 3:
-            return makeGroupData(3, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 4:
-            return makeGroupData(4, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 5:
-            return makeGroupData(5, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 6:
-            return makeGroupData(6, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          default:
-            return throw Error();
-        }
-      }),
-    );
-  }
-
-  Future<dynamic> refreshState() async {
-    setState(() {});
-    await Future<dynamic>.delayed(
-        animDuration + const Duration(milliseconds: 50));
-    if (isPlaying) {
-      await refreshState();
-    }
   }
 }
+
+class _Chart extends StatefulWidget {
+  const _Chart({Key? key}) : super(key: key);
+
+  @override
+  State<_Chart> createState() => _ChartState();
+}
+
+class _ChartState extends State<_Chart> {
+  int tapIndex = -1;
+
+  @override
+  Widget build(BuildContext context) {
+    return BarChart(
+      BarChartData(
+        // remove background grid
+        gridData: FlGridData(show: false),
+        // remove the borders
+        borderData: FlBorderData(
+          border: const Border(
+            bottom: BorderSide(
+              width: 1,
+              color: Colors.transparent,
+            ),
+          ),
+        ),
+        // titles
+        titlesData: FlTitlesData(
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          topTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              getTitlesWidget: (value, meta) {
+                final day = activity[value.toInt()].day;
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(day,
+                      style: GoogleFonts.lato(
+                          fontWeight: tapIndex == value.toInt()
+                              ? FontWeight.w800
+                              : FontWeight.w400,
+                          fontSize: 12,
+                          color: tapIndex == value.toInt()
+                              ? Colors.black
+                              : Colors.black.withOpacity(0.8))),
+                );
+              },
+            ),
+          ),
+        ),
+        maxY: maxValue.toDouble(),
+        barTouchData: BarTouchData(
+          touchTooltipData: BarTouchTooltipData(
+              tooltipBgColor: Colors.transparent,
+              direction: TooltipDirection.top,
+              rotateAngle: 0,
+              getTooltipItem: (
+                BarChartGroupData group,
+                int groupIndex,
+                BarChartRodData rod,
+                int rodIndex,
+              ) {
+                return BarTooltipItem(
+                  rod.toY.toInt().toString(),
+                  AppTextStyles.subHeader3,
+                );
+              }),
+          enabled: true,
+          touchCallback: (event, response) {
+            if (response != null && event is FlTapUpEvent) {
+              setState(() {
+                if (response.spot != null) {
+                  tapIndex = response.spot!.touchedBarGroupIndex;
+                }
+              });
+            }
+          },
+        ),
+        barGroups: [
+          for (int i = 0; i < activity.length; i++)
+            BarChartGroupData(
+              x: i,
+              barRods: [
+                BarChartRodData(
+                    toY: activity[i].dailyActivity.toDouble(),
+                    color: tapIndex == i ? Colors.blue : primaryColor,
+                    width: 15,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+              ],
+            )
+        ],
+      ),
+    );
+  }
+}
+
+final popupOptions = <String>[
+  'Weekly',
+  'Monthly',
+  'Yearly',
+];
+
+var startWeekDate;
+var endWeekDate;
+
+/// Find the first date of the week which contains the provided date.
+findFirstDateOfTheWeek(DateTime dateTime) {
+  var startDate = dateTime.subtract(Duration(days: dateTime.weekday - 1));
+  startWeekDate = DateFormat.MMMd().format(startDate);
+  return startWeekDate;
+}
+
+/// Find last date of the week which contains provided date.
+findLastDateOfTheWeek(DateTime dateTime) {
+  var endDate =
+      dateTime.add(Duration(days: DateTime.daysPerWeek - dateTime.weekday));
+  endWeekDate = DateFormat.MMMd().format(endDate);
+  return endWeekDate;
+}
+
+class DailyActivity {
+  DailyActivity(this.day, this.dailyActivity);
+
+  final String day;
+  final int dailyActivity;
+}
+
+final activity = <DailyActivity>[
+  DailyActivity('Mo', 850),
+  DailyActivity('Tu', 550),
+  DailyActivity('We', 750),
+  DailyActivity('Th', 700),
+  DailyActivity('Fr', 850),
+  DailyActivity('Sa', 350),
+  DailyActivity('Su', 250),
+];
+
+final maxValue = activity.map((e) => e.dailyActivity).reduce(max);

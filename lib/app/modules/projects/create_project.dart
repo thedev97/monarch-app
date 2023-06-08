@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import '../../core/values/values.dart';
 import '../../data/data_model.dart';
 import '../../widgets/bottomsheets/bottom_sheets.dart';
@@ -30,13 +30,10 @@ class CreateProjectScreen extends StatelessWidget {
         (index) => NotificationCard(
               read: notificationData[index]['read'],
               userName: notificationData[index]['mentionedBy'],
-              date: notificationData[index]['date'],
+              time: notificationData[index]['date'],
               image: notificationData[index]['profileImage'],
-              mentioned: notificationData[index]['hashTagPresent'],
               message: notificationData[index]['message'],
-              mention: notificationData[index]['mentionedIn'],
               imageBackground: notificationData[index]['color'],
-              userOnline: notificationData[index]['userOnline'],
             ));
     return Scaffold(
         backgroundColor: Color(0xff202427),
@@ -140,11 +137,12 @@ class CreateProjectScreen extends StatelessWidget {
                       fontSize: 14, color: HexColor.fromHex("626777"))),
               AppSpaces.verticalSpace20,
               InBottomSheetSubtitle(
-                  title: "CREATIVE WORKFLOW",
+                title: "CREATIVE WORKFLOW",
                 textStyle: GoogleFonts.lato(
                     color: HexColor.fromHex("626777"),
                     fontSize: 16,
-                    fontWeight: FontWeight.w400),),
+                    fontWeight: FontWeight.w400),
+              ),
               AppSpaces.verticalSpace20,
               ProjectSelectableContainer(
                 activated: false,
@@ -196,7 +194,7 @@ class CreateProjectScreen extends StatelessWidget {
                                     onPressed: () {},
                                   ),
                                   AppSpaces.horizontalSpace10,
-                                 /* IconButton(
+                                  /* IconButton(
                                     icon: Icon(Icons.dns_outlined),
                                     color: Colors.black,
                                     iconSize: 25,

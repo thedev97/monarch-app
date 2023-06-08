@@ -1,229 +1,175 @@
+import 'package:Monarch/app/core/values/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../core/values/colors.dart';
+import '../../core/values/images.dart';
 import '../../core/values/values.dart';
+import '../../data/data_model.dart';
+import '../../widgets/chat-messages/messages.dart';
+import '../../widgets/navigation/default_back_button.dart';
 
-/*
 class MessagingScreen extends StatelessWidget {
-  final String userName;
-  final String color;
-  final String image;
-  MessagingScreen({Key? key, required this.userName, required this.color, required this.image}) : super(key: key);
+  const MessagingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<String> sentImage = [
-      "assets/slider-background-1.png",
-      "assets/slider-background-2.png",
-      "assets/slider-background-3.png"
-    ];
-
-    List<SentImage> imageCards = List.generate(sentImage.length, (index) => SentImage(image: sentImage[index]));
-    return Scaffold(
-        body: Stack(children: [
-      DarkRadialBackground(
-        color: HexColor.fromHex("#181a1f"),
-        position: "topLeft",
-      ),
-      Padding(
-        padding: EdgeInsets.only(left: 20, right: 20),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
+    return SafeArea(
+        child: Scaffold(
+          extendBody: false,
+          body: Padding(
+            padding: const EdgeInsets.only(left: 20, top: 20, right: 20),
+            child: Stack(
               children: [
-                TaskezAppHeader(
-                  title: "$userName",
-                  messagingPage: true,
-                  widget: Row(children: [
-                    Icon(Icons.phone, color: Colors.white),
-                    AppSpaces.horizontalSpace20,
-                    Container(
-                        width: 40,
-                        height: 40,
-                        alignment: Alignment.centerLeft,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            border: Border.all(width: 3, color: HexColor.fromHex("31333D"))),
-                        child: Center(child: Icon(Icons.more_vert, color: Colors.white))),
-                  ]),
-                ),
+                buildHeaderBar(),
+                messagingSection(),
               ],
             ),
           ),
+          bottomNavigationBar: chatInputFeild(),
+        )
+    );
+  }
+
+  Widget buildHeaderBar() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: const DefaultBack(),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const CircleAvatar(
+              backgroundImage: AssetImage("assets/emoji/avatar-1.png"),
+            ),
+            AppSpaces.horizontalSpace10,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Gareth Reid",
+                  style: AppTextStyles.chatMsgHeader,
+                ),
+                AppSpaces.verticalSpace2,
+                Text(
+                  "Active 3m ago",
+                  style: AppTextStyles.chatMsgSubHeader,
+                )
+              ],
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: Image.asset(call_img, height: 25, width: 25,),
+        ),
+      ],
+    );
+  }
+
+  Widget messagingSection() {
+    final dynamic chatMsgData = AppData.chatMessages;
+    List<Widget> chatMessageList = List.generate(
+        chatMsgData.length,
+            (index) => Message(
+              isSender: chatMsgData[index]['isSender'],
+              status: chatMsgData[index]['messageStatus'],
+              chatText: chatMsgData[index]['message'],
+              messageType: chatMsgData[index]['messageType'],
+        ));
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: sizeHeight*0.08),
+      child: ListView(children: [...chatMessageList]),
+    );
+  }
+
+  Widget chatInputFeild(){
+    return Container(
+      padding: EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 4),
+            blurRadius: 32,
+            color: const Color(0xFF087949).withOpacity(0.08),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(width: 10),
+            Container(
+                height: 35,
+                width: 35,
+                decoration:
+                BoxDecoration(shape: BoxShape.circle, color: primaryColor),
+                child: Icon(Icons.add, color: Colors.white, size: 20,)),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20 * 0.75,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      smile_img,
+                      height: 25,
+                      width: 25,
+                    ),
+                    const SizedBox(width: 20 / 2),
+                    Expanded(
+                      child: TextField(
+                        style: GoogleFonts.lato(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: Colors.black),
+                        decoration: InputDecoration(
+                          hintText: "Type message",
+                          border: InputBorder.none,
+                          hintStyle: GoogleFonts.lato(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                              color: HexColor.fromHex("3C3E49")),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20 / 2),
+                    Image.asset(
+                      camera_img,
+                      height: 25,
+                      width: 25,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+                height: 35,
+                width: 35,
+                decoration:
+                BoxDecoration(shape: BoxShape.circle, color: primaryColor),
+                child: Icon(Icons.mic, color: Colors.white, size: 20,)),
+            const SizedBox(width: 10),
+          ],
         ),
       ),
-      //Chat
-      Positioned(
-          top: 80,
-          child: Container(
-              width: Utils.screenWidth,
-              height: Utils.screenHeight * 2,
-              child: ListView(children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MessengerDetails(image: image, color: color, userName: userName),
-                    Padding(
-                      padding: EdgeInsets.only(left: 70.0),
-                      child: Container(
-                          alignment: Alignment.centerLeft,
-                          width: 250,
-                          padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryBackgroundColor,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Text("Hi man, how are you doing?", style: GoogleFonts.lato(color: Colors.white))),
-                    )
-                  ],
-                ),
-                AppSpaces.verticalSpace20,
-                SenderMessage(message: "Doing well, thanks! 👋"),
-                AppSpaces.verticalSpace20,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MessengerDetails(image: image, color: color, userName: userName),
-                    Padding(
-                      padding: EdgeInsets.only(left: 70.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              alignment: Alignment.centerLeft,
-                              width: 250,
-                              //height: 50,
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryBackgroundColor,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(50),
-                                    topRight: Radius.circular(50),
-                                    bottomRight: Radius.circular(50)),
-                              ),
-                              child: Text("Just one question 😂", style: GoogleFonts.lato(color: Colors.white))),
-                          AppSpaces.verticalSpace10,
-                          Container(
-                              alignment: Alignment.centerLeft,
-                              width: 250,
-                              //height: 50,
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryBackgroundColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(50),
-                                    topRight: Radius.circular(50),
-                                    bottomRight: Radius.circular(50)),
-                              ),
-                              child: Text("Can you please send me your latest mockup? ",
-                                  style: GoogleFonts.lato(color: Colors.white))),
-                          AppSpaces.verticalSpace10,
-                          Container(
-                            height: 120,
-                            child: ListView(scrollDirection: Axis.horizontal, children: [...imageCards]),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                AppSpaces.verticalSpace20,
-                SenderMessage(message: "Sure, wait for a minute."),
-                AppSpaces.verticalSpace20,
-                Padding(
-                    padding: EdgeInsets.only(right: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                            padding: EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryBackgroundColor,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Icon(Icons.more_horiz, color: HexColor.fromHex("7F8088"), size: 40)),
-                      ],
-                    ))
-              ]))),
-      PostBottomWidget(label: "Write a message")
-    ]));
-  }
-}
-*/
-
-
-class SenderMessage extends StatelessWidget {
-  final String message;
-  const SenderMessage({
-    Key? key,
-    required this.message,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Container(
-              alignment: Alignment.centerLeft,
-              width: 200,
-              padding: EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
-              decoration: BoxDecoration(
-                color: AppColors.primaryAccentColor,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Text(message, style: GoogleFonts.lato(color: Colors.white))),
-        ],
-      ),
     );
   }
 }
 
-/*class MessengerDetails extends StatelessWidget {
-  const MessengerDetails({
-    Key? key,
-    required this.image,
-    required this.color,
-    required this.userName,
-  }) : super(key: key);
-
-  final String image;
-  final String color;
-  final String userName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 20.0),
-      child: Row(
-        children: [
-          OnlineUser(
-            image: image,
-            imageBackground: color,
-            userName: userName,
-          ),
-          AppSpaces.horizontalSpace10,
-          TimeReceipt(time: "12:11 PM")
-        ],
-      ),
-    );
-  }
-}*/
-
-class TimeReceipt extends StatelessWidget {
-  final String time;
-  const TimeReceipt({
-    Key? key,
-    required this.time,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(time, style: GoogleFonts.lato(color: Colors.white));
-  }
-}

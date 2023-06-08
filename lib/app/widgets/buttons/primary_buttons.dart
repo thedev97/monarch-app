@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/core/values/values.dart';
+import 'package:Monarch/app/core/values/values.dart';
 
 import '../../core/values/colors.dart';
 

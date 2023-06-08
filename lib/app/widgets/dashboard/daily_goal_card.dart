@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/values/values.dart';
-import '../circleTabIndicator/circleProgress.dart';
 import '../../core/constants.dart';
+import '../progressView/circleProgress.dart';
 
 class DailyGoalCard extends StatefulWidget {
   const DailyGoalCard({Key? key}) : super(key: key);

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/values/sizes.dart';
-
 class SelectPlanView extends StatelessWidget {
   final String subscription_days;
   final String plan;

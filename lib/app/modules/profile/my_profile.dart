@@ -1,11 +1,12 @@
-/*import 'package:flutter/material.dart';
+/*
+import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/widgets/background/white-background.dart';
-import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:Monarch/app/widgets/background/white-background.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import '../../core/values/values.dart';
-import '../../widgets/navigation/default_back.dart';
+import '../../widgets/navigation/default_nav_bar.dart';
 import '../../widgets/onboarding/toggle_option.dart';
 import '../../widgets/profile/text_outlined_button.dart';
 
@@ -113,4 +114,5 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     ]));
   }
-}*/
+}
+*/

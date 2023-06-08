@@ -11,8 +11,8 @@ import '../../widgets/buttons/primary_buttons.dart';
 import '../../widgets/forms/text_input_with _label.dart';
 import '../../widgets/navigation/back_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/core/values/colors.dart';
-import 'package:project_management_tool/app/core/values/images.dart';
+import 'package:Monarch/app/core/values/colors.dart';
+import 'package:Monarch/app/core/values/images.dart';
 
 class EmailAddressScreen extends StatefulWidget {
   @override

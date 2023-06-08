@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../core/values/values.dart';
 
+enum ChatMessageType { text, audio, image, video }
+enum MessageStatus { not_sent, not_view, viewed }
+
 class AppData {
   static final List<Map<String, dynamic>> progressIndicatorList = [
     {
@@ -38,98 +41,139 @@ class AppData {
 
   static final List<Map<String, dynamic>> notificationMentions = [
     {
-      "mentionedBy": "Danny-Wills",
-      "mentionedIn": "HobNob",
+      "mentionedBy": "Danny",
       "read": false,
-      "date": "Nov 2nd",
+      "date": "2 minutes ago",
       "profileImage": "assets/emoji/avatar-1.png",
-      "hashTagPresent": true,
-      "userOnline": false,
       "color": "BBF1C3",
-      "hashElement": "@soumya",
       "message":
-          "When you have time please take a look at the new designs I just made in Figma."
+          "Started following you"
     },
     {
-      "mentionedBy": "Franklin-Walls",
-      "mentionedIn": "HobNob",
-      "read": true,
-      "date": "Nov 2nd",
-      "profileImage": "assets/emoji/avatar-2.png",
-      "hashTagPresent": false,
-      "color": "DBCFFE",
-      "userOnline": true,
-      "hashElement": "",
-      "message": "Please fixed this bug asap."
+      "mentionedBy": "Lenda",
+      "date": "15 minutes ago",
+      "read": false,
+      "profileImage": "assets/emoji/avatar-4.png",
+      "color": "FAA3FF",
+      "message":
+      "Started following you"
     },
     {
       "mentionedBy": "Jackson Ramos",
-      "mentionedIn": "UI5 Products",
       "read": true,
-      "date": "Nov 2nd",
+      "date": "1.5 hours ago",
       "profileImage": "assets/emoji/avatar-3.png",
-      "hashTagPresent": false,
-      "userOnline": true,
       "color": "FFC5D5",
-      "hashElement": "",
       "message":
           "Please try to complete this functionality as soon as possible."
     },
     {
-      "mentionedBy": "Sophie Brownie",
-      "mentionedIn": "Productivity",
-      "date": "Nov 2nd",
-      "read": true,
-      "profileImage": "assets/emoji/avatar-4.png",
-      "hashTagPresent": false,
-      "color": "FAA3FF",
-      "userOnline": false,
-      "hashElement": "",
-      "message": "Please update your task on regular basis."
-    },
-    {
       "mentionedBy": "Katharine Walls",
-      "mentionedIn": "UI5 Products",
       "read": true,
-      "date": "Nov 2nd",
+      "date": "2 hours ago",
       "profileImage": "assets/emoji/avatar-5.png",
-      "hashTagPresent": false,
       "color": "DBCFFE",
-      "userOnline": true,
-      "hashElement": "",
-      "message": "Hey Please be online."
+      "message": "New task added in BMC"
     },
     {
       "mentionedBy": "Bertha Ramos",
-      "mentionedIn": "DataBase-Handler",
       "read": true,
-      "date": "Nov 2nd",
+      "date": "5 days ago",
       "profileImage": "assets/emoji/avatar-1.png",
-      "hashTagPresent": false,
-      "userOnline": true,
       "color": "FFC5D5",
-      "hashElement": "",
-      "message": "Hey, Please stored the login data in locally. It's Important."
+      "message": "Moved to 235 task to done"
+    },
+  ];
+
+  static final List<Map<String, dynamic>> taskList = [
+    {
+      "name": "Gareth Reid",
+      "taskImage": "assets/task-img.png",
+      "time": "27/05/2023",
+      "isActive": true,
+      "message": "Fix the crash issues in location screen.",
+      "status" : "In Progress",
+      "project": "HobNob"
     },
     {
-      "mentionedBy": "Marie Bowen",
-      "mentionedIn": "Productivity",
-      "date": "Nov 2nd",
-      "read": true,
-      "profileImage": "assets/emoji/avatar-4.png",
-      "hashTagPresent": false,
-      "color": "FAA3FF",
-      "userOnline": false,
-      "hashElement": "",
-      "message": "We are meeting at 4 pm. so please available."
+      "name": "Vincent Lyons",
+      "taskImage": "assets/task-img.png",
+      "time": "05/06/2023",
+      "isActive": false,
+      "message": "Please fix these bugs..",
+      "status" : "Done",
+      "project": "HobNob"
+    },
+    {
+      "name": "Adeline Nunez",
+      "taskImage": "assets/task-img.png",
+      "time": "09/06/2023",
+      "isActive": true,
+      "message": "This flow is wrong....",
+      "status" : "In Progress",
+      "project": "ABHA"
+    },
+    {
+      "name": "Samuel Doyle",
+      "taskImage": "assets/task-img.png",
+      "time": "12/06/2023",
+      "isActive": true,
+      "message": "Hi shall we connect to discuss",
+      "status" : "In Progress",
+      "project": "Monarch"
+    },
+    {
+      "name": "Katherine Wells",
+      "taskImage": "assets/task-img.png",
+      "time": "12/06/2023",
+      "isActive": true,
+      "message": "Later we'll connect...",
+      "status" : "In Progress",
+      "project": "HobNob"
+    },
+    {
+      "name": "Chris Owens",
+      "taskImage": "assets/task-img.png",
+      "time": "15/06/2023",
+      "isActive": false,
+      "message": "Pushed the latest code in to your repo.",
+      "status" : "In Progress",
+      "project": "ABHA"
+    },
+    {
+      "name": "Laura Dallas",
+      "taskImage": "assets/task-img.png",
+      "time": "17/06/2023",
+      "isActive": false,
+      "message": "Please work on the UI part.",
+      "status" : "Done",
+      "project": "Monarch"
+    },
+    {
+      "name": "Isabella Ramos",
+      "taskImage": "assets/task-img.png",
+      "time": "18/06/2023",
+      "isActive": false,
+      "message": "Please work on the api implementation part.",
+      "status" : "In Progress",
+      "project": "ABHA"
+    },
+    {
+      "name": "Ruth Benson",
+      "taskImage": "assets/task-img.png",
+      "time": "21/06/2023",
+      "isActive": true,
+      "message": "Please learn the advanced level...",
+      "status" : "In Progress",
+      "project": "Internal Task"
     },
   ];
 
   static final List<String> profileImages = [
+    "assets/emoji/avatar-5.png",
     "assets/emoji/avatar-1.png",
     "assets/emoji/avatar-2.png",
     "assets/emoji/avatar-4.png",
-    "assets/emoji/avatar-5.png",
   ];
 
   static final List<Color> groupBackgroundColors = [
@@ -139,76 +183,138 @@ class AppData {
     HexColor.fromHex("FCA3FF")
   ];
 
-  static final List<Map<String, dynamic>> onlineUsers = [
+  static final List<Map<String, dynamic>> activeProjectList = [
     {
-      "name": "Gareth Reid 🔥",
+      "projectName": "HobNob",
+      "progressValue": 0.3,
+      "color": "001E88",
+      "time": "13:00 PM",
+      "isActive": true,
+      "desc": "Claim initiation issue please check and let me know",
+    },
+    {
+      "projectName": "Bg Desk",
+      "progressValue": 0.7,
+      "color": "FFFFF",
+      "time": "1 day ago",
+      "isActive": false,
+      "desc": "Claim initiation issue please check and let me know",
+    },
+    {
+      "projectName": "Mobile app",
+      "progressValue": 0.8,
+      "color": "FFFFF",
+      "time": "11:00 AM",
+      "isActive": false,
+      "desc": "Claim initiation issue please check and let me know",
+    },
+    {
+      "projectName": "MIS Portal",
+      "progressValue": 0.5,
+      "color": "FFFFF",
+      "time": "07:30 AM",
+      "isActive": false,
+      "desc": "Claim initiation issue please check and let me know",
+    },
+  ];
+
+  static final List<Map<String, dynamic>> chatUsers = [
+    {
+      "name": "Gareth Reid",
       "profileImage": "assets/emoji/avatar-1.png",
       "color": "BAF0C5",
+      "time": "3m ago",
+      "isActive": true,
+      "lastMessage": "Meeting is over..",
     },
     {
-      "name": "Vincent Lyons 🇺🇸",
+      "name": "Vincent Lyons",
       "profileImage": "assets/emoji/avatar-2.png",
       "color": "DACFFE",
+      "time": "10m ago",
+      "isActive": false,
+      "lastMessage": "When you start ?",
     },
     {
-      "name": "Adeline Nunez 🎉",
+      "name": "Adeline Nunez",
       "profileImage": "assets/emoji/avatar-3.png",
       "color": "FFC7D5",
+      "time": "1hour ago",
+      "isActive": true,
+      "lastMessage": "Project is added.",
     },
     {
-      "name": "Samuel Doyle 🔥",
+      "name": "Samuel Doyle",
       "profileImage": "assets/emoji/avatar-4.png",
       "color": "C0E7FD",
+      "time": "1hour ago",
+      "isActive": false,
+      "lastMessage": "You did well buddy.",
     },
     {
-      "name": "Ruth Benson 🔥",
+      "name": "Ruth Benson",
       "profileImage": "assets/emoji/avatar-5.png",
       "color": "D7D2D4",
+      "time": "1hour ago",
+      "isActive": true,
+      "lastMessage": "Bug is fixed now please check it..",
     },
     {
-      "name": "Adeline Nunez 🎉",
+      "name": "Adeline Nunez",
       "profileImage": "assets/emoji/avatar-1.png",
       "color": "FFC7D5",
+      "time": "1hour ago",
+      "isActive": true,
+      "lastMessage": "This isn't good",
     },
     {
-      "name": "Samuel Doyle 🔥",
+      "name": "Samuel Doyle",
       "profileImage": "assets/emoji/avatar-4.png",
       "color": "C0E7FD",
+      "time": "1hour ago",
+      "isActive": false,
+      "lastMessage": "Bye...",
     },
     {
-      "name": "Ruth Benson 🔥",
-      "profileImage": "assets/emoji/avatar-2.png",
-      "color": "D7D2D4",
-    },
-    {
-      "name": "Adeline Nunez 🎉",
+      "name": "Adeline Nunez",
       "profileImage": "assets/emoji/avatar-5.png",
       "color": "FFC7D5",
+      "time": "12hour ago",
+      "isActive": true,
+      "lastMessage": "Hi, Are you there !!",
+    },
+  ];
+
+  static final List<Map<String, dynamic>> chatMessages = [
+    {
+      "message": "Hi Soumya,\nLet me know when you are free",
+      "messageType": ChatMessageType.text,
+      "messageStatus": MessageStatus.viewed,
+      "isSender": false,
     },
     {
-      "name": "Samuel Doyle 🔥",
-      "profileImage": "assets/emoji/avatar-3.png",
-      "color": "C0E7FD",
+      "message": "What's up buddy!!",
+      "messageType": ChatMessageType.text,
+      "messageStatus": MessageStatus.viewed,
+      "isSender": true,
     },
     {
-      "name": "Ruth Benson 🔥",
-      "profileImage": "assets/emoji/avatar-2.png",
-      "color": "D7D2D4",
+      "message": "I'm good what about you..",
+      "messageType": ChatMessageType.text,
+      "messageStatus": MessageStatus.viewed,
+      "isSender": false,
     },
     {
-      "name": "Gareth Reid 🔥",
-      "profileImage": "assets/emoji/avatar-4.png",
-      "color": "BAF0C5",
+      "message": "I'm free. let's connect",
+      "messageType": ChatMessageType.text,
+      "messageStatus": MessageStatus.not_sent,
+      "isSender": true,
     },
     {
-      "name": "Vincent Lyons 🇺🇸",
-      "profileImage": "assets/emoji/avatar-5.png",
-      "color": "DACFFE",
-    },
-    {
-      "name": "Adeline Nunez 🎉",
-      "profileImage": "assets/emoji/avatar-1.png",
-      "color": "FFC7D5",
+      "message": "Okay",
+      "messageType": ChatMessageType.text,
+      "messageStatus": MessageStatus.not_view,
+      "isSender": false,
     },
   ];
 

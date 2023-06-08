@@ -10,10 +10,9 @@ import '../../widgets/buttons/primary_buttons.dart';
 import '../../widgets/listviews/plan-info.dart';
 import '../../widgets/navigation/back_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/core/values/colors.dart';
-import 'package:project_management_tool/app/widgets/listviews/custom-list.dart';
-import 'package:project_management_tool/app/widgets/listviews/select-views.dart';
-
+import 'package:Monarch/app/core/values/colors.dart';
+import 'package:Monarch/app/widgets/listviews/custom-list.dart';
+import 'package:Monarch/app/widgets/listviews/select-views.dart';
 
 class ChoosePlan extends StatefulWidget {
   const ChoosePlan({Key? key}) : super(key: key);
@@ -140,13 +139,23 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           },
                         ),
                         Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(16)),
+                            child: Image.asset(
+                              check_custom_painter_img,
+                              width: 50,
+                            ),
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Icon(
-                            Icons.check_circle,
-                            size: 20,
-                            color: Colors.blue,
+                            Icons.check,
+                            size: 15,
+                            color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
               isSelectTenDollarPlan == false
@@ -185,13 +194,23 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           },
                         ),
                         Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(16)),
+                            child: Image.asset(
+                              check_custom_painter_img,
+                              width: 50,
+                            ),
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Icon(
-                            Icons.check_circle,
-                            size: 20,
-                            color: Colors.blue,
+                            Icons.check,
+                            size: 15,
+                            color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
             ],
@@ -238,13 +257,23 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           },
                         ),
                         Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(16)),
+                            child: Image.asset(
+                              check_custom_painter_img,
+                              width: 50,
+                            ),
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Icon(
-                            Icons.check_circle,
-                            size: 20,
-                            color: Colors.blue,
+                            Icons.check,
+                            size: 15,
+                            color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
               isSelectHundredNinetyDollarPlan == false
@@ -283,13 +312,23 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           },
                         ),
                         Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(16)),
+                            child: Image.asset(
+                              check_custom_painter_img,
+                              width: 50,
+                            ),
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Icon(
-                            Icons.check_circle,
-                            size: 20,
-                            color: Colors.blue,
+                            Icons.check,
+                            size: 15,
+                            color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
             ],
@@ -484,9 +523,7 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           ),
                           PlanInfoViews(
                             title: details_three,
-                            image: plan == 'Basic Plan'
-                                ? uncheckImg
-                                : checkImg,
+                            image: plan == 'Basic Plan' ? uncheckImg : checkImg,
                           ),
                           SizedBox(
                             height: 10,
@@ -494,15 +531,15 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           PlanInfoViews(
                             title: details_four,
                             image: plan == 'Basic Plan' || plan == 'Standard'
-                                ? uncheckImg : checkImg,
+                                ? uncheckImg
+                                : checkImg,
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           PlanInfoViews(
                             title: details_five,
-                            image: plan != 'Platinum'
-                                ? uncheckImg : checkImg,
+                            image: plan != 'Platinum' ? uncheckImg : checkImg,
                           ),
                           SizedBox(
                             height: 30,

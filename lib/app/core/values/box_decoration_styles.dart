@@ -12,10 +12,16 @@ class BoxDecorationStyles {
           Colors.purpleAccent.withOpacity(0.5)
         ]),
     borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20), topRight: Radius.circular(20)),);
+        topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+  );
 
   static final BoxDecoration fadingInnerDecor = BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20), topRight: Radius.circular(20)));
+
+  static final BoxDecoration overViewDecoration = BoxDecoration(
+    color: HexColor.fromHex("001E88"),
+    borderRadius: BorderRadius.all(Radius.circular(20)),
+  );
 }

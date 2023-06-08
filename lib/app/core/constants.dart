@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import '../data/data_model.dart';
+import '../modules/calendar/calendar-screen/calendar_screen.dart';
 import '../modules/dashboard/dashboard.dart';
-import '../modules/dashboard/notifications.dart';
-import '../modules/dashboard/projects.dart';
-import '../modules/dashboard/search_screen.dart';
+import '../modules/projects/project-screen/projects.dart';
+import '../modules/task/task-screen/task_screen.dart';
 import '../widgets/stacked_images.dart';
 import 'values/values.dart';
 
 String tabSpace = "\t\t\t";
 
-final List<Widget> dashBoardScreens = [
+final List<Widget> screens = [
   Dashboard(),
   ProjectScreen(),
-  NotificationScreen(),
-  SearchScreen()
+  CalendarScreen(),
+  TaskScreen()
 ];
 
 List<Color> progressCardGradient = [
@@ -32,8 +32,8 @@ List<Color> progressCardGradientList = [
 
 Widget buildStackedImages(
     {TextDirection direction = TextDirection.rtl,
-      String? numberOfMembers,
-      bool? addMore}) {
+    String? numberOfMembers,
+    bool? addMore}) {
   final double size = 50;
   final double xShift = 20;
 
@@ -58,7 +58,7 @@ Widget buildStackedImages(
 
   final items = List.generate(
       4,
-          (index) => ProfileDummyImg(
+      (index) => ProfileDummyImg(
           color: AppData.groupBackgroundColors[index],
           dummyType: ProfileDummyTypeImg.Image,
           image: AppData.profileImages[index],
@@ -75,12 +75,3 @@ Widget buildStackedImages(
     xShift: xShift,
   );
 }
-
-/*
-final onlineUsers = List.generate(
-    AppData.onlineUsers.length,
-        (index) => OnlineUser(
-      image: AppData.onlineUsers[index]['profileImage'],
-      imageBackground: AppData.onlineUsers[index]['color'],
-      userName: AppData.onlineUsers[index]['name'],
-    ));*/

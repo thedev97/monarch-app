@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
-import 'package:project_management_tool/app/widgets/forms/task_input_form.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:Monarch/app/widgets/forms/task_input_form.dart';
 import '../../modules/projects/create_project.dart';
 import '../../modules/task/set_assignees.dart';
 import '../buttons/primary_progress_button.dart';

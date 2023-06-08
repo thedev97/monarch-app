@@ -1,13 +1,18 @@
+import 'package:Monarch/app/core/values/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../../core/values/values.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final IconData icon;
   final int itemIndex;
 
   final ValueNotifier<int> notifier;
-  BottomNavigationItem({Key? key, required this.itemIndex, required this.notifier, required this.icon})
+
+  BottomNavigationItem(
+      {Key? key,
+      required this.itemIndex,
+      required this.notifier,
+      required this.icon})
       : super(key: key);
 
   @override
@@ -21,15 +26,19 @@ class BottomNavigationItem extends StatelessWidget {
         child: ValueListenableBuilder(
             valueListenable: notifier,
             builder: (BuildContext context, _, __) {
-              return Stack(children: [
+              return Stack(alignment: Alignment.center, children: [
                 Positioned(
-                    top: 13,
+                    top: 10,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(icon, size: 25, color: notifier.value != itemIndex ? Colors.grey.shade700 : Colors.white),
-                        SizedBox(height: 25),
+                        Icon(icon,
+                            size: 25,
+                            color: notifier.value != itemIndex
+                                ? Colors.black
+                                : primaryColor),
+                        SizedBox(height: 10),
                         notifier.value != itemIndex
                             ? SizedBox(width: 30, height: 30)
                             : Transform.rotate(
@@ -39,7 +48,9 @@ class BottomNavigationItem extends StatelessWidget {
                                     width: 30,
                                     height: 30,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10.0), color: HexColor.fromHex("C25FFF"))))
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color: primaryColor)))
                       ],
                     )),
               ]);

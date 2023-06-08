@@ -1,106 +1,135 @@
+import 'package:Monarch/app/modules/chats/chat_screen.dart';
+
+import '../../core/values/images.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import '../../widgets/dashboard/dashboard_add_sheet.dart';
-import '../profile/profile_overview.dart';
+import '../notification/notifications.dart';
 import 'dashboard-tab-screens/overview.dart';
-import 'dashboard-tab-screens/productivity.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../core/values/values.dart';
-import '../../widgets/bottomsheets/bottom_sheets.dart';
-import '../../widgets/bottomsheets/dashboard_settings_sheet.dart';
-import '../../widgets/buttons/primary_tab_buttons.dart';
+import '../../widgets/forms/search_box_form.dart';
 import '../../widgets/navigation/dasboard_nav.dart';
 import '../../widgets/shapes/app_settings_icon.dart';
+import '../../widgets/buttons/primary_tab_buttons.dart';
+import 'package:Monarch/app/core/values/sizes.dart';
+import 'package:Monarch/app/core/values/strings.dart';
+import 'dashboard-tab-screens/productivity.dart';
 
 // ignore: must_be_immutable
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
-  ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
-  ValueNotifier<bool> _totalDueTrigger = ValueNotifier(false);
-  ValueNotifier<bool> _totalCompletedTrigger = ValueNotifier(true);
-  ValueNotifier<bool> _workingOnTrigger = ValueNotifier(false);
+  TextEditingController _searchController = new TextEditingController();
   ValueNotifier<int> _buttonTrigger = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff202427),
-      body: Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DashboardNav(
-                      icon: FontAwesomeIcons.comment,
-                      image: "assets/team-prof.png",
-                      notificationCount: "2",
-                      //page: ChatScreen(),
-                      title: "Dashboard",
-                      onImageTapped: () {
-                        Get.to(() => ProfileOverview());
-                      },
-                    ),
-                    AppSpaces.verticalSpace20,
-                    Text("Hello,\nSoumya 👋",
-                        style: GoogleFonts.lato(
-                          color: Colors.white,
-                          fontSize: 40,
-                          shadows: [
-                            Shadow(
-                                color: Colors.black,
-                                offset: Offset(0.0, 1.0),
-                                blurRadius: 1.0),
-                          ],
-                          fontWeight: FontWeight.w800,
-                        )),
-                    AppSpaces.verticalSpace20,
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          //tab indicators
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              PrimaryTabButton(
-                                  buttonText: "Overview",
-                                  itemIndex: 0,
-                                  notifier: _buttonTrigger),
-                              PrimaryTabButton(
-                                  buttonText: "Productivity",
-                                  itemIndex: 1,
-                                  notifier: _buttonTrigger)
-                            ],
-                          ),
-                          Container(
-                              alignment: Alignment.centerRight,
-                              child: AppSettingsIcon(
-                                callback: () {
-                                  showAppBottomSheet(
-                                    DashboardSettingsBottomSheet(
-                                      totalTaskNotifier: _totalTaskTrigger,
-                                      totalDueNotifier: _totalDueTrigger,
-                                      workingOnNotifier: _workingOnTrigger,
-                                      totalCompletedNotifier:
-                                          _totalCompletedTrigger,
-                                    ),
-                                  );
-                                },
-                              ))
-                        ]),
-                    AppSpaces.verticalSpace20,
-                    ValueListenableBuilder(
-                        valueListenable: _buttonTrigger,
-                        builder: (BuildContext context, _, __) {
-                          return _buttonTrigger.value == 0
-                              ? DashboardOverview()
-                              : DashboardProductivity();
-                        })
-                  ]),
+        extendBody: false,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Stack(children: [
+              dashboardNav(),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  searchSection(),
+                  settingMenu(),
+                ],
+              ),
+              selectionView(),
+              projectViewSection(),
+            ]),
+          ),
+        ));
+  }
+
+  Widget dashboardNav() {
+    return DashboardNav(
+      chatImg: chat_img,
+      notifyImg: notify_img,
+      image: profile_img,
+      notificationCount: notificationCount,
+      chatCount: chatCount,
+      title: nameTxt,
+      subTitle: pendingTask,
+      onImageTapped: () {
+        //Get.to(() => ProfileOverview());
+      },
+      notificationPage: NotificationScreen(count: notificationCount,),
+      chatPage: ChatScreen(),
+    );
+  }
+
+  Widget searchSection() {
+    return Padding(
+      padding: EdgeInsets.only(top: sizeHeight * 0.08),
+      child: Container(
+        height: 50,
+        width: sizeWidth * 0.72,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        child: SearchBoxInput(
+            placeholder: searchPlaceHolderTxt, controller: _searchController),
+      ),
+    );
+  }
+
+  Widget settingMenu() {
+    return Padding(
+      padding: EdgeInsets.only(top: sizeHeight * 0.08),
+      child: AppSettingsIcon(
+        callback: () {
+          /*showAppBottomSheet(
+            DashboardSettingsBottomSheet(
+              totalTaskNotifier: _totalTaskTrigger,
+              totalDueNotifier: _totalDueTrigger,
+              workingOnNotifier: _workingOnTrigger,
+              totalCompletedNotifier: _totalCompletedTrigger,
             ),
-          )),
+          );*/
+        },
+      ),
+    );
+  }
+
+  Widget selectionView() {
+    return Padding(
+      padding: EdgeInsets.only(top: sizeHeight * 0.2, left: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          PrimaryTabButton(
+              buttonText: overviewTxt, itemIndex: 0, notifier: _buttonTrigger),
+          SizedBox(
+            width: 20,
+          ),
+          PrimaryTabButton(
+              buttonText: productivityViewTxt,
+              itemIndex: 1,
+              notifier: _buttonTrigger)
+        ],
+      ),
+    );
+  }
+
+  Widget projectViewSection() {
+    return Padding(
+      padding: EdgeInsets.only(top: sizeHeight*0.3),
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            ValueListenableBuilder(
+                valueListenable: _buttonTrigger,
+                builder: (BuildContext context, _, __) {
+                  return _buttonTrigger.value == 0
+                      ? DashboardOverview()
+                      : DashboardProductivity();
+                 /* return _buttonTrigger.value == 0
+                      ? DashboardOverview() : Container();*/
+                }),
+          ],
+        ),
+      ),
     );
   }
 }

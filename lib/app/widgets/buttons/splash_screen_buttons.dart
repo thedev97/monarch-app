@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_management_tool/app/core/values/images.dart';
-import 'package:project_management_tool/app/core/values/values.dart';
+import 'package:Monarch/app/core/values/images.dart';
+import 'package:Monarch/app/core/values/values.dart';
 
 enum SplashButtonSizes { small, medium, large }
 

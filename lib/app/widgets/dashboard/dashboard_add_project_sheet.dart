@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/widgets/forms/task_input_form.dart';
-import '../../core/constants.dart';
-import '../../core/values/values.dart';
-import '../bottomsheets/bottom_sheet_holder.dart';
-import '../chats/badged_title.dart';
-import 'in_bottomsheet_subtitle.dart';
 
 class DashboardAddProjectSheet extends StatelessWidget {
   TextEditingController _projectNameController = new TextEditingController();
@@ -14,7 +7,10 @@ class DashboardAddProjectSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Container(
+      color: Colors.white,
+    );
+    /*return SingleChildScrollView(
       child: Column(children: [
         AppSpaces.verticalSpace10,
         BottomSheetHolder(),
@@ -32,9 +28,9 @@ class DashboardAddProjectSheet extends StatelessWidget {
                 label: "Sub Task",
               ),
               AppSpaces.verticalSpace20,
-              /*InBottomSheetSubtitle(title: "SELECT LAYOUT"),
-              AppSpaces.verticalSpace10,*/
-             /* Container(
+              */ /*InBottomSheetSubtitle(title: "SELECT LAYOUT"),
+              AppSpaces.verticalSpace10,*/ /*
+             */ /* Container(
                   width: double.infinity,
                   height: 60,
                   padding: EdgeInsets.all(5.0),
@@ -59,7 +55,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                           notifier: _settingsButtonTrigger),
                     )
                   ])),
-              AppSpaces.verticalSpace20,*/
+              AppSpaces.verticalSpace20,*/ /*
               Row(children: [
                 BadgedTitle(
                   title: "HOBNOB - MOBILE",
@@ -89,15 +85,15 @@ class DashboardAddProjectSheet extends StatelessWidget {
                     Icon(Icons.expand_more, color: Colors.black),
                   ],
                 ),
-                /* AddSubIcon(
+                */ /* AddSubIcon(
                   scale: 0.8,
                   color: AppColors.primaryAccentColor,
                   callback: _addMeeting,
-                ),*/
+                ),*/ /*
               ]),
             ]))
       ]),
-    );
+    );*/
   }
 
 /*  void _addMeeting() {

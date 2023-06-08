@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_tool/app/widgets/dummy/profile_dummy_img.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import '../../core/constants.dart';
 import '../../core/values/values.dart';
 import '../../widgets/buttons/primary_progress_button.dart';
@@ -39,7 +39,7 @@ class ProfileOverview extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text("SOUMYA RANJAN MISHRA",
-                                style: AppTextStyles.header2),
+                                style: AppTextStyles.header),
                           ),
                           Text("SOUMYA.MISHRA@BLUEHEXSOFTWARE.COM",
                               style: GoogleFonts.lato(

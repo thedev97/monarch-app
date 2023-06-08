@@ -6,8 +6,8 @@ import '../../core/values/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/buttons/splash_screen_buttons.dart';
-import 'package:project_management_tool/app/core/commons.dart';
-import 'package:project_management_tool/app/core/values/images.dart';
+import 'package:Monarch/app/core/commons.dart';
+import 'package:Monarch/app/core/values/images.dart';
 
 class WalkthroughView extends StatelessWidget {
   const WalkthroughView({Key? key}) : super(key: key);

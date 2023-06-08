@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'settings_strip.dart';
+import '../../core/values/images.dart';
 
 class AppSettingsIcon extends StatelessWidget {
   VoidCallback? callback;
+
   AppSettingsIcon({Key? key, this.callback}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: callback,
-      child: Container(
-        child: Column(children: [
-          SettingsStrip(),
-          SizedBox(height: 2),
-          RotatedBox(quarterTurns: 2, child: SettingsStrip())
-        ]),
+      child: Image.asset(
+        menu_img,
+        height: 30,
+        width: 30,
       ),
     );
   }
