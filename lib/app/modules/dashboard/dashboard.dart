@@ -1,8 +1,10 @@
 import 'package:Monarch/app/modules/chats/chat_screen.dart';
+import 'package:get/get.dart';
 
 import '../../core/values/images.dart';
 import 'package:flutter/material.dart';
 import '../notification/notifications.dart';
+import '../profile/profile_overview.dart';
 import 'dashboard-tab-screens/overview.dart';
 import '../../widgets/forms/search_box_form.dart';
 import '../../widgets/navigation/dasboard_nav.dart';
@@ -52,9 +54,11 @@ class Dashboard extends StatelessWidget {
       title: nameTxt,
       subTitle: pendingTask,
       onImageTapped: () {
-        //Get.to(() => ProfileOverview());
+        Get.to(() => ProfileOverview());
       },
-      notificationPage: NotificationScreen(count: notificationCount,),
+      notificationPage: NotificationScreen(
+        count: notificationCount,
+      ),
       chatPage: ChatScreen(),
     );
   }
@@ -92,7 +96,7 @@ class Dashboard extends StatelessWidget {
 
   Widget selectionView() {
     return Padding(
-      padding: EdgeInsets.only(top: sizeHeight * 0.2, left: 20),
+      padding: EdgeInsets.only(top: sizeHeight * 0.15, left: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -112,7 +116,7 @@ class Dashboard extends StatelessWidget {
 
   Widget projectViewSection() {
     return Padding(
-      padding: EdgeInsets.only(top: sizeHeight*0.3),
+      padding: EdgeInsets.only(top: sizeHeight * 0.25),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
@@ -124,7 +128,7 @@ class Dashboard extends StatelessWidget {
                   return _buttonTrigger.value == 0
                       ? DashboardOverview()
                       : DashboardProductivity();
-                 /* return _buttonTrigger.value == 0
+                  /* return _buttonTrigger.value == 0
                       ? DashboardOverview() : Container();*/
                 }),
           ],

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import 'package:Monarch/app/widgets/forms/task_input_form.dart';
-import '../../modules/task/set_assignees.dart';
+import '../../modules/add-member/set_assignees.dart';
 import 'add_sub_icon.dart';
 import 'calendar.dart';
 import 'dashboard_add_project_sheet.dart';
@@ -51,14 +51,14 @@ class CreateTaskBottomSheet extends StatelessWidget {
               ),
             ]),
             AppSpaces.verticalSpace20,
-            TaskFormInput(
+            /*TaskFormInput(
               placeholder: "Task Name ....",
               autofocus: true,
               keyboardType: "text",
               controller: _taskNameController,
               obscureText: false,
               label: "Task",
-            ),
+            ),*/
             AppSpaces.verticalSpace20,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               InkWell(

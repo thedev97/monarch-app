@@ -49,7 +49,7 @@ class AppColors {
   static final Color primaryAccentColor = Colors.grey.shade500;
   static final Color primaryColor = HexColor.fromHex("#f8eee4");
   static final Color darkBackgroundColor = HexColor.fromHex("#202427");
-
+  static final Color projectAddIconColor = HexColor.fromHex("#93A5FF");
 }
 
 extension HexColor on Color {

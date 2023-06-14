@@ -69,3 +69,67 @@ class PrimaryTabButton extends StatelessWidget {
     );
   }
 }
+
+class ProfileTabButton extends StatelessWidget {
+  final String buttonText;
+  final int itemIndex;
+  final ValueNotifier<int> notifier;
+  final VoidCallback? callback;
+
+  const ProfileTabButton(
+      {Key? key,
+      this.callback,
+      required this.notifier,
+      required this.buttonText,
+      required this.itemIndex})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ValueListenableBuilder(
+          valueListenable: notifier,
+          builder: (BuildContext context, _, __) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      notifier.value = itemIndex;
+                      if (callback != null) {
+                        callback!();
+                      }
+                    },
+                    child: Text(buttonText,
+                        style: GoogleFonts.lato(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                            shadows: [
+                              Shadow(
+                                  color: notifier.value == itemIndex
+                                      ? Colors.black
+                                      : Colors.transparent,
+                                  offset: notifier.value == itemIndex
+                                      ? Offset(0.0, 0.5)
+                                      : Offset(0.0, 0.0),
+                                  blurRadius:
+                                      notifier.value == itemIndex ? 0.5 : 0.0),
+                            ],
+                            color: Colors.black))),
+                Container(
+                  height: 1,
+                  width: buttonText == notificationTxt
+                      ? sizeWidth * 0.2
+                      : sizeWidth * 0.1,
+                  decoration: BoxDecoration(
+                      color: notifier.value == itemIndex
+                          ? Colors.black
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(5)),
+                )
+              ],
+            );
+          }),
+    );
+  }
+}

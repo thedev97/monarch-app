@@ -37,7 +37,7 @@ class AppPrimaryButton extends StatelessWidget {
           style: ButtonStyles.blueRounded,
           child: Text(buttonText,
               style: GoogleFonts.lato(
-                  fontSize: 13,
+                  fontSize: buttonText == "Invite" ? 10 : 13,
                   shadows: [
                     Shadow(
                         color: Colors.black,

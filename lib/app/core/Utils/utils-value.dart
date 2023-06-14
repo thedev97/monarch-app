@@ -19,8 +19,7 @@ class SineCurve extends Curve {
 }
 
 Widget buildStackedImages(
-    {TextDirection direction = TextDirection.ltr,
-    bool? addMore}) {
+    {TextDirection direction = TextDirection.ltr, bool? addMore}) {
   final double size = 50;
   final double xShift = 20;
 
@@ -28,22 +27,24 @@ Widget buildStackedImages(
       borderType: BorderType.Circle,
       color: Colors.grey,
       strokeWidth: 2,
-
       dashPattern: [
         5,
         5,
       ],
       child: Center(
-        child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-                color: AppColors.primaryAccentColor, shape: BoxShape.circle),
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 30,
-            )),
+        child: GestureDetector(
+          onTap: () => Get.to(SetAssigneesScreen()),
+          child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                  color: AppColors.primaryAccentColor, shape: BoxShape.circle),
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 30,
+              )),
+        ),
       ));
 
   final items = List.generate(

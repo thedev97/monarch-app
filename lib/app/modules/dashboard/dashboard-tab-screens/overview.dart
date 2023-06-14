@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:Monarch/app/core/values/sizes.dart';
 import '../../../core/values/images.dart';
 import '../../../core/values/strings.dart';
 import '../../../core/values/values.dart';
-import '../../../data/data_model.dart';
 import '../../../widgets/dashboard/overview_task_container.dart';
-import '../../../widgets/dashboard/task_progress_card.dart';
 
 class DashboardOverview extends StatelessWidget {
   const DashboardOverview({Key? key}) : super(key: key);

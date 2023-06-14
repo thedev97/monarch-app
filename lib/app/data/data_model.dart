@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/values/values.dart';
 
 enum ChatMessageType { text, audio, image, video }
+
 enum MessageStatus { not_sent, not_view, viewed }
 
 class AppData {
@@ -46,8 +47,7 @@ class AppData {
       "date": "2 minutes ago",
       "profileImage": "assets/emoji/avatar-1.png",
       "color": "BBF1C3",
-      "message":
-          "Started following you"
+      "message": "Started following you"
     },
     {
       "mentionedBy": "Lenda",
@@ -55,8 +55,7 @@ class AppData {
       "read": false,
       "profileImage": "assets/emoji/avatar-4.png",
       "color": "FAA3FF",
-      "message":
-      "Started following you"
+      "message": "Started following you"
     },
     {
       "mentionedBy": "Jackson Ramos",
@@ -92,7 +91,7 @@ class AppData {
       "time": "27/05/2023",
       "isActive": true,
       "message": "Fix the crash issues in location screen.",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "HobNob"
     },
     {
@@ -101,7 +100,7 @@ class AppData {
       "time": "05/06/2023",
       "isActive": false,
       "message": "Please fix these bugs..",
-      "status" : "Done",
+      "status": "Done",
       "project": "HobNob"
     },
     {
@@ -110,7 +109,7 @@ class AppData {
       "time": "09/06/2023",
       "isActive": true,
       "message": "This flow is wrong....",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "ABHA"
     },
     {
@@ -119,7 +118,7 @@ class AppData {
       "time": "12/06/2023",
       "isActive": true,
       "message": "Hi shall we connect to discuss",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "Monarch"
     },
     {
@@ -128,7 +127,7 @@ class AppData {
       "time": "12/06/2023",
       "isActive": true,
       "message": "Later we'll connect...",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "HobNob"
     },
     {
@@ -137,7 +136,7 @@ class AppData {
       "time": "15/06/2023",
       "isActive": false,
       "message": "Pushed the latest code in to your repo.",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "ABHA"
     },
     {
@@ -146,7 +145,7 @@ class AppData {
       "time": "17/06/2023",
       "isActive": false,
       "message": "Please work on the UI part.",
-      "status" : "Done",
+      "status": "Done",
       "project": "Monarch"
     },
     {
@@ -155,7 +154,7 @@ class AppData {
       "time": "18/06/2023",
       "isActive": false,
       "message": "Please work on the api implementation part.",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "ABHA"
     },
     {
@@ -164,7 +163,7 @@ class AppData {
       "time": "21/06/2023",
       "isActive": true,
       "message": "Please learn the advanced level...",
-      "status" : "In Progress",
+      "status": "In Progress",
       "project": "Internal Task"
     },
   ];
@@ -181,6 +180,27 @@ class AppData {
     HexColor.fromHex("8D96FF"),
     HexColor.fromHex("A5F69C"),
     HexColor.fromHex("FCA3FF")
+  ];
+
+  static final List<String> priorityList = [
+    'High Priority',
+    'Medium Priority',
+    'Low Priority'
+  ];
+
+  static final List<String> taskTypeList = [
+    'Story Type',
+    'Task Type',
+    'Bugs Type'
+  ];
+
+  static final List<String> addProjectList = [
+    'HobNob',
+    'Bg Desk',
+    'Monarch',
+    'MIS Portal',
+    'Chronos',
+    'Internal Task'
   ];
 
   static final List<Map<String, dynamic>> activeProjectList = [
@@ -215,6 +235,53 @@ class AppData {
       "time": "07:30 AM",
       "isActive": false,
       "desc": "Claim initiation issue please check and let me know",
+    },
+  ];
+
+  static final List<Map<String, dynamic>> allProjectList = [
+    {
+      "projectName": "HobNob",
+      "color": "001E88",
+    },
+    {
+      "projectName": "Bimagarage",
+      "color": "87C76F",
+    },
+    {
+      "projectName": "Fresha",
+      "color": "001E88",
+    },
+    {
+      "projectName": "MIS Portal",
+      "color": "899FFE",
+    },
+    {
+      "projectName": "Monarch",
+      "color": "FFD996",
+    },
+    {
+      "projectName": "Internal Task",
+      "color": "C395FC",
+    },
+    {
+      "projectName": "ABHA M1",
+      "color": "001E88",
+    },
+    {
+      "projectName": "ABHA M3",
+      "color": "1E2027",
+    },
+    {
+      "projectName": "Chronos",
+      "color": "87D3DF",
+    },
+    {
+      "projectName": "RZP",
+      "color": "E67E22",
+    },
+    {
+      "projectName": "Blaze",
+      "color": "F1A39A",
     },
   ];
 
@@ -318,8 +385,9 @@ class AppData {
     },
   ];
 
-  static final List<Map<String, dynamic>> employeeData = [
+  static final List<Map<String, dynamic>> employeeDevData = [
     {
+      "designation" : "Development",
       "employeeName": "Laura Dallas",
       "employeeImage": "assets/emoji/avatar-1.png",
       "color": HexColor.fromHex("FCA3FF"),
@@ -327,6 +395,7 @@ class AppData {
       "employeePosition": "Senior Developer"
     },
     {
+      "designation" : "Development",
       "employeeName": "Franklin Walls",
       "employeeImage": "assets/team-prof.png",
       "color": HexColor.fromHex("FCA3FF"),
@@ -334,6 +403,7 @@ class AppData {
       "employeePosition": "Project Manager"
     },
     {
+      "designation" : "Development",
       "employeeName": "Chris Owens",
       "employeeImage": "assets/emoji/avatar-2.png",
       "color": HexColor.fromHex("94F1F1"),
@@ -341,13 +411,17 @@ class AppData {
       "employeePosition": "DataBase Engineer"
     },
     {
+      "designation" : "Development",
       "employeeName": "Ramos Sergio",
       "employeeImage": "assets/emoji/avatar-3.png",
       "color": HexColor.fromHex("8D96FF"),
       "activated": false,
       "employeePosition": "Senior Developer"
     },
+  ];
+  static final List<Map<String, dynamic>> employeeAdminData = [
     {
+      "designation" : "Admin",
       "employeeName": "Katherine Wells",
       "employeeImage": "assets/emoji/avatar-4.png",
       "color": HexColor.fromHex("DBD0FD"),
@@ -355,27 +429,7 @@ class AppData {
       "employeePosition": "UI Designer"
     },
     {
-      "employeeName": "Isabella Ramos",
-      "employeeImage": "assets/emoji/avatar-5.png",
-      "color": HexColor.fromHex("FFC5D5"),
-      "activated": false,
-      "employeePosition": "Backend Developer"
-    },
-    {
-      "employeeName": "Bryce Sermon",
-      "employeeImage": "assets/emoji/avatar-4.png",
-      "color": HexColor.fromHex("94F1F1"),
-      "activated": false,
-      "employeePosition": "Product Manager"
-    },
-    {
-      "employeeName": "Ramos Sergio",
-      "employeeImage": "assets/emoji/avatar-3.png",
-      "color": HexColor.fromHex("FCA3FF"),
-      "activated": false,
-      "employeePosition": "Senior Developer"
-    },
-    {
+      "designation" : "Admin",
       "employeeName": "Chris Owens",
       "employeeImage": "assets/emoji/avatar-2.png",
       "color": HexColor.fromHex("FCA3FF"),

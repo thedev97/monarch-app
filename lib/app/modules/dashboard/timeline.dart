@@ -1,9 +1,11 @@
+import 'package:get/get.dart';
 import 'dashboard.dart';
 import '../../core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:Monarch/app/core/values/colors.dart';
 import '../../widgets/dashboard/bottomNavigationItem.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:Monarch/app/modules/task/create-task-screen.dart';
 
 
 class Timeline extends StatefulWidget {
@@ -34,11 +36,10 @@ class _TimelineState extends State<Timeline> {
               })
         ]),
         floatingActionButton: new FloatingActionButton(
-          //onPressed: _pushAddTodoScreen,
           backgroundColor: primaryColor,
           child: new Icon(Icons.add),
           mini: true,
-          elevation: 2.0, onPressed: () { print(""); },
+          elevation: 2.0, onPressed: () => Get.to(() => CreateTask()),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: Container(

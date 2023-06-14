@@ -25,7 +25,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
       LabelledOption(
           label: 'Create Project',
           icon: Icons.device_hub,
-          callback: _createProject,
+          //callback: _createProject,
           ),
       LabelledOption(
           label: 'Create team',
@@ -50,11 +50,11 @@ class DashboardAddBottomSheet extends StatelessWidget {
     );
   }
 
-  void _createProject() {
+  /*void _createProject() {
     showAppBottomSheet(
       CreateProjectBottomSheet(),
       isScrollControlled: true,
       popAndShow: true,
     );
-  }
+  }*/
 }

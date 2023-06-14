@@ -32,7 +32,7 @@ class SearchBoxInput extends StatelessWidget {
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide:
-              BorderSide(color: placeHolderColor.withOpacity(0.6), width: 1),
+              BorderSide(color: Colors.black.withOpacity(0.2), width: 1),
           borderRadius: BorderRadius.circular(40.0),
         ),
         focusedBorder: OutlineInputBorder(

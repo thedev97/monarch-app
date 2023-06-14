@@ -60,6 +60,14 @@ class AppTextStyles {
       ],
       color: Colors.black);
 
+  static final TextStyle header4 = GoogleFonts.lato(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      shadows: [
+        Shadow(color: Colors.black, offset: Offset(0.0, 0.2), blurRadius: 0.2),
+      ],
+      color: Colors.black);
+
   static final TextStyle header3 = GoogleFonts.lato(
       fontWeight: FontWeight.w500,
       fontSize: 14,

@@ -101,6 +101,52 @@ const todayDate = '6th July,2023';
 const workWeek = 'Work Week';
 const membersTxt = "Members";
 
+// Project Screen
+const projectTxt = "Projects";
+const addProjectTxt = "Add Projects";
+const projectDescTxt = "Description";
+const addMemTxt = "Add Member";
+const selColorTxt = "Select Color Theme";
+const createButton = "Create Project";
+
+// Create Task
+const createTaskTxt = "Add Task";
+const createTaskBttn = "Create Task";
+const taskType = "Task Type";
+const assigneeMem = "Assignee";
+const priority = "Priority";
+const projectName = "Project";
+
+// Set Assignees
+const addMemberTxt = 'Add Member';
+const addMemberBttnTxt = 'Create Member';
+const addTeamTxt = 'Add Team';
+const addTeamBttnTxt = 'Create Team';
+
+// Profile
+const userName = "Soumya Ranjan Mishra";
+const userMail = "soumyarajanmishra97@gmail.com";
+const profileTxt = "Profile";
+const teamTxt = "Team";
+
+// Profile view
+const designationTxt = "Designation";
+const designationVal = "Senior Developer";
+const empIdTxt = "Employee ID";
+const empIDVal = "BHS0021";
+const mobileTxt = "Mobile";
+const mobileVal = "+91-9345814690";
+const emailTxt = "Email ID";
+const locationTxt = "Location";
+const locationVal = "Bhubaneswar";
+const reportingTxt = "Reporting To";
+const reportingUserTxt = "Mary Darthy - BHS0015";
+const inviteSecTxt = "Invite Section";
+const inviteMemTxt = "Invite Team member";
+const inviteBttnTxt = "Invite";
+const resetPassBttnTxt = "Change Password";
+const logoutBttnTxt = "Logout";
+
 
 // -------------- ##### --------------------
 // Validation

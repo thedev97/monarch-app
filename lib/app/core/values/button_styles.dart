@@ -20,6 +20,17 @@ class ButtonStyles {
     MaterialStateProperty.all(Colors.transparent),
   );
 
+  static final ButtonStyle circleRounded = ButtonStyle(
+    padding: MaterialStateProperty.all(EdgeInsets.zero),
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            side: BorderSide(
+                color: HexColor.fromHex("#93A5FF")))),
+    backgroundColor:
+    MaterialStateProperty.all(HexColor.fromHex("#93A5FF")),
+  );
+
   static final ButtonStyle imageRounded = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(HexColor.fromHex("181A1F")),
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

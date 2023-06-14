@@ -8,11 +8,11 @@ class GreenDoneIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-          width: 28,
-          height: 28,
+          width: 20,
+          height: 20,
           decoration: BoxDecoration(
-              shape: BoxShape.circle, color: HexColor.fromHex("FDA7FF")),
-          child: Icon(Icons.done, color: Colors.white, size: 20,)),
+              shape: BoxShape.circle, color: Colors.black),
+          child: Icon(Icons.done, color: Colors.white, size: 18,)),
     );
   }
 }

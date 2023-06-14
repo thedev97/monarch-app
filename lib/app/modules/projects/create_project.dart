@@ -1,229 +1,194 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
+import '../../core/values/colors.dart';
+import '../../core/values/images.dart';
+import '../../core/values/sizes.dart';
+import '../../core/values/strings.dart';
 import '../../core/values/values.dart';
-import '../../data/data_model.dart';
-import '../../widgets/bottomsheets/bottom_sheets.dart';
-import '../../widgets/dashboard/calendar.dart';
-import '../../widgets/dashboard/in_bottomsheet_subtitle.dart';
+import '../../widgets/buttons/primary_buttons.dart';
+import '../../widgets/dropDown/drop-down.dart';
 import '../../widgets/forms/task_input_form.dart';
-import '../../widgets/forms/text_input_unlabelled.dart';
-import '../../widgets/navigation/back_button.dart';
-import '../../widgets/notification/notification_card.dart';
-import '../../widgets/projects/project_badge.dart';
-import '../../widgets/projects/project_selectable_container.dart';
+import '../../widgets/navigation/default_back_button.dart';
+import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 
 class CreateProjectScreen extends StatelessWidget {
   CreateProjectScreen({Key? key}) : super(key: key);
 
-  TextEditingController _postController = new TextEditingController();
+  TextEditingController _projectNameController = new TextEditingController();
+  TextEditingController _descController = new TextEditingController();
+  TextEditingController _categoryController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final dynamic notificationData = AppData.notificationMentions;
-    var screenWidth = Get.width;
-    var screenHeight = Get.height;
-    List<Widget> notificationCards = List.generate(
-        2,
-        (index) => NotificationCard(
-              read: notificationData[index]['read'],
-              userName: notificationData[index]['mentionedBy'],
-              time: notificationData[index]['date'],
-              image: notificationData[index]['profileImage'],
-              message: notificationData[index]['message'],
-              imageBackground: notificationData[index]['color'],
-            ));
     return Scaffold(
-        backgroundColor: Color(0xff202427),
-        body: Stack(children: [
-          Padding(
-            padding: EdgeInsets.only(
-                left: 20.0, right: 20.0, top: screenHeight * 0.12),
-            child: ListView(children: [
-              Text("Edit Project",
-                  style: GoogleFonts.lato(
-                    shadows: [
-                      Shadow(
-                          color: Colors.black,
-                          offset: Offset(0.0, 1.0),
-                          blurRadius: 1.0),
-                    ],
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: screenHeight <= 700 ? 30.0 : 38.0,
-                  )),
-              AppSpaces.verticalSpace30,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ProfileDummyImg(
-                                  color: HexColor.fromHex("94F0F1"),
-                                  dummyType: ProfileDummyTypeImg.Image,
-                                  scale: 1.5,
-                                  image: "assets/team-prof.png"),
-                              AppSpaces.horizontalSpace10,
-                              CircularCardLabel(
-                                label: 'Assigned to',
-                                value: 'Soumya Ranjan',
-                                color: HexColor.fromHex("3C3E49"),
-                              )
-                            ]),
-                        SheetGoToCalendarWidget(
-                          cardBackgroundColor: HexColor.fromHex("FDA7FF"),
-                          textAccentColor: Colors.purpleAccent,
-                          value: 'Nov 07',
-                          label: 'Due Date',
-                        ),
-                      ]),
-                  AppSpaces.verticalSpace20,
-                  Row(
-                    children: [
-                      ColouredProjectBadge(
-                          color: "A06AFA", category: "Task List"),
-                      AppSpaces.horizontalSpace20,
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("HOBNOB-MOBILE APP",
-                                style: GoogleFonts.lato(
-                                    color: HexColor.fromHex("353645"),
-                                    shadows: [
-                                      Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(0.0, 0.5),
-                                          blurRadius: 0.5),
-                                    ],
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500)),
-                            SizedBox(height: 5),
-                            Text("TASK LIST",
-                                style: GoogleFonts.lato(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: HexColor.fromHex("626777"))),
-                          ])
-                    ],
-                  ),
-                ],
-              ),
-              AppSpaces.verticalSpace20,
-              InBottomSheetSubtitle(
-                title: "DESCRIPTION",
-                textStyle: GoogleFonts.lato(
-                    color: HexColor.fromHex("626777"),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400),
-              ),
-              AppSpaces.verticalSpace10,
-              InBottomSheetSubtitle(
-                  title:
-                      "Bima Garage is a healthcare-insurance startup aimed to "
-                      "bring the much needed transparency to the Indian insurance industry. "
-                      "Through our experts-led approach, we provide claim services to hospitals, "
-                      "insurance agents and the insurance policyholders across India. For more info, "
-                      "visit our website https://bimagarage.com. "
-                      "HobNob by Bima Garage is India's first-of-its-kind platform "
-                      "that provides policy-claim related insurance services "
-                      "to all the insurance policyholders.",
-                  textStyle: GoogleFonts.lato(
-                      fontSize: 14, color: HexColor.fromHex("626777"))),
-              AppSpaces.verticalSpace20,
-              InBottomSheetSubtitle(
-                title: "CREATIVE WORKFLOW",
-                textStyle: GoogleFonts.lato(
-                    color: HexColor.fromHex("626777"),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400),
-              ),
-              AppSpaces.verticalSpace20,
-              ProjectSelectableContainer(
-                activated: false,
-                header: "UI & FUNCTIONALITY TASK",
-              ),
-              ProjectSelectableContainer(
-                activated: true,
-                header: "API TASK",
-              ),
-              AppSpaces.verticalSpace10,
-              TextFormInputUnlabelled(
-                placeholder: "Comments ....",
-                autofocus: false,
-                keyboardType: "multiline",
-                controller: _postController,
-                obscureText: false,
-              ),
-              AppSpaces.verticalSpace20,
-              ...notificationCards
-            ]),
-          ),
-          Positioned(
-            top: 0,
-            child: Container(
-              child: ClipRect(
-                child: new BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 20),
-                  child: Container(
-                    width: screenWidth,
-                    padding: EdgeInsets.all(20),
-                    height: 110.0,
-                    decoration: new BoxDecoration(
-                      color: Colors.black.withOpacity(0.1),
+        extendBody: false,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Stack(children: [
+              buildHeaderBar(),
+              addProjectText(),
+              Padding(
+                padding: EdgeInsets.only(top: sizeHeight * 0.12),
+                child: ListView(
+                  children: [
+                    titleField(),
+                    AppSpaces.verticalSpace20,
+                    projectDescText(),
+                    AppSpaces.verticalSpace10,
+                    descTextField(),
+                    AppSpaces.verticalSpace20,
+                    categoryField(),
+                    AppSpaces.verticalSpace20,
+                    addMemberText(),
+                    AppSpaces.verticalSpace10,
+                    membersList(),
+                    Container(
+                      height: 1,
+                      width: sizeWidth,
+                      color: Colors.black,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppBackButton(horizontalIcon: false),
-                            Expanded(
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                  IconButton(
-                                    icon: Icon(Icons.done),
-                                    color: Colors.black,
-                                    iconSize: 25,
-                                    onPressed: () {},
-                                  ),
-                                  AppSpaces.horizontalSpace10,
-                                  /* IconButton(
-                                    icon: Icon(Icons.dns_outlined),
-                                    color: Colors.black,
-                                    iconSize: 25,
-                                    onPressed: () {},
-                                  ),
-                                  AppSpaces.horizontalSpace10,*/
-                                  IconButton(
-                                    icon: Icon(Icons.thumb_up_outlined),
-                                    color: Colors.black,
-                                    iconSize: 25,
-                                    onPressed: () {},
-                                  ),
-                                  AppSpaces.horizontalSpace10,
-                                  IconButton(
-                                    icon: Icon(Icons.more_horiz),
-                                    color: Colors.black,
-                                    iconSize: 25,
-                                    onPressed: () {
-                                      showSettingsBottomSheet();
-                                    },
-                                  )
-                                ]))
-                          ]),
-                    ),
-                  ),
+                    AppSpaces.verticalSpace20,
+                    colorText(),
+                  ],
                 ),
               ),
-            ),
+              colorList(),
+            ]),
           ),
-        ]));
+        ),
+      bottomNavigationBar: createProjectButton(),
+    );
+  }
+
+  Widget buildHeaderBar() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: const DefaultBack(),
+        ),
+        InkWell(
+          onTap: () {},
+          child: ProfileDummyImg(
+              color: HexColor.fromHex("93F0F0"),
+              dummyType: ProfileDummyTypeImg.Image,
+              image: profile_img,
+              scale: 1),
+        ),
+      ],
+    );
+  }
+
+  Widget addProjectText() {
+    return Padding(
+      padding: EdgeInsets.only(top: sizeHeight * 0.08),
+      child: Text(addProjectTxt,
+          style: GoogleFonts.lato(
+              fontWeight: FontWeight.w700,
+              fontSize: 18,
+              shadows: [
+                Shadow(
+                    color: Colors.black,
+                    offset: Offset(0.0, 1.0),
+                    blurRadius: 1.0),
+              ],
+              color: Colors.black)),
+    );
+  }
+
+  Widget titleField() {
+    return TaskFormInput(
+      placeholder: "Project Title",
+      autofocus: false,
+      keyboardType: "text",
+      controller: _projectNameController,
+      obscureText: false,
+    );
+  }
+
+  Widget projectDescText() {
+    return Text(projectDescTxt,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w700, fontSize: 12, color: Colors.black));
+  }
+
+  Widget descTextField() {
+    return TextFormField(
+      controller: _descController,
+      minLines: 2,
+      maxLines: 5,
+      keyboardType: TextInputType.multiline,
+      style: GoogleFonts.lato(
+          fontWeight: FontWeight.w500, fontSize: 13, color: Colors.black),
+      decoration: InputDecoration(
+        enabled: true,
+        fillColor: textDescBackgroundColor.withOpacity(0.4),
+        filled: true,
+        hintText: 'Type here...',
+        hintStyle: GoogleFonts.lato(
+            fontWeight: FontWeight.w800,
+            fontSize: 10,
+            color: Colors.black.withOpacity(0.5)),
+        contentPadding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+      ),
+    );
+  }
+
+  Widget categoryField() {
+    return TaskFormInput(
+      placeholder: "Category",
+      autofocus: false,
+      keyboardType: "text",
+      controller: _categoryController,
+      obscureText: false,
+    );
+  }
+
+  Widget addMemberText() {
+    return Text(addMemTxt,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w700, fontSize: 12, color: Colors.black));
+  }
+
+  Widget membersList() {
+    return Transform.scale(
+        alignment: Alignment.centerLeft,
+        scale: 0.65,
+        child: buildStackedImages());
+  }
+
+  Widget colorText() {
+    return Text(selColorTxt,
+        style: GoogleFonts.lato(
+            fontWeight: FontWeight.w700, fontSize: 12, color: Colors.black));
+  }
+
+  Widget colorList() {
+   return Padding(
+     padding: EdgeInsets.only(top: sizeHeight*0.68),
+     child: ColorDropDown(
+       onChanged: (value){
+
+       },
+       label: "Text",
+       height: 40,
+       width: 40,
+     ),
+   );
+  }
+
+  Widget createProjectButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 85),
+      child: AppPrimaryButton(
+          buttonHeight: 40,
+          buttonWidth: sizeWidth * 0.7,
+          buttonText: createButton,
+          callback: () => Get.back()),
+    );
   }
 }

@@ -29,62 +29,64 @@ class ActiveEmployeeCard extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 80,
+        padding: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                ...progressCardGradientList,
-              ],
-            ),
-            borderRadius: BorderRadius.circular(16)),
+            border: Border.all(color: Colors.black.withOpacity(0.8), width: 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 2,
+                offset: Offset(0, 2), // Shadow position
+              ),
+            ],
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: EdgeInsets.all(2.0),
           child: DecoratedBox(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.white),
+                borderRadius: BorderRadius.circular(16), color: Colors.white),
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(children: [
                       ProfileDummyImg(
                         dummyType: ProfileDummyTypeImg.Image,
-                        scale: 0.9,
+                        scale: 1,
                         color: color,
                         image: employeeImage,
                       ),
                       AppSpaces.horizontalSpace20,
                       Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(employeeName.toUpperCase(),
+                            Text(employeeName,
                                 style: GoogleFonts.lato(
                                     color: Colors.black,
                                     shadows: [
                                       Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(0.0, 0.5),
-                                          blurRadius: 0.5),
+                                          color: Colors.white,
+                                          offset: Offset(0.0, 0.2),
+                                          blurRadius: 0.2),
                                     ],
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 13)),
-                            SizedBox(height: 4),
-                            Text(employeePosition.toUpperCase(),
-                                style: GoogleFonts.lato(
-                                    color: HexColor.fromHex("5A5E6D"),
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 12))
+                                    fontSize: 12)),
+                            AppSpaces.verticalSpace10,
+                            Text(employeePosition,
+                                style: GoogleFonts.lato(
+                                    color: Colors.black.withOpacity(0.8),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10))
                           ])
                     ]),
                     Align(
-                        alignment: Alignment.topCenter, child: Padding(
+                        alignment: Alignment.center,
+                        child: Padding(
                           padding: EdgeInsets.only(right: 10),
                           child: GreenDoneIcon(),
                         ))

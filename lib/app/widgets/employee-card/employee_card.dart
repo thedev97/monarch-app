@@ -23,7 +23,7 @@ class EmployeeCard extends StatelessWidget {
     ValueNotifier<bool> _totalDueTrigger = ValueNotifier(newBool);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: ValueListenableBuilder(
           valueListenable: _totalDueTrigger,
           builder: (BuildContext context, _, __) {

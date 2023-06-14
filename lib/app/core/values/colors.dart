@@ -21,3 +21,4 @@ const splashDottedColor = Color(0XFF39F37E);
 const splashLinearColorOne = Color(0XFF0025A9);
 const splashLinearColorTwo = Color(0XFF001353);
 const chatHeaderColor = Color(0XFFEFEEFA);
+const textDescBackgroundColor = Color(0XFFB7BEE0);
