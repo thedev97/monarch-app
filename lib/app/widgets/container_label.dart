@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../core/values/values.dart';
 
 class ContainerLabel extends StatelessWidget {
   final String label;
+
   const ContainerLabel({
     required this.label,
     Key? key,

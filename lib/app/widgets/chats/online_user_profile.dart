@@ -1,6 +1,5 @@
 import 'package:Monarch/app/widgets/dummy/profile_dummy_img.dart';
 import 'package:flutter/material.dart';
-import '../../core/utils/extension.dart';
 
 class OnlineUserProfile extends StatelessWidget {
   final String image;

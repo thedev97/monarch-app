@@ -257,9 +257,8 @@ class _ChartState extends State<_Chart> {
 }
 
 final popupOptions = <String>[
+  'Daily',
   'Weekly',
-  'Monthly',
-  'Yearly',
 ];
 
 var startWeekDate;

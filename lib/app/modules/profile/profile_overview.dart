@@ -33,20 +33,9 @@ class ProfileOverview extends StatelessWidget {
   }
 
   Widget buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [DefaultBack(), profileImg()],
-    );
-  }
-
-  Widget profileImg() {
-    return InkWell(
-      onTap: () => print(''),
-      child: ProfileDummyImg(
-          color: HexColor.fromHex("93F0F0"),
-          dummyType: ProfileDummyTypeImg.Image,
-          image: profile_img,
-          scale: 1),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: DefaultBack(),
     );
   }
 
