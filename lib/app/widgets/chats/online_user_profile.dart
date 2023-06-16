@@ -4,9 +4,8 @@ import '../../core/utils/extension.dart';
 
 class OnlineUserProfile extends StatelessWidget {
   final String image;
-  final String imageBackground;
   const OnlineUserProfile(
-      {Key? key, required this.image, required this.imageBackground})
+      {Key? key, required this.image})
       : super(key: key);
 
   @override
@@ -15,6 +14,6 @@ class OnlineUserProfile extends StatelessWidget {
         dummyType: ProfileDummyTypeImg.Image,
         scale: 1,
         image: image,
-        color: HexColor.fromHex(imageBackground));
+        color: Colors.transparent);
   }
 }

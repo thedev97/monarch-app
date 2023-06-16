@@ -175,6 +175,33 @@ class AppData {
     "assets/emoji/avatar-4.png",
   ];
 
+  static final List<String> notificationSectionList = [
+    "Active",
+    "Do not disturb",
+  ];
+
+  static final List<String> donotDisturbList = [
+    "30 mins",
+    "50 mins",
+    "1 day",
+    "Custom"
+  ];
+
+  static final List<String> notifyMyAbout = [
+    "Task assign to me",
+    "Task completed",
+    "Mentioned me",
+    "Direct message"
+  ];
+
+  static final List<String> myProjectList = [
+    "Hobnob",
+    "Monarch",
+    "MIS Portal",
+    "BG Team",
+    "Internal Task"
+  ];
+
   static final List<Color> groupBackgroundColors = [
     HexColor.fromHex("BCF2C7"),
     HexColor.fromHex("8D96FF"),
@@ -201,6 +228,27 @@ class AppData {
     'MIS Portal',
     'Chronos',
     'Internal Task'
+  ];
+
+  static final List<Map<String, dynamic>> directReportList = [
+    {
+      "empName": "Katharine Walls",
+      "profileImage": "assets/dummy-img.png",
+      "empCode": "BHS0011",
+      "contactNum": "+91-9345814690",
+    },
+    {
+      "empName": "Vincent Lyons",
+      "profileImage": "assets/dummy-img.png",
+      "empCode": "BHS0012",
+      "contactNum": "+91-7345814692",
+    },
+    {
+      "empName": "Jackson Ramos",
+      "profileImage": "assets/emoji/avatar-2.png",
+      "empCode": "BHS0013",
+      "contactNum": "+91-8345814636",
+    },
   ];
 
   static final List<Map<String, dynamic>> activeProjectList = [
@@ -387,7 +435,7 @@ class AppData {
 
   static final List<Map<String, dynamic>> employeeDevData = [
     {
-      "designation" : "Development",
+      "designation": "Development",
       "employeeName": "Laura Dallas",
       "employeeImage": "assets/emoji/avatar-1.png",
       "color": HexColor.fromHex("FCA3FF"),
@@ -395,7 +443,7 @@ class AppData {
       "employeePosition": "Senior Developer"
     },
     {
-      "designation" : "Development",
+      "designation": "Development",
       "employeeName": "Franklin Walls",
       "employeeImage": "assets/team-prof.png",
       "color": HexColor.fromHex("FCA3FF"),
@@ -403,7 +451,7 @@ class AppData {
       "employeePosition": "Project Manager"
     },
     {
-      "designation" : "Development",
+      "designation": "Development",
       "employeeName": "Chris Owens",
       "employeeImage": "assets/emoji/avatar-2.png",
       "color": HexColor.fromHex("94F1F1"),
@@ -411,7 +459,7 @@ class AppData {
       "employeePosition": "DataBase Engineer"
     },
     {
-      "designation" : "Development",
+      "designation": "Development",
       "employeeName": "Ramos Sergio",
       "employeeImage": "assets/emoji/avatar-3.png",
       "color": HexColor.fromHex("8D96FF"),
@@ -421,7 +469,7 @@ class AppData {
   ];
   static final List<Map<String, dynamic>> employeeAdminData = [
     {
-      "designation" : "Admin",
+      "designation": "Admin",
       "employeeName": "Katherine Wells",
       "employeeImage": "assets/emoji/avatar-4.png",
       "color": HexColor.fromHex("DBD0FD"),
@@ -429,7 +477,7 @@ class AppData {
       "employeePosition": "UI Designer"
     },
     {
-      "designation" : "Admin",
+      "designation": "Admin",
       "employeeName": "Chris Owens",
       "employeeImage": "assets/emoji/avatar-2.png",
       "color": HexColor.fromHex("FCA3FF"),

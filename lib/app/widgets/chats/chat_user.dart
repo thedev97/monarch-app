@@ -30,7 +30,7 @@ class ChatUser extends StatelessWidget {
         child: Row(children: [
           OnlineUserProfile(
             image: image,
-            imageBackground: imageBackground,
+
           ),
           AppSpaces.horizontalSpace20,
           Text(userName,

@@ -147,6 +147,26 @@ const inviteBttnTxt = "Invite";
 const resetPassBttnTxt = "Change Password";
 const logoutBttnTxt = "Logout";
 
+// Reset Password
+const resetPasswordTxt = 'Reset Password';
+const updatePasswordTxt = 'Update Password';
+
+// Logout
+const logoutSubTxt = 'Do you want to logout the app ?';
+const mainButtonText = 'Yes';
+const cancelButtonText = 'No';
+
+// Notification view
+const notifySection = "Notification Section";
+const notifyAbout = "Notify my about";
+const customNotify = "Custom";
+const customNotification = "Custom Notification";
+const createNotify = "Create Notification";
+
+// Team View
+const myTeams = "My Teams";
+const directReport = "Direct Reports";
+const myProject = "My Project";
 
 // -------------- ##### --------------------
 // Validation

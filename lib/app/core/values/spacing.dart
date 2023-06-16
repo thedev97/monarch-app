@@ -5,6 +5,7 @@ class AppSpaces {
   static final verticalSpace5 = SizedBox(height: 5);
   static final verticalSpace8 = SizedBox(height: 8);
   static final verticalSpace10 = SizedBox(height: 10);
+  static final verticalSpace15 = SizedBox(height: 15);
   static final verticalSpace20 = SizedBox(height: 20);
   static final verticalSpace30 = SizedBox(height: 30);
   static final verticalSpace40 = SizedBox(height: 40);

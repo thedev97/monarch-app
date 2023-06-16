@@ -12,6 +12,7 @@ import '../../notification/notifications.dart';
 import '../../../widgets/navigation/dasboard_nav.dart';
 import 'package:Monarch/app/modules/projects/create_project.dart';
 import '../../../widgets/projects/all-project-list/all-project-list.dart';
+import '../../profile/profile_overview.dart';
 
 class ProjectScreen extends StatefulWidget {
   const ProjectScreen({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
       title: nameTxt,
       subTitle: pendingTask,
       onImageTapped: () {
-        //Get.to(() => ProfileOverview());
+        Get.to(() => ProfileOverview());
       },
       notificationPage: NotificationScreen(
         count: notificationCount,

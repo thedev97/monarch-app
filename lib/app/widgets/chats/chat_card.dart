@@ -30,14 +30,13 @@ class ChatCard extends StatelessWidget {
         if (page != null) Get.to(() => page!);
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Row(
           children: [
             Stack(
               children: [
                 OnlineUserProfile(
                   image: image,
-                  imageBackground: imageBackground,
                 ),
                 isActive == false
                     ? Positioned(

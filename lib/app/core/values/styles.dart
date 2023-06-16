@@ -60,6 +60,14 @@ class AppTextStyles {
       ],
       color: Colors.black);
 
+  static final TextStyle header3 = GoogleFonts.lato(
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      shadows: [
+        Shadow(color: Colors.black, offset: Offset(0.0, 0.5), blurRadius: 0.5),
+      ],
+      color: Colors.black);
+
   static final TextStyle header4 = GoogleFonts.lato(
       fontWeight: FontWeight.w500,
       fontSize: 12,
@@ -68,11 +76,11 @@ class AppTextStyles {
       ],
       color: Colors.black);
 
-  static final TextStyle header3 = GoogleFonts.lato(
+  static final TextStyle header6 = GoogleFonts.lato(
       fontWeight: FontWeight.w500,
-      fontSize: 14,
+      fontSize: 12,
       shadows: [
-        Shadow(color: Colors.black, offset: Offset(0.0, 0.5), blurRadius: 0.5),
+        Shadow(color: Colors.white, offset: Offset(0.0, 0.5), blurRadius: 0.5),
       ],
       color: Colors.black);
 
@@ -99,6 +107,14 @@ class AppTextStyles {
   static final TextStyle subHeader5 = GoogleFonts.lato(
       fontWeight: FontWeight.w500,
       fontSize: 10,
+      color: Colors.black);
+
+  static final TextStyle subHeader6 = GoogleFonts.lato(
+      fontWeight: FontWeight.w500,
+      fontSize: 9.5,
+      shadows: [
+        Shadow(color: Colors.white, offset: Offset(0.0, 0.5), blurRadius: 0.5),
+      ],
       color: Colors.black);
 
   static final TextStyle chatMsgHeader = GoogleFonts.lato(

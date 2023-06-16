@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../core/values/colors.dart';
 import '../../core/values/images.dart';
 import '../../core/values/sizes.dart';
@@ -8,6 +9,8 @@ import '../../data/data_model.dart';
 import '../../widgets/dummy/profile_dummy_img.dart';
 import '../../widgets/notification/notification_card.dart';
 import 'package:Monarch/app/widgets/navigation/default_back_button.dart';
+
+import '../profile/profile_overview.dart';
 
 class NotificationScreen extends StatelessWidget {
   final int count;
@@ -35,7 +38,7 @@ class NotificationScreen extends StatelessWidget {
 
   Widget profileImg() {
     return InkWell(
-      onTap: () => print(''),
+      onTap: () => Get.to(() => ProfileOverview()),
       child: Padding(
         padding: EdgeInsets.only(right: 20),
         child: ProfileDummyImg(

@@ -1,9 +1,8 @@
-import 'package:Monarch/app/core/values/colors.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:Monarch/app/core/values/colors.dart';
 
 class BottomNavigationItem extends StatelessWidget {
-  final IconData icon;
+  final String image;
   final int itemIndex;
 
   final ValueNotifier<int> notifier;
@@ -12,7 +11,7 @@ class BottomNavigationItem extends StatelessWidget {
       {Key? key,
       required this.itemIndex,
       required this.notifier,
-      required this.icon})
+      required this.image})
       : super(key: key);
 
   @override
@@ -29,30 +28,12 @@ class BottomNavigationItem extends StatelessWidget {
               return Stack(alignment: Alignment.center, children: [
                 Positioned(
                     top: 10,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(icon,
-                            size: 25,
-                            color: notifier.value != itemIndex
-                                ? Colors.black
-                                : primaryColor),
-                        SizedBox(height: 10),
-                        notifier.value != itemIndex
-                            ? SizedBox(width: 30, height: 30)
-                            : Transform.rotate(
-                                angle: -math.pi / 4,
-                                child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 150),
-                                    width: 30,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        color: primaryColor)))
-                      ],
-                    )),
+                    child: Image.asset(image,
+                        height: 25,
+                        width: 25,
+                        color: notifier.value != itemIndex
+                            ? Colors.black
+                            : primaryColor)),
               ]);
             }),
       ),

@@ -1,6 +1,7 @@
 import 'package:Monarch/app/core/values/sizes.dart';
 import 'package:Monarch/app/core/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../core/values/colors.dart';
 import '../../core/values/images.dart';
 import '../../core/values/strings.dart';
@@ -8,6 +9,7 @@ import '../../data/data_model.dart';
 import '../../widgets/chats/chat_card.dart';
 import '../../widgets/dummy/profile_dummy_img.dart';
 import '../../widgets/forms/search_box_form.dart';
+import '../profile/profile_overview.dart';
 import 'messaging_screen.dart';
 import 'package:Monarch/app/widgets/navigation/default_back_button.dart';
 
@@ -94,7 +96,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget profileImg() {
     return InkWell(
-      onTap: () => print(''),
+      onTap: () => Get.to(() => ProfileOverview()),
       child: ProfileDummyImg(
           color: HexColor.fromHex("93F0F0"),
           dummyType: ProfileDummyTypeImg.Image,
@@ -118,7 +120,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ));
     return Padding(
       padding: EdgeInsets.only(
-          top: isSearch == false ? sizeHeight * 0.15 : sizeHeight * 0.1),
+          top: isSearch == false ? sizeHeight * 0.15 : sizeHeight * 0.24),
       child: ListView(children: [...chatUser]),
     );
   }

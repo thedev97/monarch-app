@@ -17,3 +17,11 @@ const overview_custom_painter_img = "assets/overview-custom-painter.svg";
 const smile_img = "assets/smile.png";
 const camera_img = "assets/camera.png";
 const call_img = "assets/call.png";
+const dummy_img = "assets/dummy-img.png";
+const mobile_img = "assets/mobile-img.png";
+
+// Bottom Nav Bar
+const home_select_img = "assets/bottom-nav-img/home-sel.png";
+const project_select_img = "assets/bottom-nav-img/project-sel.png";
+const calendar_select_img = "assets/bottom-nav-img/calendar-sel.png";
+const task_select_img = "assets/bottom-nav-img/task-sel.png";

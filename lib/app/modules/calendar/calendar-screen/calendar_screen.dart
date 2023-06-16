@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/values/images.dart';
 import '../../../core/values/sizes.dart';
@@ -12,6 +13,7 @@ import '../../notification/notifications.dart';
 import 'package:Monarch/app/core/values/colors.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import '../../../widgets/projects/active-project-list/active-project-card.dart';
+import '../../profile/profile_overview.dart';
 
 
 class CalendarScreen extends StatefulWidget {
@@ -50,7 +52,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       title: todayTxt,
       subTitle: todayDate,
       onImageTapped: () {
-        //Get.to(() => ProfileOverview());
+        Get.to(() => ProfileOverview());
       },
       notificationPage: NotificationScreen(
         count: notificationCount,
