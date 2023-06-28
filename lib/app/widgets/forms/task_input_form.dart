@@ -9,6 +9,7 @@ class TaskFormInput extends StatelessWidget {
   final bool? autofocus;
   final bool obscureText;
   final TextEditingController? controller;
+  final Widget? prefix;
 
   const TaskFormInput({
     Key? key,
@@ -17,6 +18,7 @@ class TaskFormInput extends StatelessWidget {
     required this.keyboardType,
     this.controller,
     required this.obscureText,
+    this.prefix,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class TaskFormInput extends StatelessWidget {
               ? TextInputType.multiline
               : TextInputType.number,
       minLines: 1,
-      maxLines:  keyboardType == "multiline" ? 3 : 1,
+      maxLines: keyboardType == "multiline" ? 3 : 1,
       obscureText:
           placeholder == 'Password' || placeholder == 'Choose a password'
               ? true
@@ -43,6 +45,9 @@ class TaskFormInput extends StatelessWidget {
             horizontal: 0,
             vertical: 18,
           ),
+          /*prefixIcon:  placeholder == "Post your comment...."
+              ? Icon(Icons.attach_file_outlined, size: 20, color: Colors.black)
+              : Text(''),*/
           suffixIcon: placeholder == "Password"
               ? InkWell(
                   onTap: () {},

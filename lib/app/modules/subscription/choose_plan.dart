@@ -1,4 +1,4 @@
-import 'new_workspace.dart';
+import '../subscription/new_workspace.dart';
 import 'package:get/get.dart';
 import '../../core/commons.dart';
 import 'package:flutter/material.dart';
@@ -344,7 +344,7 @@ class _ChoosePlanState extends State<ChoosePlan> {
         Text(plan_text,
             style: GoogleFonts.lato(
                 fontWeight: FontWeight.w700,
-                fontSize: 25,
+                fontSize: 20,
                 shadows: [
                   Shadow(
                       color: Colors.black,
@@ -358,7 +358,7 @@ class _ChoosePlanState extends State<ChoosePlan> {
         Text(plan_text_two,
             style: GoogleFonts.lato(
                 fontWeight: FontWeight.w700,
-                fontSize: 25,
+                fontSize: 20,
                 shadows: [
                   Shadow(
                       color: Colors.black,

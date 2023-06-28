@@ -1,5 +1,8 @@
 import 'package:Monarch/app/core/utils/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'values/values.dart';
 
 class Commons {
   static const lightThemeLightShadowColor = Color(0xffCECECE);
@@ -24,6 +27,32 @@ class Commons {
     );
   }
 
+  static successSnackBar(title, msg){
+    return Get.snackbar(title, msg,
+        titleText: Text(
+          title,
+          style: AppTextStyles.highlightText,
+        ),
+        backgroundColor: Colors.green.withOpacity(0.6),
+        messageText: Text(
+          msg,
+          style: AppTextStyles.highlightText,
+        ));
+  }
+
+  static errorSnackBar(title, msg){
+    return Get.snackbar(title, msg,
+        titleText: Text(
+          title,
+          style: AppTextStyles.highlightText,
+        ),
+        backgroundColor: Colors.red.withOpacity(0.6),
+        messageText: Text(
+          msg,
+          style: AppTextStyles.highlightText,
+        ));
+  }
+
   static AppBar appBar(
     BuildContext context, {
     String? label,
@@ -39,16 +68,6 @@ class Commons {
         padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: Row(
           children: [
-            /*Container(
-              height: 45,
-              width: 45,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  profileImg,
-                ),
-              ),
-            ),*/
             SizedBox(
               width: 15,
             ),
@@ -111,6 +130,7 @@ const Widget verticalSpaceLarge = SizedBox(height: baseMargin * 8);
 const Widget verticalSpaceExtraLarge = SizedBox(height: baseMargin * 10);
 const Widget verticalLargeSpace = SizedBox(height: baseMargin * 15);
 const Widget bundleVerticalSpacing = SizedBox(height: baseMargin * 1.5);
+
 
 
 

@@ -2,16 +2,16 @@ import 'package:Monarch/app/core/values/values.dart';
 import 'package:flutter/material.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({
-    Key? key,
-    required this.userName,
-    required this.image,
-    required this.isActive,
-    required this.lastMsg,
-    required this.time,
-    required this.status,
-    required this.project,
-  }) : super(key: key);
+  const TaskCard(
+      {Key? key,
+      required this.userName,
+      required this.image,
+      required this.isActive,
+      required this.lastMsg,
+      required this.time,
+      required this.status,
+      required this.project})
+      : super(key: key);
 
   final String userName;
   final String image;
@@ -29,7 +29,11 @@ class TaskCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.asset(image, height: 25,width: 25,),
+              Image.asset(
+                image,
+                height: 25,
+                width: 25,
+              ),
               isActive == false
                   ? Container()
                   : Positioned(
@@ -76,7 +80,9 @@ class TaskCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(height: 2,),
+              SizedBox(
+                height: 2,
+              ),
               Opacity(
                 opacity: 0.64,
                 child: Text(
@@ -84,7 +90,9 @@ class TaskCard extends StatelessWidget {
                   style: AppTextStyles.subHeader4,
                 ),
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
               Opacity(
                 opacity: 0.64,
                 child: Text(
@@ -92,7 +100,9 @@ class TaskCard extends StatelessWidget {
                   style: AppTextStyles.subHeader4,
                 ),
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
               Opacity(
                 opacity: 0.64,
                 child: Text(
@@ -100,7 +110,9 @@ class TaskCard extends StatelessWidget {
                   style: AppTextStyles.subHeader4,
                 ),
               ),
-              SizedBox(height: 2,),
+              SizedBox(
+                height: 2,
+              ),
             ],
           ),
         ],

@@ -11,6 +11,7 @@ class TextFormInput extends StatelessWidget {
   final bool obscureText;
   final String? Function(String?)? validatorFunction;
   final TextEditingController controller;
+  final VoidCallback? showPasswordValue;
 
   const TextFormInput(
       {Key? key,
@@ -20,6 +21,7 @@ class TextFormInput extends StatelessWidget {
       required this.obscureText,
       required this.label,
       required this.validatorFunction,
+      this.showPasswordValue,
       this.value})
       : super(key: key);
 
@@ -32,27 +34,15 @@ class TextFormInput extends StatelessWidget {
         AppSpaces.verticalSpace10,
         Text(label.toUpperCase(),
             textAlign: TextAlign.left,
-            style: GoogleFonts.lato(
-                shadows: [
-                  Shadow(
-                      color: Colors.black,
-                      offset: Offset(0.0, 1.0),
-                      blurRadius: 1.0),
-                ],
-                fontSize: 8, color: Colors.black)),
-        TextFormField(
-          controller: controller,
-          style: GoogleFonts.lato(
-            fontWeight: FontWeight.w700,
-            fontSize: 12,
-            color: Colors.black,
-            shadows: [
+            style: GoogleFonts.lato(shadows: [
               Shadow(
                   color: Colors.black,
                   offset: Offset(0.0, 1.0),
                   blurRadius: 1.0),
-            ],
-          ),
+            ], fontSize: 8, color: Colors.black)),
+        TextFormField(
+          controller: controller,
+          style: AppTextStyles.normalText,
           onTap: () {},
           validator: validatorFunction,
           keyboardType: keyboardType == "text"
@@ -60,8 +50,8 @@ class TextFormInput extends StatelessWidget {
               : TextInputType.number,
           obscureText:
               placeholder == 'Password' || placeholder == 'Choose a password'
-                  ? true
-                  : false,
+                  ? obscureText
+                  : obscureText,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 0,
@@ -70,11 +60,11 @@ class TextFormInput extends StatelessWidget {
               suffixIcon:
                   placeholder == "Password" || placeholder == "Confirm Password"
                       ? InkWell(
-                          onTap: () {},
+                          onTap: showPasswordValue,
                           child: Icon(
                             obscureText
-                                ? FontAwesomeIcons.eye
-                                : FontAwesomeIcons.eyeSlash,
+                                ? FontAwesomeIcons.eyeSlash
+                                : FontAwesomeIcons.eye,
                             size: 18,
                             color: HexColor.fromHex("3C3E49"),
                           ))
@@ -82,7 +72,7 @@ class TextFormInput extends StatelessWidget {
                           onTap: () {
                             controller.text = "";
                           },
-                          child: Icon(FontAwesomeIcons.solidTimesCircle,
+                          child: Icon(FontAwesomeIcons.solidCircleXmark,
                               size: 18, color: Colors.black),
                         ),
               hintText: placeholder,
@@ -91,13 +81,18 @@ class TextFormInput extends StatelessWidget {
                   fontSize: 12,
                   color: Colors.grey),
               filled: false,
-              errorStyle: GoogleFonts.lato(
-                  fontWeight: FontWeight.w400, fontSize: 10, color: Colors.red),
+              errorStyle: GoogleFonts.abel(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 11,
+                  color: Colors.brown),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: HexColor.fromHex("3C3E49")),
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: HexColor.fromHex("BEF0B2")),
+              ),
+              errorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.brown),
               ),
               border: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.green))),

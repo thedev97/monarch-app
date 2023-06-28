@@ -11,11 +11,27 @@ const login_button = 'Sign In';
 const exist_acc_txt = 'Don’t have an account ?  ';
 const signup_text = 'Sign Up';
 
+// Forgot Password
+const forgotPass_bttn = 'Forgot Password?';
+const forgotPass_title = 'Forgot Password';
+const send_button = 'Send';
+
+// Verify OTP
+const verifyOTP_title = 'Verify OTP';
+const verifyOTP_subtitle = 'You can verify your OTP through your given';
+const verify_button = 'Verify';
+const resend_button = 'Resend';
+
 // Signup
 const signup_title = 'Sign Up';
 const signup_button = "Sign Up";
 const login_acc_txt = 'Already have an account ?  ';
 const login_text = 'Sign In';
+
+// Change Password
+const changePass_title = 'Reset Password';
+const changePass_subtitle = 'You can change your password here';
+const reset_button = 'Reset';
 
 //Plan
 const plan_text = "Choose";
@@ -117,6 +133,11 @@ const assigneeMem = "Assignee";
 const priority = "Priority";
 const projectName = "Project";
 
+// Update Task
+const editTaskTxt = "Edit Task";
+const editTaskBttn = "Update Task";
+const comment = "Post your comment....";
+
 // Set Assignees
 const addMemberTxt = 'Add Member';
 const addMemberBttnTxt = 'Create Member';
@@ -168,7 +189,26 @@ const myTeams = "My Teams";
 const directReport = "Direct Reports";
 const myProject = "My Project";
 
+// ### ---------------------------------------------------------------------
+// API Success Message
+const loginSuccess = 'Login Successfully';
+const loginSuccessMsg = 'Congratulations';
+
+const signupSuccess = 'Registration Successfully';
+const signupSuccessMsg = 'Congratulations';
+
+const otpSendSuccess = 'Send Successfully';
+const otpSendSuccessMsg = 'OTP send successfully through your given email';
+
+// ### ---------------------------------------------------------------------
+// API Error Message
+const loginFailed = 'Login Failed';
+const signupFailed = 'Registration Failed';
+const sendOTPFailed = 'OTP Failed To Send';
+
+
 // -------------- ##### --------------------
 // Validation
 const emailEmptyErrorMsg = 'Please enter the email';
 const emailErrorMsg = 'Please enter the valid email';
+const passwordEmptyErrorMsg = 'Please enter the email';

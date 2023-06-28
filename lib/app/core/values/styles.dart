@@ -26,10 +26,25 @@ class AppTextStyles {
       fontWeight: FontWeight.w700,
       fontSize: 10,
       shadows: [
-        Shadow(
-            color: Colors.black,
-            offset: Offset(0.0, 0.4),
-            blurRadius: 0.4),
+        Shadow(color: Colors.black, offset: Offset(0.0, 0.4), blurRadius: 0.4),
+      ],
+      color: Colors.white);
+
+  static final TextStyle normalText = GoogleFonts.lato(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      shadows: [
+        const Shadow(
+            color: Colors.white, offset: Offset(0.0, 0.2), blurRadius: 0.2),
+      ],
+      color: Colors.black);
+
+  static final TextStyle highlightText = GoogleFonts.lato(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      shadows: [
+        const Shadow(
+            color: Colors.black, offset: Offset(0.0, 0.5), blurRadius: 0.5),
       ],
       color: Colors.white);
 
@@ -37,10 +52,7 @@ class AppTextStyles {
       fontWeight: FontWeight.w400,
       fontSize: 12,
       shadows: [
-        Shadow(
-            color: Colors.black,
-            offset: Offset(0.0, 0.1),
-            blurRadius: 0.2),
+        Shadow(color: Colors.black, offset: Offset(0.0, 0.1), blurRadius: 0.2),
       ],
       color: Colors.black.withOpacity(0.8));
 
@@ -95,9 +107,7 @@ class AppTextStyles {
       color: Colors.black.withOpacity(0.8));
 
   static final TextStyle subHeader3 = GoogleFonts.lato(
-      fontWeight: FontWeight.w500,
-      fontSize: 10,
-      color: Colors.transparent);
+      fontWeight: FontWeight.w500, fontSize: 10, color: Colors.transparent);
 
   static final TextStyle subHeader4 = GoogleFonts.lato(
       fontWeight: FontWeight.w400,
@@ -105,9 +115,7 @@ class AppTextStyles {
       color: Colors.black.withOpacity(0.8));
 
   static final TextStyle subHeader5 = GoogleFonts.lato(
-      fontWeight: FontWeight.w500,
-      fontSize: 10,
-      color: Colors.black);
+      fontWeight: FontWeight.w500, fontSize: 10, color: Colors.black);
 
   static final TextStyle subHeader6 = GoogleFonts.lato(
       fontWeight: FontWeight.w500,
@@ -126,9 +134,7 @@ class AppTextStyles {
       color: Colors.black);
 
   static final TextStyle chatMsgSubHeader = GoogleFonts.lato(
-      fontWeight: FontWeight.w500,
-      fontSize: 12,
-      color: Colors.black);
+      fontWeight: FontWeight.w500, fontSize: 12, color: Colors.black);
 
   static final TextStyle chatMsgOne = GoogleFonts.lato(
       fontWeight: FontWeight.w500,
@@ -175,5 +181,4 @@ class AppTextStyles {
         Shadow(color: Colors.black, offset: Offset(0.0, 0.2), blurRadius: 0.2),
       ],
       color: Colors.white);
-
 }

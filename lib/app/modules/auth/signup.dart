@@ -1,4 +1,3 @@
-import 'choose_plan.dart';
 import 'email_address.dart';
 import 'package:get/get.dart';
 import '../../core/commons.dart';
@@ -8,6 +7,7 @@ import '../../core/values/sizes.dart';
 import '../../core/values/strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../controllers/auth/signup.dart';
 import '../../core/utils/custom-painter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/buttons/primary_buttons.dart';
@@ -22,18 +22,16 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _nameController = new TextEditingController();
-  TextEditingController _emailController = new TextEditingController();
-  TextEditingController _passController = new TextEditingController();
-  TextEditingController _confirmPassController = new TextEditingController();
-  bool obscureText = false;
-  bool obscureTextOne = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaKey = GlobalKey<ScaffoldState>();
+
+  SignupController signupController = Get.put(SignupController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: false,
+        key: _scaKey,
         body: SafeArea(
           child: Stack(children: [
             Container(
@@ -107,7 +105,7 @@ class _SignUpState extends State<SignUp> {
   Widget signupContainer() {
     return Padding(
       padding: EdgeInsets.only(
-          left: 25.0, right: 25.0, top: sizeHeight * 0.12, bottom: 20.0),
+          left: 25.0, right: 25.0, top: sizeHeight * 0.15, bottom: 20.0),
       child: ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
@@ -123,98 +121,98 @@ class _SignUpState extends State<SignUp> {
               width: sizeWidth,
               padding: EdgeInsets.only(
                   left: 15.0, top: 10.0, right: 15.0, bottom: 10.0),
-              child: Column(
-                children: [
-                  verticalSpaceRegular,
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: AppBackButton(
-                      horizontalIcon: false,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    verticalSpaceRegular,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: AppBackButton(
+                        horizontalIcon: false,
+                      ),
                     ),
-                  ),
-                  verticalSpaceRegular,
-                  titleTxt(),
-                  verticalSpaceRegular,
-                  TextFormInput(
-                    placeholder: "Name",
-                    keyboardType: "text",
-                    controller: _nameController,
-                    obscureText: obscureText,
-                    label: "Your Name",
-                    validatorFunction: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your name';
-                      }
-                      return null;
-                    },
-                  ),
-                  verticalSpaceRegular,
-                  TextFormInput(
-                    placeholder: "Email",
-                    keyboardType: "text",
-                    controller: _emailController,
-                    obscureText: obscureText,
-                    label: "Your Email",
-                    validatorFunction: (String? val) {
-                      if (val!.isEmpty == true) emailEmptyErrorMsg;
-                    },
-                  ),
-                  verticalSpaceRegular,
-                  TextFormInput(
-                    placeholder: "Password",
-                    keyboardType: "text",
-                    controller: _passController,
-                    obscureText: obscureText,
-                    label: "Your Password",
-                    validatorFunction: (value) {
-                      if (value!.isEmpty) {
-                        return "Please enter your password";
-                      }
-                      if (value.length < 8) {
-                        return "8 characters, 1 uppercase, 1 lowercase and 1 number required.";
-                      } else if (value.length > 8 || value.length == 8) {
-                        var returnString;
-                        if (!RegExp(
-                                r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$')
-                            .hasMatch(value)) {
-                          returnString =
-                              "8 characters, 1 uppercase, 1 lowercase and 1 number required.";
+                    verticalSpaceRegular,
+                    titleTxt(),
+                    verticalSpaceRegular,
+                    TextFormInput(
+                      placeholder: "Name",
+                      keyboardType: "text",
+                      controller: signupController.nameController.value,
+                      obscureText: signupController.obscureText.value,
+                      label: "Your Name",
+                      validatorFunction: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Please enter your name';
+                        } else {
+                          return null;
                         }
-                        return returnString;
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  verticalSpaceRegular,
-                  TextFormInput(
-                    placeholder: "Confirm Password",
-                    keyboardType: "text",
-                    controller: _confirmPassController,
-                    obscureText: obscureText,
-                    label: "Confirm Password",
-                    validatorFunction: (value) {
-                      if (value!.isEmpty) {
-                        return "Please re-enter your password";
-                      }
-                      if (value != _passController.text) {
-                        return "Passwords don't match";
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  verticalSpaceMedium,
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: AppPrimaryButton(
-                        buttonHeight: 40,
-                        buttonWidth: sizeWidth * 0.35,
-                        buttonText: signup_button,
-                        callback: () => Get.to(() => ChoosePlan())),
-                  ),
-                  verticalSpaceRegular,
-                ],
+                      },
+                    ),
+                    verticalSpaceRegular,
+                    TextFormInput(
+                      placeholder: "Email",
+                      keyboardType: "text",
+                      controller: signupController.emailController.value,
+                      obscureText: signupController.obscureText.value,
+                      label: "Your Email",
+                      validatorFunction: (String? val) {
+                        if (val!.isEmpty == true) {
+                          return emailEmptyErrorMsg;
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                    verticalSpaceRegular,
+                    Obx(
+                      () => TextFormInput(
+                        placeholder: "Password",
+                        keyboardType: "text",
+                        controller: signupController.passwordController.value,
+                        obscureText: !signupController.obscureText.value,
+                        label: "Your Password",
+                        validatorFunction: (String? val) {
+                          if (val!.isEmpty == true) {
+                            return passwordEmptyErrorMsg;
+                          } else {
+                            return null;
+                          }
+                        },
+                        showPasswordValue: () => signupController.obscureText
+                            .value = !signupController.obscureText.value,
+                      ),
+                    ),
+                    verticalSpaceMedium,
+                    Obx(
+                      () => signupController.loading.value
+                          ? Padding(
+                              padding:
+                                  EdgeInsets.only(right: sizeWidth * 0.142),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
+                                child: const SizedBox(
+                                  height: 25,
+                                  width: 25,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.black,
+                                    strokeWidth: 2,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Align(
+                              alignment: Alignment.bottomRight,
+                              child: AppPrimaryButton(
+                                  buttonHeight: 40,
+                                  buttonWidth: sizeWidth * 0.35,
+                                  buttonText: signup_button,
+                                  callback: () => signupController.signupApi()),
+                            ),
+                    ),
+                    verticalSpaceRegular,
+                  ],
+                ),
               ),
             ),
           ),
@@ -229,7 +227,7 @@ class _SignUpState extends State<SignUp> {
       child: Text(signup_title,
           style: GoogleFonts.lato(
               fontWeight: FontWeight.w700,
-              fontSize: 25,
+              fontSize: 20,
               shadows: [
                 Shadow(
                     color: Colors.black,

@@ -1,5 +1,7 @@
+import 'package:Monarch/app/modules/task/update_task.dart';
 import 'package:Monarch/app/widgets/tasks/task-list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../core/values/colors.dart';
 import '../../../core/values/images.dart';
 import '../../../core/values/sizes.dart';
@@ -85,14 +87,17 @@ class _TaskScreenState extends State<TaskScreen> {
     final dynamic taskData = AppData.taskList;
     List<Widget> chatUser = List.generate(
         taskData.length,
-        (index) => TaskCard(
-              userName: taskData[index]['name'],
-              time: taskData[index]['time'],
-              image: taskData[index]['taskImage'],
-              isActive: taskData[index]['isActive'],
-              lastMsg: taskData[index]['message'],
-              status: taskData[index]['status'],
-              project: taskData[index]['project'],
+        (index) => InkWell(
+              onTap: () => Get.to(() => UpdateTask()),
+              child: TaskCard(
+                userName: taskData[index]['name'],
+                time: taskData[index]['time'],
+                image: taskData[index]['taskImage'],
+                isActive: taskData[index]['isActive'],
+                lastMsg: taskData[index]['message'],
+                status: taskData[index]['status'],
+                project: taskData[index]['project'],
+              ),
             ));
     return Padding(
       padding: EdgeInsets.only(
