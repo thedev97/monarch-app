@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'package:Monarch/app/modules/auth/change-password.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
-import 'package:flutter/material.dart';
-import 'package:sms_autofill/sms_autofill.dart';
-import 'package:timer_count_down/timer_controller.dart';
 import '../../core/commons.dart';
 import '../../core/remote_url.dart';
+import 'package:flutter/material.dart';
 import '../../core/values/strings.dart';
+import '../../modules/auth/change-password.dart';
+import 'package:timer_count_down/timer_controller.dart';
+import 'package:flutter_sms_autofill/flutter_sms_autofill.dart';
 
 class VerifyEmailOTPController extends GetxController {
   CountdownController countdownController = CountdownController();
@@ -19,10 +19,10 @@ class VerifyEmailOTPController extends GetxController {
   RxBool loading = false.obs;
 
   @override
-  void onInit() async{
+  void onInit() async {
     super.onInit();
     print(await SmsAutoFill().getAppSignature);
-    await SmsAutoFill().listenForCode();
+    await SmsAutoFill().listenForCode;
   }
 
   @override
@@ -41,19 +41,19 @@ class VerifyEmailOTPController extends GetxController {
   void verifyOTPApi(String email) async {
     loading.value = true;
     try {
-      final response = await post(Uri.parse(signup_url), body: {
+      final response = await post(Uri.parse(verify_email_otp), body: {
         "email": email,
-        "password": otpController.value.text,
+        "otp": otpController.value.text,
       });
       var data = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         loading.value = false;
-        Commons.successSnackBar(signupSuccess, signupSuccessMsg);
+        Commons.successSnackBar(otpVerifiedSuccess, otpVerifiedSuccessMsg);
         Future.delayed(const Duration(milliseconds: 450),
             () => Get.to(ChangePassword(email: email)));
       } else {
         loading.value = false;
-        Commons.errorSnackBar(signupFailed, data["msg"]);
+        Commons.errorSnackBar(verifiedOTPFailed, data["msg"]);
       }
     } catch (e) {
       loading.value = false;

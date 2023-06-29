@@ -7,7 +7,6 @@ import '../../core/remote_url.dart';
 import '../../core/values/strings.dart';
 import '../../modules/subscription/choose_plan.dart';
 
-
 class SignupController extends GetxController {
   final nameController = TextEditingController().obs;
   final emailController = TextEditingController().obs;
@@ -26,11 +25,14 @@ class SignupController extends GetxController {
         "name": nameController.value.text
       });
       var data = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         loading.value = false;
         Commons.successSnackBar(signupSuccess, signupSuccessMsg);
-        Future.delayed(const Duration(milliseconds: 450),
-            () => Get.to(const ChoosePlan()));
+        Future.delayed(
+            const Duration(milliseconds: 450),
+            () => Get.to(ChoosePlan(
+                  email: emailController.value.text,
+                )));
       } else {
         loading.value = false;
         Commons.errorSnackBar(signupFailed, data["email"]);

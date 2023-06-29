@@ -46,7 +46,7 @@ dependencies:
   responsive_builder: ^0.4.1
   google_fonts: ^2.1.0
   font_awesome_flutter: ^10.4.0
-  sms_autofill: ^2.3.0
+  flutter_sms_autofill: ^1.0.4
   timer_count_down: ^2.2.2
   flutter_shapes:
   flutter_feather_icons: ^2.0.0+1

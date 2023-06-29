@@ -179,7 +179,9 @@ class ChangePassword extends StatelessWidget {
                               ),
                             ),
                     ),
-                    verticalLargeSpace,
+                    verticalSpaceMedium,
+                    verticalSpaceRegular,
+                    verticalSpaceRegular,
                     Align(
                       alignment: Alignment.bottomRight,
                       child: AppBackButton(

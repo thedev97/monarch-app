@@ -24,14 +24,15 @@ class ChangePasswordController extends GetxController {
         "confirm_password": confirmPasswordController.value.text
       });
       var data = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         loading.value = false;
-        Commons.successSnackBar(signupSuccess, signupSuccessMsg);
-        Future.delayed(const Duration(milliseconds: 450),
-                () => Get.to(Login()));
+        Commons.successSnackBar(
+            changePasswordSuccess, changePasswordSuccessMsg);
+        Future.delayed(
+            const Duration(milliseconds: 450), () => Get.to(Login()));
       } else {
         loading.value = false;
-        Commons.errorSnackBar(signupFailed, data["Error"]);
+        Commons.errorSnackBar(changePasswordFailed, data["Error"]);
       }
     } catch (e) {
       loading.value = false;

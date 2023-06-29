@@ -286,6 +286,29 @@ class AppData {
     },
   ];
 
+  static final List<Map<String, dynamic>> planList = [
+    {
+      "subscriptionDays": "Free",
+      "plan": "7 days",
+      "isSelected": false,
+    },
+    {
+      "subscriptionDays": "\$10",
+      "plan": "30 days",
+      "isSelected": false,
+    },
+    {
+      "subscriptionDays": "\$16",
+      "plan": "60 days",
+      "isSelected": false,
+    },
+    {
+      "subscriptionDays": "\$199",
+      "plan": "1 year",
+      "isSelected": false,
+    },
+  ];
+
   static final List<Map<String, dynamic>> allProjectList = [
     {
       "projectName": "HobNob",

@@ -1,19 +1,19 @@
-import '../../controllers/auth/login.dart';
 import 'login.dart';
 import 'signup.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/commons.dart';
-import '../../core/utils/custom-painter.dart';
 import '../../core/values/sizes.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import '../../core/values/strings.dart';
-import '../../widgets/buttons/primary_buttons.dart';
-import '../../widgets/forms/text_input_with _label.dart';
-import '../../widgets/navigation/back_button.dart';
+import '../../controllers/auth/login.dart';
+import '../../core/utils/custom-painter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:Monarch/app/core/values/colors.dart';
+import '../../widgets/navigation/back_button.dart';
+import '../../widgets/buttons/primary_buttons.dart';
 import 'package:Monarch/app/core/values/images.dart';
+import 'package:Monarch/app/core/values/colors.dart';
+import '../../widgets/forms/text_input_with _label.dart';
 
 class EmailAddressScreen extends StatelessWidget {
   EmailAddressScreen({Key? key}) : super(key: key);

@@ -1,12 +1,13 @@
+import 'package:flutter_sms_autofill/flutter_sms_autofill.dart';
 import 'package:get/get.dart';
 import '../../core/commons.dart';
+import '../../core/values/colors.dart';
 import '../../core/values/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../core/values/images.dart';
 import '../../core/values/strings.dart';
 import '../../core/Utils/custom-painter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 import '../../widgets/navigation/back_button.dart';
 import '../../widgets/buttons/primary_buttons.dart';
 import '../../controllers/auth/email-send-otp.dart';
@@ -112,7 +113,6 @@ class VerifyEmailOTP extends StatelessWidget {
                     subTitleTxt(),
                     verticalSpaceRegular,
                     otpTextField(),
-                    countDownPart(),
                     verticalSpaceMedium,
                     Obx(
                       () => verifyEmailOTPController.loading.value
@@ -145,6 +145,8 @@ class VerifyEmailOTP extends StatelessWidget {
                               ),
                             ),
                     ),
+                    verticalSpaceRegular,
+                    countDownPart(),
                     verticalLargeSpace,
                     Align(
                       alignment: Alignment.bottomRight,
@@ -190,64 +192,50 @@ class VerifyEmailOTP extends StatelessWidget {
   }
 
   Widget countDownPart() {
-    return Countdown(
-      controller: verifyEmailOTPController.countdownController,
-      seconds: 15,
-      interval: const Duration(milliseconds: 1000),
-      build: (context, currentRemainingTime) {
-        if (currentRemainingTime == 0.0) {
-          return Obx(
-            () => verifyEmailOTPController.loading.value
-                ? Padding(
-                    padding: EdgeInsets.only(right: sizeWidth * 0.142),
-                    child: Align(
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Countdown(
+        controller: verifyEmailOTPController.countdownController,
+        seconds: 15,
+        interval: const Duration(milliseconds: 1000),
+        build: (context, currentRemainingTime) {
+          if (currentRemainingTime == 0.0) {
+            return Obx(
+              () => Align(
                       alignment: Alignment.bottomRight,
-                      child: const SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: CircularProgressIndicator(
-                          color: Colors.black,
-                          strokeWidth: 2,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: TextButton(
+                          onPressed: () =>
+                              emailSendOTPController.emailSendOTPApi(),
+                          child: Text(
+                            resend_button,
+                            style: GoogleFonts.lato(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                decoration: TextDecoration.underline,
+                                shadows: [
+                                  Shadow(
+                                      color: Colors.black,
+                                      offset: Offset(0.0, 0.5),
+                                      blurRadius: 0.5),
+                                ],
+                                color: orange),
+                          ),
                         ),
                       ),
                     ),
-                  )
-                : Align(
-                    alignment: Alignment.bottomRight,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: TextButton(
-                        onPressed: () =>
-                            emailSendOTPController.emailSendOTPApi(),
-                        child: Text(
-                          resend_button,
-                          style: AppTextStyles.highlightText,
-                        ),
-                      ),
-                    ),
-                  ),
-          );
-        } else {
-          return Container(
-            alignment: Alignment.center,
-            padding:
-                const EdgeInsets.only(left: 14, right: 14, top: 14, bottom: 14),
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(10),
-              ),
-              border: Border.all(color: Colors.blue, width: 1),
-            ),
-            width: context.width,
-            child: Text(
+            );
+          } else {
+            return Text(
                 "This code is expired on "
                 "${currentRemainingTime.toString().length == 4 ? " "
                     "${currentRemainingTime.toString().substring(0, 2)}" : " "
                     "${currentRemainingTime.toString().substring(0, 1)}"}",
-                style: AppTextStyles.normalText),
-          );
-        }
-      },
+                style: AppTextStyles.highlightText2);
+          }
+        },
+      ),
     );
   }
 }

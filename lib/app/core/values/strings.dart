@@ -20,7 +20,7 @@ const send_button = 'Send';
 const verifyOTP_title = 'Verify OTP';
 const verifyOTP_subtitle = 'You can verify your OTP through your given';
 const verify_button = 'Verify';
-const resend_button = 'Resend';
+const resend_button = 'Resend OTP';
 
 // Signup
 const signup_title = 'Sign Up';
@@ -197,15 +197,28 @@ const loginSuccessMsg = 'Congratulations';
 const signupSuccess = 'Registration Successfully';
 const signupSuccessMsg = 'Congratulations';
 
-const otpSendSuccess = 'Send Successfully';
+const otpSendSuccess = 'OTP Send Successfully';
 const otpSendSuccessMsg = 'OTP send successfully through your given email';
+
+const otpVerifiedSuccess = 'Verified';
+const otpVerifiedSuccessMsg =
+    'OTP Verified Successfully';
+
+const selectPlanSuccess = 'Done';
+const planSuccessMsg = 'Welcome to Monarch';
+
+const changePasswordSuccess = 'Changed';
+const changePasswordSuccessMsg =
+    'Your password is changed';
 
 // ### ---------------------------------------------------------------------
 // API Error Message
 const loginFailed = 'Login Failed';
 const signupFailed = 'Registration Failed';
 const sendOTPFailed = 'OTP Failed To Send';
-
+const verifiedOTPFailed = 'OTP Failed To Send';
+const changePasswordFailed = 'Failed To Reset Password';
+const planFailed = 'Failed To Register';
 
 // -------------- ##### --------------------
 // Validation

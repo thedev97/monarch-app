@@ -1,31 +1,23 @@
-import 'package:Monarch/app/core/utils/extension.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import 'values/colors.dart';
+import 'values/images.dart';
+import 'values/sizes.dart';
 import 'values/values.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import '../widgets/listviews/plan-info.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../widgets/buttons/primary_buttons.dart';
+import 'package:Monarch/app/core/utils/extension.dart';
+import 'package:Monarch/app/core/values/strings.dart';
 
 class Commons {
-  static const lightThemeLightShadowColor = Color(0xffCECECE);
   static const baseRadius = 12.0;
-  static const baseMargin = 8.0;
   static const smallBaseRadius = 8.0;
   static const bigBaseRadius = 16.0;
-  static const baseIconSize = 24.0;
-  static const arrowDownButtonHeight = 25.0;
-  static const buttonHeight = 50.0;
-  static const buttonShortHeight = 40.0;
   static BorderRadius borderRadius = BorderRadius.circular(baseRadius);
   static BorderRadius smallBorderRadius =
   BorderRadius.circular(smallBaseRadius);
   static BorderRadius bigBorderRadius = BorderRadius.circular(bigBaseRadius);
-
-  static BoxShadow shadow() {
-    return BoxShadow(
-      blurRadius: 10,
-      color: lightThemeLightShadowColor,
-      offset: const Offset(0, 4),
-    );
-  }
 
   static successSnackBar(title, msg){
     return Get.snackbar(title, msg,
@@ -51,6 +43,147 @@ class Commons {
           msg,
           style: AppTextStyles.highlightText,
         ));
+  }
+
+  static Future planDetails(
+      String plan,
+      String days,
+      String amount,
+      String checkImg,
+      String uncheckImg,
+      String details_one,
+      String details_two,
+      String details_three,
+      String details_four,
+      String details_five) {
+    return Get.defaultDialog(
+      barrierDismissible: true,
+      title: '',
+      content: IntrinsicHeight(
+        child: Padding(
+          padding: EdgeInsets.only(left: 20.0, right: 20.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(plan_img, height: 60, width: 60),
+                        Column(
+                          children: [
+                            DefaultTextStyle(
+                              style: GoogleFonts.lato(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16,
+                                  shadows: [
+                                    Shadow(
+                                        color: Colors.black,
+                                        offset: Offset(0.0, 1.0),
+                                        blurRadius: 1.0),
+                                  ],
+                                  color: Colors.black),
+                              child: Text(plan),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: 30.0,
+                                  top: 5.0,
+                                  right: 30.0,
+                                  bottom: 30.0),
+                              child: DefaultTextStyle(
+                                textAlign: TextAlign.justify,
+                                style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.8)),
+                                child: Text(days),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: 25,
+                        width: 25,
+                        decoration: BoxDecoration(
+                            color: primaryColor,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: Colors.white, width: 1)),
+                        child: Icon(
+                          Icons.close_sharp,
+                          size: 15.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              PlanInfoViews(
+                title: details_one,
+                image: checkImg,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PlanInfoViews(
+                title: details_two,
+                image: checkImg,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PlanInfoViews(
+                title: details_three,
+                image: plan == 'Basic Plan' ? uncheckImg : checkImg,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PlanInfoViews(
+                title: details_four,
+                image: plan == 'Basic Plan' || plan == 'Standard'
+                    ? uncheckImg
+                    : checkImg,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PlanInfoViews(
+                title: details_five,
+                image: plan != 'Platinum' ? uncheckImg : checkImg,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              AppPrimaryButton(
+                  buttonHeight: 40,
+                  buttonWidth: sizeWidth * 0.7,
+                  buttonText: choose_plan_button,
+                  callback: () => Get.back()),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   static AppBar appBar(
@@ -97,39 +230,17 @@ class Commons {
       actions: actions,
     );
   }
-
-  static bool isBottom(
-    ScrollController scrollController, [
-    double scrollOffsetThreshold = 0.7,
-  ]) {
-    if (!scrollController.hasClients) return false;
-    final maxScroll = scrollController.position.maxScrollExtent;
-    final currentScroll = scrollController.offset;
-
-    return currentScroll >= (maxScroll * scrollOffsetThreshold) &&
-        currentScroll > 0;
-  }
 }
 
 const baseMargin = 8.0;
-
-//* Horizontal Spacing
-const Widget horizontalSpaceTiny = SizedBox(width: baseMargin / 2);
-const Widget horizontalSpaceSmall = SizedBox(width: baseMargin);
-const Widget horizontalSpaceRegular = SizedBox(width: baseMargin * 2);
-const Widget horizontalSpaceMedium = SizedBox(width: baseMargin * 3);
-const Widget horizontalSpaceLarge = SizedBox(width: baseMargin * 4);
-const Widget bundleHorizontalSpacing = SizedBox(width: baseMargin * 1.5);
 
 //* Vertical Spacing
 const Widget verticalSpaceTiny = SizedBox(height: baseMargin / 2);
 const Widget verticalSpaceSmall = SizedBox(height: baseMargin);
 const Widget verticalSpaceRegular = SizedBox(height: baseMargin * 2);
 const Widget verticalSpaceMedium = SizedBox(height: baseMargin * 4);
-const Widget verticalSpaceLarge = SizedBox(height: baseMargin * 8);
 const Widget verticalSpaceExtraLarge = SizedBox(height: baseMargin * 10);
 const Widget verticalLargeSpace = SizedBox(height: baseMargin * 15);
-const Widget bundleVerticalSpacing = SizedBox(height: baseMargin * 1.5);
 
 
 
