@@ -13,6 +13,8 @@ class LoginController extends GetxController {
   RxBool obscureText = false.obs;
   RxBool loading = false.obs;
 
+  String? token;
+
   void loginApi() async {
     loading.value = true;
     try {
@@ -25,7 +27,7 @@ class LoginController extends GetxController {
         loading.value = false;
         Commons.successSnackBar(loginSuccess, loginSuccessMsg);
         Future.delayed(const Duration(milliseconds: 450),
-            () => Get.to(() => Timeline()));
+            () => Get.to(() => Timeline(token: token!,)));
       } else {
         loading.value = false;
         Commons.errorSnackBar(loginFailed, data["status"]);

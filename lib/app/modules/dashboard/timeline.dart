@@ -8,7 +8,8 @@ import '../../widgets/dashboard/bottomNavigationItem.dart';
 import 'package:Monarch/app/modules/task/create-task-screen.dart';
 
 class Timeline extends StatefulWidget {
-  Timeline({Key? key}) : super(key: key);
+  String token;
+  Timeline({Key? key, required this.token}) : super(key: key);
 
   @override
   _TimelineState createState() => _TimelineState();

@@ -62,7 +62,7 @@ const details_Two = "Team Management";
 const details_Three = "Create 5 projects";
 
 //Workspace
-const workspace_txt = "Soumya’s workspace";
+const workspace_txt = "'s workspace";
 const designation = "Application Developer";
 const emp_code = "BHS097";
 const total_members_txt = "Total Team Members";
@@ -71,6 +71,7 @@ const invite_members_txt = "Invite people to your workspace";
 const email_address_txt = "Email Address";
 const next_button = "Next";
 const skip_button = "Skip";
+const uploadProfileBttn = 'Upload';
 
 // Dashboard
 const nameTxt = "Hi Soumya";
@@ -201,24 +202,35 @@ const otpSendSuccess = 'OTP Send Successfully';
 const otpSendSuccessMsg = 'OTP send successfully through your given email';
 
 const otpVerifiedSuccess = 'Verified';
-const otpVerifiedSuccessMsg =
-    'OTP Verified Successfully';
+const otpVerifiedSuccessMsg = 'OTP Verified Successfully';
 
-const selectPlanSuccess = 'Done';
+const selectPlanSuccess = 'Subscribed successfully';
 const planSuccessMsg = 'Welcome to Monarch';
 
 const changePasswordSuccess = 'Changed';
-const changePasswordSuccessMsg =
-    'Your password is changed';
+const changePasswordSuccessMsg = 'Your password is changed';
+
+const uploadProfileImgSuccess = 'Uploaded';
+const uploadProfileImgSuccessMsg = 'Profile image is uploaded';
+
+const addProjectSuccess = 'Your Project Is Created Successfully';
+const addProjectSuccessMsg = 'Congratulations';
 
 // ### ---------------------------------------------------------------------
 // API Error Message
+const failed = "Failed";
 const loginFailed = 'Login Failed';
 const signupFailed = 'Registration Failed';
 const sendOTPFailed = 'OTP Failed To Send';
 const verifiedOTPFailed = 'OTP Failed To Send';
 const changePasswordFailed = 'Failed To Reset Password';
-const planFailed = 'Failed To Register';
+const planFailed = 'Failed To Subscribed';
+const userDetailsFailed = 'Failed To Get User Details';
+const uploadUserImgFailed = 'Failed';
+const uploadUserImgFailedMsg = 'Failed To Upload';
+const noImgFailedMsg = 'No Image To Select';
+const noProject = 'No Project Added';
+const failedAddProjectMsg = 'Failed To Add The Project';
 
 // -------------- ##### --------------------
 // Validation

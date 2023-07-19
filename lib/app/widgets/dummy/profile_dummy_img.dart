@@ -8,7 +8,14 @@ class ProfileDummyImg extends StatelessWidget {
   String? image;
   Color? color;
   IconData? icon;
-  ProfileDummyImg({Key? key, required this.dummyType, required this.scale, required this.color, this.icon, this.image})
+
+  ProfileDummyImg(
+      {Key? key,
+      required this.dummyType,
+      required this.scale,
+      required this.color,
+      this.icon,
+      this.image})
       : super(key: key);
 
   @override
@@ -16,7 +23,11 @@ class ProfileDummyImg extends StatelessWidget {
     return Container(
         width: 40 * scale,
         height: 40 * scale,
-        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.blueGrey, width: 1),
+        ),
         child: ClipOval(
             child: this.dummyType == ProfileDummyTypeImg.Icon
                 ? Icon(Icons.person, color: Colors.white, size: 30 * scale)
@@ -25,6 +36,8 @@ class ProfileDummyImg extends StatelessWidget {
                     image: AssetImage(
                       image!,
                     ),
-                  )));
+                  )
+
+        ));
   }
 }

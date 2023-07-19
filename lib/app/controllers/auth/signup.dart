@@ -6,8 +6,11 @@ import '../../core/commons.dart';
 import '../../core/remote_url.dart';
 import '../../core/values/strings.dart';
 import '../../modules/subscription/choose_plan.dart';
+import 'package:Monarch/app/data/auth/register.dart';
 
 class SignupController extends GetxController {
+  RegisterModel? registerModel;
+
   final nameController = TextEditingController().obs;
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
@@ -27,11 +30,15 @@ class SignupController extends GetxController {
       var data = jsonDecode(response.body);
       if (response.statusCode == 201) {
         loading.value = false;
+        var result = jsonDecode(response.body);
+        registerModel = RegisterModel.fromJson(result);
         Commons.successSnackBar(signupSuccess, signupSuccessMsg);
         Future.delayed(
             const Duration(milliseconds: 450),
             () => Get.to(ChoosePlan(
                   email: emailController.value.text,
+                  userId: registerModel?.user.id ?? 0,
+                  token: registerModel?.token.access ?? "",
                 )));
       } else {
         loading.value = false;

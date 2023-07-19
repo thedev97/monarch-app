@@ -6,10 +6,11 @@ import '../../core/remote_url.dart';
 import '../../core/values/strings.dart';
 import '../../modules/subscription/new_workspace.dart';
 
-class SelectPlanController extends GetxController{
+class SelectPlanController extends GetxController {
   RxBool loading = false.obs;
 
-  void subscriptionApi(String email, String plan) async {
+  void subscriptionApi(
+      String email, String plan, int userId, String token) async {
     loading.value = true;
     try {
       final response = await post(Uri.parse(subscription_url),
@@ -19,7 +20,11 @@ class SelectPlanController extends GetxController{
         loading.value = false;
         Commons.successSnackBar(selectPlanSuccess, planSuccessMsg);
         Future.delayed(
-            const Duration(milliseconds: 450), () => Get.to(NewWorkSpace()));
+            const Duration(milliseconds: 450),
+            () => Get.to(NewWorkSpace(
+                  id: userId,
+                  token: token,
+                )));
       } else {
         loading.value = false;
         Commons.errorSnackBar(planFailed, data["Error"]);

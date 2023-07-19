@@ -200,31 +200,28 @@ class VerifyEmailOTP extends StatelessWidget {
         interval: const Duration(milliseconds: 1000),
         build: (context, currentRemainingTime) {
           if (currentRemainingTime == 0.0) {
-            return Obx(
-              () => Align(
-                      alignment: Alignment.bottomRight,
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: TextButton(
-                          onPressed: () =>
-                              emailSendOTPController.emailSendOTPApi(),
-                          child: Text(
-                            resend_button,
-                            style: GoogleFonts.lato(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                decoration: TextDecoration.underline,
-                                shadows: [
-                                  Shadow(
-                                      color: Colors.black,
-                                      offset: Offset(0.0, 0.5),
-                                      blurRadius: 0.5),
-                                ],
-                                color: orange),
-                          ),
-                        ),
-                      ),
-                    ),
+            return Align(
+              alignment: Alignment.bottomRight,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: TextButton(
+                  onPressed: () => emailSendOTPController.emailSendOTPApi(),
+                  child: Text(
+                    resend_button,
+                    style: GoogleFonts.lato(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.5,
+                        decoration: TextDecoration.underline,
+                        shadows: [
+                          Shadow(
+                              color: Colors.black,
+                              offset: Offset(0.0, 0.5),
+                              blurRadius: 0.5),
+                        ],
+                        color: orange),
+                  ),
+                ),
+              ),
             );
           } else {
             return Text(

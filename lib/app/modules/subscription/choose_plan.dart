@@ -17,8 +17,10 @@ import 'package:Monarch/app/controllers/subscription/select-plan.dart';
 
 class ChoosePlan extends StatefulWidget {
   String? email;
+  int? userId;
+  String? token;
 
-  ChoosePlan({Key? key, this.email}) : super(key: key);
+  ChoosePlan({Key? key, this.email, this.userId, this.token}) : super(key: key);
 
   @override
   State<ChoosePlan> createState() => _ChoosePlanState();
@@ -106,7 +108,10 @@ class _ChoosePlanState extends State<ChoosePlan> {
                           buttonWidth: sizeWidth * 0.7,
                           buttonText: cont_button,
                           callback: () => planController.subscriptionApi(
-                              widget.email ?? "", plan)),
+                              widget.email ?? "",
+                              plan,
+                              widget.userId ?? 0,
+                              widget.token ?? "")),
                     ),
             ),
           ],
